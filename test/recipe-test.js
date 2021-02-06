@@ -3,16 +3,16 @@ const expect = chai.expect;
 const Recipe = require('../src/recipe');
 
 
-describe('Class', function() {
-  let class;
+describe('Recipe', function() {
+  let recipe;
   beforeEach(function() {
-    class = new Class();
+    recipe = new Recipe();
   });
   it('should be a function', function() {
-    expect(Class).to.be.a('function');
+    expect(Recipe).to.be.a('function');
   });
-  it('should be an instance of Class', function() {
-    expect(class).to.be.an.instanceof(Class);
+  it('should be an instance of Recipe', function() {
+    expect(recipe).to.be.an.instanceof(Recipe);
   });
 
 });

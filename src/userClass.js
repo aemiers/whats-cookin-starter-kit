@@ -1,4 +1,4 @@
-class UserClass {
+class User {
   constructor() {
 
   }
@@ -8,5 +8,5 @@ class UserClass {
 
 
 if (typeof module !== 'undefined') {
-  module.exports = someClassName;
+  module.exports = User;
 }

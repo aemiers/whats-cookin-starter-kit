@@ -7,5 +7,5 @@ class RecipeRepository {
 
 
 if (typeof module !== 'undefined') {
-  module.exports = someClassName;
+  module.exports = RecipeRepository;
 }

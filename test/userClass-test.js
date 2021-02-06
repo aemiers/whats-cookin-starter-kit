@@ -1,18 +1,18 @@
 const chai = require('chai');
 const expect = chai.expect;
-const UserClass = require('../src/userClass');
+const User = require('../src/userClass');
 
 
-describe('Class', function() {
-  let class;
+describe('User', function() {
+  let user;
   beforeEach(function() {
-    class = new Class();
+    user = new User();
   });
   it('should be a function', function() {
-    expect(Class).to.be.a('function');
+    expect(User).to.be.a('function');
   });
-  it('should be an instance of Class', function() {
-    expect(class).to.be.an.instanceof(Class);
+  it('should be an instance of User', function() {
+    expect(user).to.be.an.instanceof(User);
   });
 
 });

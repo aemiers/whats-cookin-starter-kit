@@ -3,16 +3,16 @@ const expect = chai.expect;
 const UserPantry = require('../src/userPantry');
 
 
-describe('Class', function() {
-  let class;
+describe('UserPantry', function() {
+  let userPantry;
   beforeEach(function() {
-    class = new Class();
+    userPantry = new UserPantry();
   });
   it('should be a function', function() {
-    expect(Class).to.be.a('function');
+    expect(UserPantry).to.be.a('function');
   });
-  it('should be an instance of Class', function() {
-    expect(class).to.be.an.instanceof(Class);
+  it('should be an instance of UserPantry', function() {
+    expect(userPantry).to.be.an.instanceof(UserPantry);
   });
 
 });
