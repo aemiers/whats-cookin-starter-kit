@@ -1,15 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US" dir="ltr">
   <head>
+    <link href="https://fonts.google.com/specimen/Roboto?preview.text_type=custom"
+      rel="stylesheet">
+      <link href="https://fonts.google.com/specimen/Lora?preview.text_type=custom"
+      rel="stylesheet">
+    <link href="styles.css" type="text/css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
   </head>
   <body>
-    <h1>Whats Cookin</h1>
+    <header>
+      <nav>
+          <img src="" alt="Recipe Researcher">
+          <input id="searchBar" class="search-bar" type="text" alt="Enter Search Criteria">
+          <img src="" alt="Search Glass">
+          <img src="" alt="User Portal">
+      </nav>
+    </header>
+    <main>
+      <section class="hot-dish-picks">
+        <h1>Hot Dish Picks</h1>
+        <section class="large-image">
+        </section>
+        <section class="side-images">
+          <div class="side-image1">
+          </div>
+          <div class="side-image2">
+          </div>
+        </section>
+      </section>
+      <ul class="course-chooser">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <section class="browse-meals">
+        <h1>Browse Meals</h1>
+        <section class="browse-meals-instances">
+        </section>
+      </section>
+      <section class="favorites">
+        <h1>User Name's Favorites</h1>
+        <section class="favorites-instances">
+        </section>
+      </section>
+      <section class="recipe-detail">
+        <h1>Name of Recipe Here</h1>
+        <div class="recipe1-visual">
+          <img src="" alt="">
+          <ul class="tags">
+            <li>tag1</li>
+            <li>tag2</li>
+          </ul>
+        </div>
+        <section class="recipe1-ingredients">
+          <h2>Recipe Ingredients Compared with Your Pantry</h2>
+          <section class="ingredient-list">
+          </section>
+        </section>
+        <section>
+          <h2>Instructions</h2>
+          <ul>
+            <li>1. Text</li>
+            <li>2. Text</li>
+          </ul>
+        </section>
+      </section>
+      <section class="user-pantry">
+        <h1>User Name's Pantry</h1>
+        <h2>Add an Ingredient to Your Pantry</h2>
+        <form class="add-ingredient">
+          <img src="" alt="">
+          <input id="ingredientName" class="" type="text" alt="Enter Ingredient Name">
+          <input id="quantity" class="" type="text" alt="Enter Ingredient Quantity">
+          <input id="price" class="" type="text" alt="Enter Ingredient Price">
+          <input id="unit" class="" type="text" alt="Enter Ingredient Unit">
+        </form>
+        <h2>Ingredients in Your Pantry</h2>
+        <div class="button-box">
+          <button>A-Z</button>
+          <button>Quantity</button>
+          <button>Cost</button>
+        </div>
+        <section class="ingredient-list">
+      </section>
+      <section class="cookin-queue">
+        <h1>User Name's Cookin' Queue</h1>
+        <section>
+          <h1>number</h1>
+          <div class="picture">
+          </div>
+          <div class="recipe-name tags">
+          </div>
+        </section>
+      </section>
+    </main>
 
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
     <script type="text/javascript" src="./scripts.js"></script>
+    <script type="text/javascript" src="../src/recipe.js"></script>
+    <script type="text/javascript" src="../src/recipeRepository.js"></script>
+    <script type="text/javascript" src="../src/userClass.js"></script>
+    <script type="text/javascript" src="../src/userPantry.js"></script>
   </body>
 </html>
