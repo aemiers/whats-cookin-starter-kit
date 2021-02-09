@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
   <head>
-    <link href="https://fonts.google.com/specimen/Roboto?preview.text_type=custom"
-      rel="stylesheet">
-      <link href="https://fonts.google.com/specimen/Lora?preview.text_type=custom"
-      rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
     <link href="styles.css" type="text/css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
@@ -13,23 +13,32 @@
     <header>
       <nav>
           <img src="assets/Recipe Research Transparent.png" alt="Recipe Research Logo" class="header-logo">
-          <div class="icons">
-            <input id="searchBar" class="search-bar" type="text" alt="Enter Search Criteria">
-            <img src="assets/Search Icon.png" alt="Search Glass" class="header-icon">
-            <img src="assets/Person Logo.png" alt="User Icon" class="header-icon">
+          <div class="header-menu">
+            <input id="searchBar" class="search-bar" type="text" placeholder="   Search Recipes" alt="Enter Search Criteria">
+            <!-- <img src="assets/search-icon.png" alt="Search Glass" class="search-icon">
+            <img src="assets/Person Logo.png" alt="User Icon" class="person-icon"> -->
+            <h5 class="nav-labels">Favorites</h5>
+            <h5 class="nav-labels">Queue</h5>
+            <h5 class="nav-labels">Pantry</h5>
           </div>
       </nav>
     </header>
     <main>
-      <section class="hot-dish-picks">
-        <h1>Hot Dish Picks</h1>
+    <h1>Trending Recipes</h1>
+      <section class="trending-recipes">
         <section class="large-image">
+          <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 1" class="large-image">
+          <h2>Cookie 1</h2>
         </section>
         <section class="side-images">
-          <div class="side-image1">
-          </div>
-          <div class="side-image2">
-          </div>
+          <!-- <div class="side-image-div"> -->
+            <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal2" class="side-image">
+            <h2>Cookie 2</h2>
+          <!-- </div> -->
+          <!-- <div class="side-image-div"> -->
+            <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 3" class="side-image">
+            <h2>Cookie 3</h2>
+          <!-- </div> -->
         </section>
       </section>
       <section class="course-chooser">
