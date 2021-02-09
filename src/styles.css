@@ -6,13 +6,52 @@ html {
 * {
   font-family: "Roboto", sans-serif;
 }
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 21px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 12px;
+}
+
+p {
+  font-family: "Lora";
+  font-size: 12px;
+}
+
 nav {
   display: inline-flex;
   justify-content: space-between;
   width: 100%;
-  padding-top: 1%;
-  padding-bottom: 2%;
-  box-shadow: 0 8px 6px -6px #c4c4c4;
+  height: 5em;
+  padding-bottom: 1%;
+  box-shadow: 0 8px 6px -6px#c4c4c4;
+}
+
+.header-logo {
+  width: 30%;
+  height: 70%;
+}
+
+.search-bar {
+  height: 50%;
+  width: 60%;
+  margin-top: 3%;
+  border-radius: 30px;
+  border-color: #c4c4c4;
 }
 
 .icons {
@@ -21,11 +60,8 @@ nav {
 }
 
 .header-icon {
-  width: 20%;
-}
-
-.header-logo {
-  width: 30%;
+  width: 3.5em;
+  height: 3.5em;
 }
 
 .disabled {
