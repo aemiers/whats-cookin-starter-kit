@@ -1,7 +1,19 @@
+const Recipe = require('./src/recipe');
+
 class RecipeRepository {
-  construcor() {
+  construcor(recipe) {
+    this.recipeList = []
 
   }
+
+  addRecipeToRepository() {
+
+  }
+
+  filterRecipesByKeywords() {
+
+  }
+
 }
 
 
