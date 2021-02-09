@@ -8,9 +8,11 @@ describe('Ingredient', function() {
   beforeEach(function() {
     ingredient = new Ingredient();
   });
+
   it('should be a function', function() {
     expect(Ingredient).to.be.a('function');
   });
+
   it('should be an instance of Ingredient', function() {
     expect(ingredient).to.be.an.instanceof(Ingredient);
   });

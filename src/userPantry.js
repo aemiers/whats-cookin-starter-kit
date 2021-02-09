@@ -1,5 +1,16 @@
+const Ingredient = require('./src/ingredient');
+
 class UserPantry {
-  construcor() {
+  construcor(usersData) {
+    this.pantry = usersData.pantry;
+
+  }
+
+  compareIngredients() {
+
+  }
+
+  useIngredients() {
 
   }
 }
