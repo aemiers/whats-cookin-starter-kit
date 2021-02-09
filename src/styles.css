@@ -63,7 +63,15 @@ nav {
   width: 3.5em;
   height: 3.5em;
 }
-
+.course-chooser {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 1em;
+}
+figcaption {
+  font-size: 16px;
+  text-align: center;
+}
 .disabled {
   cursor: none;
   background-color: #95a5a6 !important;
