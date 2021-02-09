@@ -6,6 +6,27 @@ html {
 * {
   font-family: "Roboto", sans-serif;
 }
+nav {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 1%;
+  padding-bottom: 2%;
+  box-shadow: 0 8px 6px -6px #c4c4c4;
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header-icon {
+  width: 20%;
+}
+
+.header-logo {
+  width: 30%;
+}
 
 .disabled {
   cursor: none;
