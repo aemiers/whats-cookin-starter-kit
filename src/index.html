@@ -14,7 +14,7 @@
       <nav>
           <img src="assets/Recipe Research Transparent.png" alt="Recipe Research Logo" class="header-logo">
           <div class="header-menu">
-            <input id="searchBar" class="search-bar" type="text" placeholder="   Search Recipes" alt="Enter Search Criteria">
+            <input id="searchBar" class="search-bar" type="text" placeholder="Search Recipes" alt="Enter Search Criteria">
             <!-- <img src="assets/search-icon.png" alt="Search Glass" class="search-icon">
             <img src="assets/Person Logo.png" alt="User Icon" class="person-icon"> -->
             <h4 class="nav-labels">Favorites</h4>
@@ -135,25 +135,56 @@
       <section class="recipe-detail-page">
         <h1>Name of Recipe Here</h1>
         <div class="recipe1-visual">
-          <img src="" alt="">
-          <ul class="tags">
-            <li>tag1</li>
-            <li>tag2</li>
+          <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 1" class="recipe-page-image">
+          <ul class="recipe-page-tags">
+            <li class="recipe-tag">tag1</li>
+            <li class="recipe-tag">tag2</li>
           </ul>
         </div>
         <section class="recipe1-ingredients">
           <h2>Recipe Ingredients Compared with Your Pantry</h2>
           <section class="ingredient-list">
+     <!-- green checkmark row - delete below here when ready-->
+            <section class="ingredient-row">
+              <div class="ingredient-row-left-side">
+                <img class="check-x" id="check" src="assets/check.png" alt="green check" >
+                <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
+                <p class="ingredient-row-text">4 medium red onions</p>
+              </div>
+              <p class="ingredient-row-text">$ per unit</p>
+            </section>
+
+    <!-- red ex row, make sure it turns white -->
+            <section class="ingredient-row">
+              <div class="ingredient-row-left-side">
+                <img class="check-x hidden" id="check" src="assets/check.png" alt="green check">
+                <img class="check-x" id="x" src="assets/x.png" alt="red x">
+                <p class="ingredient-row-text">2 turtle doves</p>
+              </div>
+              <p class="ingredient-row-text">$ per unit</p>
+            </section>
+
+    <!-- delete above here when ready -->
           </section>
         </section>
         <section>
           <h2>Instructions</h2>
-          <ul>
-            <li>1. Text</li>
-            <li>2. Text</li>
+          <ul class="recipe-instructions">
+            <section class="numbered-recipe-chunk">
+              <p class="recipe-number">1</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </section>
+            <section class="numbered-recipe-chunk">
+              <p class="recipe-number">2</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </section>
           </ul>
         </section>
       </section>
+
+
       <section class="user-pantry hidden">
         <h1>User Name's Pantry</h1>
         <h2>Add an Ingredient to Your Pantry</h2>
