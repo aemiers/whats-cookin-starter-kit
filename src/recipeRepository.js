@@ -1,13 +1,18 @@
-// const Recipe = require('./src/recipe');
+const Ingredient = require('../src/ingredient');
+const Recipe = require('./recipe');
 
 class RecipeRepository {
-  constructor(recipe) {
-    this.recipeList = []
+  constructor(recipes) {
+    this.rawData = recipes;
+    this.recipeList = [];
 
   }
 
-  addRecipeToRepository() {
-
+  addRecipesToRepository() {
+    this.rawData.forEach(recipe => {
+      const newRecipe = new Recipe(recipe)
+      this.recipeList.push(newRecipe)
+    })
   }
 
   filterRecipesByKeywords() {
