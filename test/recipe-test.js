@@ -43,7 +43,7 @@ describe('Recipe', function() {
   });
 
   it('should be able to return directions', function() {
-    expect(recipe.listCookingInstructions()).to.deep.equal()
+    expect(recipe.listCookingInstructions()).to.deep.equal(recipe.instructions)
   });
 
 });

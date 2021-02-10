@@ -25,7 +25,7 @@ class Recipe {
   }
 
   listCookingInstructions() {
-   this.instructions.forEach(step => console.log(`${step.number}.) ${step.instruction}`))
+   return this.instructions
   }
 }
 
