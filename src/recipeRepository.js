@@ -1,7 +1,7 @@
 // const Recipe = require('./src/recipe');
 
 class RecipeRepository {
-  construcor(recipe) {
+  constructor(recipe) {
     this.recipeList = []
 
   }

@@ -1,26 +1,12 @@
 const chai = require('chai');
 const expect = chai.expect;
 const Ingredient = require('../src/ingredient');
+const superFakeIngredientData = require('../data/fakeIngredientData');
 
 describe('Ingredient', function() {
   let ingredient;
   beforeEach(function() {
-    const fakeIngredientData = [{
-      "id": 20081,
-      "name": "wheat flour",
-      "estimatedCostInCents": 142
-    },
-    {
-      "id": 18372,
-      "name": "bicarbonate of soda",
-      "estimatedCostInCents": 582
-    },
-    {
-      "id": 1123,
-      "name": "eggs",
-      "estimatedCostInCents": 472
-    }]
-    ingredient = new Ingredient(fakeIngredientData[2]);
+    ingredient = new Ingredient(superFakeIngredientData[2]);
   });
 
   it('should be a function', function() {

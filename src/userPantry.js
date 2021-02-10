@@ -1,7 +1,7 @@
 // const Ingredient = require('./src/ingredient');
 
 class UserPantry {
-  construcor(usersData) {
+  constructor(usersData) {
     this.pantry = usersData.pantry;
 
   }
