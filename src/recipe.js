@@ -1,13 +1,13 @@
-const Ingredient = require('./src/ingredient');
+// const Ingredient = require('./src/ingredient');
 
 class Recipe {
-  construcor(id, image, ingredients, instructions, name, tags) {
-    this.id = id;
-    this.pic = image;
-    this.ingredients = ingredients;
-    this.instructions = instructions;
-    this.name = name;
-    this.tags = tags;
+  construcor() {
+    // this.id = recipeData.id;
+    // this.pic = recipeData.image;
+    // this.ingredients = recipeData.ingredients;
+    // this.instructions = recipeData.instructions;
+    // this.name = recipeData.name;
+    // this.tags = recipeData.tags;
   }
 
   findIngredientName() {

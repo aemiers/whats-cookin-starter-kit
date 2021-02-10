@@ -1,4 +1,4 @@
-const Ingredient = require('./src/ingredient');
+// const Ingredient = require('./src/ingredient');
 
 class UserPantry {
   construcor(usersData) {
