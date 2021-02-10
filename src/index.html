@@ -14,123 +14,177 @@
       <nav>
           <img src="assets/Recipe Research Transparent.png" alt="Recipe Research Logo" class="header-logo">
           <div class="header-menu">
-            <input id="searchBar" class="search-bar" type="text" placeholder="   Search Recipes" alt="Enter Search Criteria">
+            <input id="searchBar" class="search-bar" type="text" placeholder="Search Recipes" alt="Enter Search Criteria">
             <!-- <img src="assets/search-icon.png" alt="Search Glass" class="search-icon">
             <img src="assets/Person Logo.png" alt="User Icon" class="person-icon"> -->
-            <h5 class="nav-labels">Favorites</h5>
-            <h5 class="nav-labels">Queue</h5>
-            <h5 class="nav-labels">Pantry</h5>
+            <h4 class="nav-labels">Favorites</h4>
+            <h4 class="nav-labels">Queue</h4>
+            <h4 class="nav-labels">Pantry</h4>
           </div>
       </nav>
     </header>
     <main>
-    <h1>Trending Recipes</h1>
-      <section class="trending-recipes">
-        <section class="large-image">
-          <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 1" class="large-image">
-          <h2>Cookie 1</h2>
-        </section>
-        <section class="side-images">
-          <!-- <div class="side-image-div"> -->
+      <section class="home-page hidden">
+        <h1>Trending Recipes</h1>
+        <section class="trending-recipes">
+          <section class="large-image">
+            <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 1" class="large-image">
+            <h2>Cookie 1</h2>
+          </section>
+          <section class="side-images">
+            <!-- <div class="side-image-div"> -->
             <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal2" class="side-image">
             <h2>Cookie 2</h2>
-          <!-- </div> -->
-          <!-- <div class="side-image-div"> -->
+            <!-- </div> -->
+            <!-- <div class="side-image-div"> -->
             <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 3" class="side-image">
             <h2>Cookie 3</h2>
-          <!-- </div> -->
+            <!-- </div> -->
+          </section>
+        </section>
+        <h1 class="sort-by-course-header">Sort by Course</h1>
+        <section class="course-chooser">
+          <figure class="course-chooser-topic">
+            <img src="assets/skewer.png" alt="Appetizer icon">
+            <figcaption>Appetizers</figcaption>
+          </figure>
+          <figure class="course-chooser-topic">
+            <img src="assets/croissant.png" alt="Breakfast icon">
+            <figcaption>Breakfast</figcaption>
+          </figure>
+          <figure class="course-chooser-topic">
+            <img src="assets/salad.png" alt="Lunch icon">
+            <figcaption>Lunch</figcaption>
+          </figure>
+          <figure class="course-chooser-topic">
+            <img src="assets/burger.png" alt="Dinner icon">
+            <figcaption>Dinner</figcaption>
+          </figure>
+          <figure class="course-chooser-topic">
+            <img src="assets/cake.png" alt="Dessert icon">
+            <figcaption>Dessert</figcaption>
+          </figure>
+          <figure class="course-chooser-topic">
+            <img src="assets/corn.png" alt="Sides icon">
+            <figcaption>Sides</figcaption>
+          </figure>
+        </section>
+
+        <section class="browse-meals">
+          <h1>Browse Meals</h1>
+          <section class="meals-grid">
+
+            <!-- delete below when ready -->
+
+            <article class="mini-recipe">
+              <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
+              <h4>Default</h4>
+              <h2>Default Cookies</h2>
+            </article>
+            <article class="mini-recipe">
+              <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
+              <h4>Default</h4>
+              <h2>Default Cookies</h2>
+            </article>
+            <article class="mini-recipe">
+              <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
+              <h4>Default</h4>
+              <h2>Default Cookies</h2>
+            </article>
+            <article class="mini-recipe">
+              <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
+              <h4>Default</h4>
+              <h2>Default Cookies</h2>
+            </article>
+
+            <!-- delete above when ready -->
+          </section>
         </section>
       </section>
-      <h1 class="sort-by-course-header">Sort by Course</h1>
-      <section class="course-chooser">
-        <figure class="course-chooser-topic">
-          <img src="assets/skewer.png" alt="Appetizer icon">
-          <figcaption>Appetizers</figcaption>
-        </figure>   
-        <figure class="course-chooser-topic">
-          <img src="assets/croissant.png" alt="Breakfast icon">
-          <figcaption>Breakfast</figcaption>
-        </figure>
-        <figure class="course-chooser-topic">
-          <img src="assets/salad.png" alt="Lunch icon">
-          <figcaption>Lunch</figcaption>
-        </figure>
-        <figure class="course-chooser-topic">
-          <img src="assets/burger.png" alt="Dinner icon">
-          <figcaption>Dinner</figcaption>
-        </figure>
-        <figure class="course-chooser-topic">
-          <img src="assets/cake.png" alt="Dessert icon">
-          <figcaption>Dessert</figcaption>
-        </figure>
-        <figure class="course-chooser-topic">
-          <img src="assets/corn.png" alt="Sides icon">
-          <figcaption>Sides</figcaption>
-        </figure>
-      </section>
-
-
-
-      <section class="browse-meals">
-        <h1>Browse Meals</h1>
-        <section class="browse-meals-grid">
-
-          <!-- delete below when ready -->
-
-          <article class="mini-recipe">
-            <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
-            <h4>Default</h4>
-            <h2>Default Cookies</h2>
-          </article>
-          <article class="mini-recipe">
-            <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
-            <h4>Default</h4>
-            <h2>Default Cookies</h2>
-          </article>
-          <article class="mini-recipe">
-            <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
-            <h4>Default</h4>
-            <h2>Default Cookies</h2>
-          </article>
-          <article class="mini-recipe">
-            <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
-            <h4>Default</h4>
-            <h2>Default Cookies</h2>
-          </article>
-
-          <!-- delete above when ready -->
+    
+      <section class="favorites-page hidden">
+        <h1>User Name's Favorite Recipes</h1>
+          <section class="meals-grid">
+          
+            <!-- delete below when ready -->
+          
+            <article class="mini-recipe">
+              <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
+              <h4>Default</h4>
+              <h2>Default Cookies</h2>
+            </article>
+            <article class="mini-recipe">
+              <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
+              <h4>Default</h4>
+              <h2>Default Cookies</h2>
+            </article>
+            <article class="mini-recipe">
+              <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
+              <h4>Default</h4>
+              <h2>Default Cookies</h2>
+            </article>
+            <article class="mini-recipe">
+              <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
+              <h4>Default</h4>
+              <h2>Default Cookies</h2>
+            </article>
         </section>
       </section>
 
 
-
-      <section class="favorites hidden">
-        <h1>User Name's Favorites</h1>
-        <section class="favorites-instances">
-        </section>
-      </section>
-      <section class="recipe-detail hidden">
+      <section class="recipe-detail-page">
         <h1>Name of Recipe Here</h1>
         <div class="recipe1-visual">
-          <img src="" alt="">
-          <ul class="tags">
-            <li>tag1</li>
-            <li>tag2</li>
+          <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 1" class="recipe-page-image">
+          <ul class="recipe-page-tags">
+            <li class="recipe-tag">tag1</li>
+            <li class="recipe-tag">tag2</li>
           </ul>
         </div>
         <section class="recipe1-ingredients">
           <h2>Recipe Ingredients Compared with Your Pantry</h2>
           <section class="ingredient-list">
+     <!-- green checkmark row - delete below here when ready-->
+            <section class="ingredient-row">
+              <div class="ingredient-row-left-side">
+                <img class="check-x" id="check" src="assets/check.png" alt="green check" >
+                <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
+                <p class="ingredient-row-text">4 medium red onions</p>
+              </div>
+              <p class="ingredient-row-text">$ per unit</p>
+            </section>
+
+    <!-- red ex row, make sure it turns white -->
+            <section class="ingredient-row">
+              <div class="ingredient-row-left-side">
+                <img class="check-x hidden" id="check" src="assets/check.png" alt="green check">
+                <img class="check-x" id="x" src="assets/x.png" alt="red x">
+                <p class="ingredient-row-text">2 turtle doves</p>
+              </div>
+              <p class="ingredient-row-text">$ per unit</p>
+            </section>
+
+    <!-- delete above here when ready -->
           </section>
         </section>
         <section>
           <h2>Instructions</h2>
-          <ul>
-            <li>1. Text</li>
-            <li>2. Text</li>
+          <ul class="recipe-instructions">
+            <section class="numbered-recipe-chunk">
+              <p class="recipe-number">1</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </section>
+            <section class="numbered-recipe-chunk">
+              <p class="recipe-number">2</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </section>
           </ul>
         </section>
       </section>
+
+
       <section class="user-pantry hidden">
         <h1>User Name's Pantry</h1>
         <h2>Add an Ingredient to Your Pantry</h2>
