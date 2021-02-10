@@ -2,53 +2,114 @@
 <html lang="en-US" dir="ltr">
   <head>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
-    <link href="../styles.css" type="text/css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+    <link href="styles.css" type="text/css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Whats Cookin</title>
   </head>
   <body>
     <header>
       <nav>
-          <img src="" alt="Recipe Researcher">
-          <input id="searchBar" class="search-bar" type="text" alt="Enter Search Criteria">
-          <img src="" alt="Search Glass">
-          <img src="" alt="User Portal">
+          <img src="assets/Recipe Research Transparent.png" alt="Recipe Research Logo" class="header-logo">
+          <div class="header-menu">
+            <input id="searchBar" class="search-bar" type="text" placeholder="   Search Recipes" alt="Enter Search Criteria">
+            <!-- <img src="assets/search-icon.png" alt="Search Glass" class="search-icon">
+            <img src="assets/Person Logo.png" alt="User Icon" class="person-icon"> -->
+            <h5 class="nav-labels">Favorites</h5>
+            <h5 class="nav-labels">Queue</h5>
+            <h5 class="nav-labels">Pantry</h5>
+          </div>
       </nav>
     </header>
     <main>
-      <section class="hot-dish-picks">
-        <h1>Hot Dish Picks</h1>
+    <h1>Trending Recipes</h1>
+      <section class="trending-recipes">
         <section class="large-image">
+          <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 1" class="large-image">
+          <h2>Cookie 1</h2>
         </section>
         <section class="side-images">
-          <div class="side-image1">
-          </div>
-          <div class="side-image2">
-          </div>
+          <!-- <div class="side-image-div"> -->
+            <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal2" class="side-image">
+            <h2>Cookie 2</h2>
+          <!-- </div> -->
+          <!-- <div class="side-image-div"> -->
+            <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 3" class="side-image">
+            <h2>Cookie 3</h2>
+          <!-- </div> -->
         </section>
       </section>
-      <ul class="course-chooser">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+      <h1 class="sort-by-course-header">Sort by Course</h1>
+      <section class="course-chooser">
+        <figure class="course-chooser-topic">
+          <img src="assets/skewer.png" alt="Appetizer icon">
+          <figcaption>Appetizers</figcaption>
+        </figure>
+        <figure class="course-chooser-topic">
+          <img src="assets/croissant.png" alt="Breakfast icon">
+          <figcaption>Breakfast</figcaption>
+        </figure>
+        <figure class="course-chooser-topic">
+          <img src="assets/salad.png" alt="Lunch icon">
+          <figcaption>Lunch</figcaption>
+        </figure>
+        <figure class="course-chooser-topic">
+          <img src="assets/burger.png" alt="Dinner icon">
+          <figcaption>Dinner</figcaption>
+        </figure>
+        <figure class="course-chooser-topic">
+          <img src="assets/cake.png" alt="Dessert icon">
+          <figcaption>Dessert</figcaption>
+        </figure>
+        <figure class="course-chooser-topic">
+          <img src="assets/corn.png" alt="Sides icon">
+          <figcaption>Sides</figcaption>
+        </figure>
+      </section>
+
+
+
       <section class="browse-meals">
         <h1>Browse Meals</h1>
-        <section class="browse-meals-instances">
+        <section class="browse-meals-grid">
+
+          <!-- delete below when ready -->
+
+          <article class="mini-recipe">
+            <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
+            <h4>Default</h4>
+            <h2>Default Cookies</h2>
+          </article>
+          <article class="mini-recipe">
+            <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
+            <h4>Default</h4>
+            <h2>Default Cookies</h2>
+          </article>
+          <article class="mini-recipe">
+            <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
+            <h4>Default</h4>
+            <h2>Default Cookies</h2>
+          </article>
+          <article class="mini-recipe">
+            <img class="mini-recipe" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
+            <h4>Default</h4>
+            <h2>Default Cookies</h2>
+          </article>
+
+          <!-- delete above when ready -->
         </section>
       </section>
-      <section class="favorites">
+
+
+
+      <section class="favorites hidden">
         <h1>User Name's Favorites</h1>
         <section class="favorites-instances">
         </section>
       </section>
-      <section class="recipe-detail">
+      <section class="recipe-detail hidden">
         <h1>Name of Recipe Here</h1>
         <div class="recipe1-visual">
           <img src="" alt="">
@@ -70,7 +131,7 @@
           </ul>
         </section>
       </section>
-      <section class="user-pantry">
+      <section class="user-pantry hidden">
         <h1>User Name's Pantry</h1>
         <h2>Add an Ingredient to Your Pantry</h2>
         <form class="add-ingredient">
@@ -88,7 +149,7 @@
         </div>
         <section class="ingredient-list">
       </section>
-      <section class="cookin-queue">
+      <section class="cookin-queue hidden">
         <h1>User Name's Cookin' Queue</h1>
         <section>
           <h1>number</h1>
