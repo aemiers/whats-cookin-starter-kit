@@ -132,7 +132,7 @@
       </section>
 
 
-      <section class="recipe-detail-page">
+      <section class="recipe-detail-page hidden">
         <h1>Name of Recipe Here</h1>
         <div class="recipe1-visual">
           <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 1" class="recipe-page-image">
@@ -185,23 +185,53 @@
       </section>
 
 
-      <section class="user-pantry hidden">
+      <section class="user-pantry">
         <h1>User Name's Pantry</h1>
         <h2>Add an Ingredient to Your Pantry</h2>
-        <form class="add-ingredient">
-          <img src="" alt="">
-          <input id="ingredientName" class="" type="text" alt="Enter Ingredient Name">
-          <input id="quantity" class="" type="text" alt="Enter Ingredient Quantity">
-          <input id="price" class="" type="text" alt="Enter Ingredient Price">
-          <input id="unit" class="" type="text" alt="Enter Ingredient Unit">
+        <form class="add-ingredient-form">
+          <input id="ingredientName" class="ingredient-entry" type="text" alt="Enter Ingredient Name" placeholder="Ingredient Name">
+          <input id="quantity" class="ingredient-entry" type="text" alt="Enter Ingredient Quantity" placeholder="Quantity">
+          <input id="price" class="ingredient-entry" type="text" alt="Enter Ingredient Price"placeholder="Price">
+          <input id="unit" class="ingredient-entry" type="text" alt="Enter Ingredient Unit" placeholder="Unit">
+          <img src="assets/plus.png" alt="Add Ingredient Button" class="add-ingredient-button">
         </form>
         <h2>Ingredients in Your Pantry</h2>
         <div class="button-box">
-          <button>A-Z</button>
-          <button>Quantity</button>
-          <button>Cost</button>
+          <button class="pantry-sort-button">A-Z</button>
+          <button class="pantry-sort-button">Quantity</button>
+          <button class="pantry-sort-button">Cost</button>
         </div>
         <section class="ingredient-list">
+          <section class="ingredient-list">
+
+
+            <!-- green checkmark row - delete below here when ready-->
+            <section class="ingredient-row">
+              <div class="ingredient-row-left-side">
+                <img class="check-x" id="check" src="assets/check.png" alt="green check">
+                <img class="check-x hidden" id="x" src="assets/x.png" alt="red x">
+                <p class="ingredient-row-text">4 medium red onions</p>
+              </div>
+              <div class="ingredient-row-pantry-right-side">
+                <p class="ingredient-row-text">$ per unit</p>
+                <img class="check-x" id="x-pantry" src="assets/x.png" alt="red x">
+              </div>
+            </section>
+          
+            <!-- second row, make sure it turns white -->
+            <section class="ingredient-row">
+              <div class="ingredient-row-left-side">
+                <img class="check-x" id="check" src="assets/check.png" alt="green check">
+                <img class="check-x hidden" id="x" src="assets/x.png" alt="red x">
+                <p class="ingredient-row-text">2 carrots</p>
+              </div>
+              <div class="ingredient-row-pantry-right-side">
+                <p class="ingredient-row-text">$ per unit</p>
+                <img class="check-x" id="x-pantry" src="assets/x.png" alt="red x">
+              </div>
+          
+            <!-- delete above here when ready -->
+          </section>
       </section>
       <section class="cookin-queue hidden">
         <h1>User Name's Cookin' Queue</h1>
