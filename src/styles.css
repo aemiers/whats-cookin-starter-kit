@@ -9,6 +9,7 @@ html {
 
 h1 {
   font-size: 30px;
+  padding: 20px;
 }
 
 h2 {
@@ -59,9 +60,14 @@ nav {
   justify-content: space-between;
   margin-top: 1%;
 }
+
 .nav-labels {
   margin-left: 15px;
   margin-right: 15px;
+}
+
+.nav-labels:hover {
+  color: #7dc3ad;
 }
 /* .search-icon {
   width: 50px;
@@ -74,23 +80,13 @@ nav {
   height: 60px;
 } */
 
-.course-chooser {
-  display: flex;
-  justify-content: space-evenly;
-  padding-bottom: 1em;
-}
-
-figcaption {
-  font-size: 16px;
-  text-align: center;
-}
-
 .trending-recipes {
   display: flex;
   justify-content: space-between;
 }
 
 .large-image {
+  padding: 20px;
   width: 90%;
   align-items: center;
 }
@@ -104,6 +100,56 @@ figcaption {
 .side-image {
   height: 70%;
   width: 90%;
+}
+
+.sort-by-course-header {
+  padding: 20px;
+  margin-top: 3em;
+}
+
+.course-chooser {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 5em;
+}
+
+figcaption {
+  font-size: 16px;
+  text-align: center;
+}
+
+.course-chooser-topic:hover {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.browse-meals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.mini-recipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mini-recipe img {
+  width: 95%;
+}
+
+.mini-recipe h4 {
+  letter-spacing: 2px;
+  color: #7dc3ad;
+  text-transform: uppercase;
+  margin-bottom: 0px;
+}
+
+.mini-recipe h2 {
+  margin-top: 0px;
+  font-size: 30px;
 }
 
 .disabled {
