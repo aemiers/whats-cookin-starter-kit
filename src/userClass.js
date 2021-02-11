@@ -1,5 +1,5 @@
-const RecipeRepository = require('./src/recipeRepository');
-const UserPantry = require('./src/userPantry');
+// const RecipeRepository = require('./src/recipeRepository');
+// const UserPantry = require('./src/userPantry');
 
 class User {
   constructor(usersData) {

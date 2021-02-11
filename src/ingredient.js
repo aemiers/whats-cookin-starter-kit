@@ -1,9 +1,10 @@
 class Ingredient {
-  construcor(id, name, cost) {
-    this.id = id;
-    this.name = name;
-    this.cost = cost;
+  constructor(ingredient) {
+    this.id = ingredient.id;
+    this.name = ingredient.name;
+    this.cost = ingredient.estimatedCostInCents;
   }
+
 }
 
 
