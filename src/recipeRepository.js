@@ -18,13 +18,17 @@ class RecipeRepository {
   }
 
   filterRecipesByTags(keywords) {
-    const searchWords = keywords;
+    const searchWords = keywords.toLowerCase();
     const splitSearch = searchWords.split(' ');
     splitSearch.forEach(word => {
       const foundRecipe = this.recipeList.filter(recipe => recipe.tags.includes(word))
-      foundRecipe.forEach(recipe => this.filteredList.push(recipe))
-
+      foundRecipe.forEach(recipe => {
+        if (!this.filteredList.includes(recipe)) {
+          this.filteredList.push(recipe)
+        }
+      })
     })
+    console.log(this.filteredList)
   }
 
   filterRecipesByIngredients(keywords) {
@@ -33,19 +37,15 @@ class RecipeRepository {
   }
 
   filterRecipesByName(name) {
-    const searchName = name;
-    console.log('searchName:', searchName)
+    const searchName = name.toLowerCase();
     const splitName = searchName.split(' ');
-    console.log('splitName:', splitName)
     splitName.forEach(word => {
-      const foundRecipe = this.recipeList.filter(recipe => recipe.name.includes(word))
-      console.log('name:', this.recipeList[0].name)
-      console.log('foundRecipe:', foundRecipe)
-      foundRecipe.forEach(recipe => this.filteredList.push(recipe))
-      console.log('filteredList:', this.filteredList)
-
-//to lowercase, fix redundancy
-
+      const foundRecipe = this.recipeList.filter(recipe => recipe.name.toLowerCase().includes(word))
+      foundRecipe.forEach(recipe => {
+        if (!this.filteredList.includes(recipe)) {
+          this.filteredList.push(recipe)
+        }
+      })
     })
   }
 }

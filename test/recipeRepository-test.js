@@ -28,14 +28,14 @@ describe('RecipeRepository', function() {
   });
 
   it('should filter recipes by tags', function() {
-    recipeRepository.filterRecipesByTags('starter sauce')
+    recipeRepository.filterRecipesByTags("starter Sauce snack Appetizer")
     expect(recipeRepository.filteredList.length).to.equal(2);
     expect(recipeRepository.filteredList[1]).to.deep.equal(recipes[2])
   });
 
   it('should be able to filter recipes by name', function() {
-    recipeRepository.filterRecipesByName('Cookie Pudding')
-    expect(recipeRepository.filteredList.length).to.equal(1)
+    recipeRepository.filterRecipesByName('Cookie Pudding Pork')
+    expect(recipeRepository.filteredList.length).to.equal(2)
   });
 
   // it('should filter recipes by ingredients', function() {
