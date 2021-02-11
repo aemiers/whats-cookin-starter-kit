@@ -109,7 +109,8 @@ nav {
 .top-side-image,
 .bottom-side-image,
 .mini-recipe-image-container,
-.recipe-page-image-container {
+.recipe-page-image-container,
+.queue-recipe-image-container {
   position: relative;
 }
 
@@ -283,6 +284,33 @@ figcaption {
 .pantry-sort-button:active {
   /* this doesn't work, make A-Z default and already clicked upon load */
   background-color: #7dc3ad;
+}
+
+.queue-block {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 50px;
+  background-color: #f5f5f5;
+}
+
+.queue-recipe-img {
+  top: 0;
+  left: 0;
+}
+
+.queue-recipe-img {
+  width: 300px;
+}
+
+.queue-heart {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+}
+
+.queue-words-container {
+  align-content: start;
 }
 
 .hover {
