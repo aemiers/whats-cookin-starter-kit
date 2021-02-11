@@ -3,6 +3,7 @@ const expect = chai.expect;
 const RecipeRepository = require('../src/recipeRepository');
 const Recipe = require('../src/recipe');
 const recipes = require('../data/fakeRecipeData');
+const superFakeIngredientData = require('../data/fakeIngredientData');
 
 describe('RecipeRepository', function() {
   let recipeRepository;
@@ -28,9 +29,17 @@ describe('RecipeRepository', function() {
 
   it('should filter recipes by tags', function() {
     recipeRepository.filterRecipesByTags('starter sauce')
-    expect(recipeRepository.filterList.length).to.equal(2);
-    expect(recipeRepository.filterList[1]).to.deep.equal(recipes[2])
+    expect(recipeRepository.filteredList.length).to.equal(2);
+    expect(recipeRepository.filteredList[1]).to.deep.equal(recipes[2])
   });
 
+  it('should be able to filter recipes by name', function() {
+    recipeRepository.filterRecipesByName('Cookie Pudding')
+    expect(recipeRepository.filteredList.length).to.equal(1)
+  });
+
+  // it('should filter recipes by ingredients', function() {
+  //   recipeRepository.filterRecipesByIngredients('oregano vinegar lettuce')
+  // });
 
 });
