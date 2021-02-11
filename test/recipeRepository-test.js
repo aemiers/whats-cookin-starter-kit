@@ -8,6 +8,7 @@ describe('RecipeRepository', function() {
   let recipeRepository;
   beforeEach(function() {
     recipeRepository = new RecipeRepository(recipes);
+    recipeRepository.addRecipesToRepository();
   });
   it('should be a function', function() {
     expect(RecipeRepository).to.be.a('function');
@@ -21,9 +22,14 @@ describe('RecipeRepository', function() {
   });
 
   it('should be able to turn raw data into recipes', function() {
-    recipeRepository.addRecipesToRepository();
     expect(recipeRepository.recipeList[1]).to.be.an.instanceof(Recipe);
     expect(recipeRepository.recipeList[2].name).to.equal("Dirty Steve's Original Wing Sauce")
+  });
+
+  it('should filter recipes by tags', function() {
+    recipeRepository.filterRecipesByTags('starter sauce')
+    expect(recipeRepository.filterList.length).to.equal(2);
+    expect(recipeRepository.filterList[1]).to.deep.equal(recipes[2])
   });
 
 

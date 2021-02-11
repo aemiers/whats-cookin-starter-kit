@@ -3,7 +3,7 @@ const ingredients = require('../data/ingredients');
 class Recipe {
   constructor(recipeData) {
     this.id = recipeData.id;
-    this.pic = recipeData.image;
+    this.image = recipeData.image;
     this.ingredients = recipeData.ingredients;
     this.instructions = recipeData.instructions;
     this.name = recipeData.name;

@@ -5,6 +5,7 @@ class RecipeRepository {
   constructor(recipes) {
     this.rawData = recipes;
     this.recipeList = [];
+    this.filterList = []
 
   }
 
@@ -15,7 +16,17 @@ class RecipeRepository {
     })
   }
 
-  filterRecipesByKeywords() {
+  filterRecipesByTags(keywords) {
+    const searchWords = keywords;
+    const splitSearch = searchWords.split(' ');
+    splitSearch.forEach(word => {
+      const foundRecipe = this.recipeList.filter(recipe => recipe.tags.includes(word))
+      this.filterList.push(foundRecipe[0])
+    })
+    return this.filterList
+  }
+
+  filterRecipesByIngredients() {
 
   }
 
