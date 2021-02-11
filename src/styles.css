@@ -75,21 +75,55 @@ nav {
   justify-content: space-between;
 }
 
+.large-image-section {
+  position: relative;
+  width: 100%;
+  align-items: center;
+  /* max-width: ; */
+}
+
 .large-image {
   padding: 20px;
   width: 90%;
-  align-items: center;
+  top: 0;
+  left: 0;
+}
+
+.heart {
+  position: absolute;
+  height: 25px;
+}
+
+.large-image-heart {
+  top: 40px;
+  right: 70px;
 }
 
 .side-images {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* width: 100%; */
+}
+
+.top-side-image,
+.bottom-side-image,
+.mini-recipe-image-container,
+.recipe-page-image-container,
+.queue-recipe-image-container {
+  position: relative;
 }
 
 .side-image {
+  top: 0;
+  left: 0;
   height: 70%;
   width: 90%;
+}
+
+.side-heart {
+  top: 20px;
+  right: 60px;
 }
 
 .sort-by-course-header {
@@ -126,8 +160,15 @@ figcaption {
   align-items: center;
 }
 
-.mini-recipe img {
+.mini-recipe-img {
   width: 95%;
+  top: 0;
+  left: 0;
+}
+
+.mini-heart {
+  top: 15px;
+  right: 40px;
 }
 
 .mini-recipe h4 {
@@ -137,10 +178,10 @@ figcaption {
   margin-bottom: 0px;
 }
 
-/* .mini-recipe h2 {
+.mini-recipe h2 {
   margin-top: 0px;
   font-size: 30px;
-} */
+}
 
 .recipe-page-tags {
   display: flex;
@@ -151,11 +192,16 @@ figcaption {
   margin-right: 10px;
 }
 
-.recipe-large-image {
+.recipe-page-image {
   display: flex;
   align-self: center;
+  top: 0;
+  left: 0;
 }
-
+.recipe-page-heart {
+  top: 200px;
+  right: 300px;
+}
 .ingredient-row {
   margin: 0 100px 0 60px;
   background-color: #f5f5f5;
@@ -238,6 +284,33 @@ figcaption {
 .pantry-sort-button:active {
   /* this doesn't work, make A-Z default and already clicked upon load */
   background-color: #7dc3ad;
+}
+
+.queue-block {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 50px;
+  background-color: #f5f5f5;
+}
+
+.queue-recipe-img {
+  top: 0;
+  left: 0;
+}
+
+.queue-recipe-img {
+  width: 300px;
+}
+
+.queue-heart {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+}
+
+.queue-words-container {
+  align-content: start;
 }
 
 .hover {
