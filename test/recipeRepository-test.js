@@ -36,6 +36,7 @@ describe('RecipeRepository', function() {
   it('should be able to filter recipes by name', function() {
     recipeRepository.filterRecipesByName('Cookie Pudding Pork')
     expect(recipeRepository.filteredList.length).to.equal(2)
+    expect(recipeRepository.filteredList).to.deep.equal([recipes[0], recipes[1]])
   });
 
   // it('should filter recipes by ingredients', function() {
