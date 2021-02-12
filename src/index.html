@@ -25,7 +25,7 @@
     </header>
     <main>
 <!-- HOME PAGE -->
-      <section class="home-page">
+      <section id="homePage" class="home-page">
         <h1>Trending Recipes</h1>
         <section id="trendingDisplay"class="trending-recipes">
         </section>
@@ -129,19 +129,19 @@
       </section>
 
 <!-- RECIPE DETAIL PAGE -->
-      <section class="recipe-detail-page hidden">
-        <h1>Name of Recipe Here</h1>
+      <section id="recipeDetailPage" class="recipe-detail-page">
+        <h1 id="recipeDetailsName">Name of Recipe Here</h1>
         <div class="recipe1-visual">
           <div recipe-page-image-container>
-            <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 1" class="recipe-page-image">
+            <img id="recipeDetailsImage" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 1" class="recipe-page-image">
             <div class="heart-overlay">
               <img src="assets/grey-heart.png" alt="grey heart" class="heart recipe-page-heart">
               <img src="assets/pink-heart.png" alt="pink heart" class="heart recipe-page-heart hidden">
             </div>
           </div>
-          <ul class="recipe-page-tags">
-            <li class="recipe-tag">tag1</li>
-            <li class="recipe-tag">tag2</li>
+          <ul id="recipePageTags" class="recipe-page-tags">
+            <!-- <li class="recipe-tag">tag1</li>
+            <li class="recipe-tag">tag2</li> -->
           </ul>
         </div>
         <section class="recipe1-ingredients">

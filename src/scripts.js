@@ -1,13 +1,19 @@
+const newRepository = new RecipeRepository(recipeData)
 const trendingDisplay = document.querySelector('#trendingDisplay');
 const browseMeals = document.querySelector('#allMeals');
 const recipeTarget = document.querySelector('#recipeTarget');
+const recipeDetailPage = document.querySelector('#recipeDetailPage');
+const homePage = document.querySelector('#homePage');
+const recipeDetailsName = document.querySelector('#recipeDetailsName');
+const recipeDetailsImage = document.querySelector('#recipeDetailsImage');
+const recipeDetailsTags = document.querySelector('#recipePageTags')
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length)
  }
 
 function populateMain() {
-  let newRepository = new RecipeRepository(recipeData)
+  // let newRepository = new RecipeRepository(recipeData)
   newRepository.addRecipesToRepository();
   const randomRecipe1 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe2 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
@@ -35,7 +41,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
         <img src="assets/grey-heart.png" alt="grey heart" class="heart large-image-heart">
         <img src="assets/pink-heart.png" alt="pink heart" class="heart large-image-heart hidden">
       </div>
-      <h2>${recipe1.name}</h2>
+      <h2 id="recipeTarget">${recipe1.name}</h2>
     </section>
     <section class="side-images">
       <section class="top-side-image">
@@ -44,7 +50,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
           <img src="assets/grey-heart.png" alt="grey heart" class="heart side-heart">
           <img src="assets/pink-heart.png" alt="pink heart" class="heart side-heart">
         </div>
-        <h2>${recipe2.name}</h2>
+        <h2 id="recipeTarget">${recipe2.name}</h2>
       </section>
       <section class="bottom-side-image">
         <img src="${recipe3.image}" alt="Meal 3" class="side-image">
@@ -52,14 +58,13 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
           <img src="assets/grey-heart.png" alt="grey heart" class="heart side-heart">
           <img src="assets/pink-heart.png" alt="pink heart" class="heart side-heart hidden">
         </div>
-        <h2>${recipe3.name}</h2>
+        <h2 id="recipeTarget">${recipe3.name}</h2>
       </section>
     </section>
   `
 }
 
 function populateAll(recipes) {
-  console.log(recipes)
   recipes.forEach(recipe => {
     browseMeals.innerHTML += `
       <article class="mini-recipe">
@@ -77,20 +82,34 @@ function populateAll(recipes) {
   })
 }
 
-function hide([elements]) {
+function tagsIteration(recipe) {
+  recipe.tags.forEach(tag => {
+    recipeDetailsTags.innerHTML += `
+      <li class="recipe-tag">${tag}</li>
+    `
+  })
+}
+
+function recipeDetails(recipe) {
+  recipeDetailsName.innerText = `${recipe.name}`;
+  recipeDetailsImage.src = `${recipe.image}`;
+  tagsIteration(recipe);
+}
+
+function hide(elements) {
   elements.forEach(element => element.classList.add('hidden'));
 }
 
-function show([elements]) {
+function show(elements) {
   elements.forEach(element => element.classList.remove('hidden'));
 }
 
 
 window.addEventListener('load', populateMain)
 
-recipeTarget.addEventListener('click', function(e) {
-  if (event.target.className === 'recipeTarget') {
-    hide([])
-    show([])
-  }
-})
+// recipeTarget.addEventListener('click', function(e) {
+//   if (event.target.closest('.mini-recipe') === 'mini-recipe') {
+//     hide([homePage])
+//     show([])
+//   }
+// })
