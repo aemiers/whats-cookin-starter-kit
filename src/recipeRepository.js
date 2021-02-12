@@ -1,13 +1,14 @@
-const Ingredient = require('../src/ingredient');
+// const Ingredient = require('../src/ingredient');
+// const UserPantry = require('../src/userPantry')
+const ingredientsData = require('../data/fakeIngredientData');
+const fakeRecipeData = require('../data/fakeRecipeData');
 const Recipe = require('./recipe');
-const ingredients = require('../data/ingredients');
 
 class RecipeRepository {
   constructor(recipes) {
     this.rawData = recipes;
     this.recipeList = [];
-    this.filteredList = []
-
+    this.filteredList = [];
   }
 
   addRecipesToRepository() {
@@ -18,6 +19,7 @@ class RecipeRepository {
   }
 
   filterRecipesByTags(keywords) {
+
     const searchWords = keywords.toLowerCase();
     const splitSearch = searchWords.split(' ');
     splitSearch.forEach(word => {
@@ -28,12 +30,29 @@ class RecipeRepository {
         }
       })
     })
-    console.log(this.filteredList)
   }
 
-  filterRecipesByIngredients(keywords) {
-    const searchWords = keywords;
-    const splitSearch = searchWords.split(' ');
+  filterRecipesByIngredients(searchWords) {
+    const filteredIngredientId = [];
+    const filteredRecipe = [];
+
+    searchWords.forEach(word => {
+      const searchWordsFormatted = word.toLowerCase().split(' ');
+      ingredientsData.map(ingredient => {
+        if (ingredient.name.includes(searchWordsFormatted)) {
+          filteredIngredientId.push(ingredient.id)
+        }
+      })
+    });
+    filteredIngredientId.forEach(ingredientId => {
+      fakeRecipeData.map(recipe => {
+        recipe.ingredients.map(ingredient => {
+          if (ingredient.id === ingredientId && !this.filteredList.includes(recipe)) {
+            this.filteredList.push(recipe)
+          }
+        })
+      })
+    })
   }
 
   filterRecipesByName(name) {
@@ -49,8 +68,6 @@ class RecipeRepository {
     })
   }
 }
-
-
 
 if (typeof module !== 'undefined') {
   module.exports = RecipeRepository;

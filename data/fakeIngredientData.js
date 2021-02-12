@@ -1,3 +1,4 @@
+
 const fakeIngredientData = [{
   "id": 20081,
   "name": "wheat flour",
