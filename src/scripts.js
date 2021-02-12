@@ -1,5 +1,6 @@
 const trendingDisplay = document.querySelector('#trendingDisplay');
 const browseMeals = document.querySelector('#allMeals');
+const recipeTarget = document.querySelector('#recipeTarget');
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length)
@@ -70,16 +71,26 @@ function populateAll(recipes) {
           </div>
         </section>
         <h4>${recipe.tags[getRandomIndex(recipe.tags)]}</h4>
-        <h2>${recipe.name}</h2>
+        <h2 id="recipeTarget">${recipe.name}</h2>
       </article>
     `
   })
 }
 
+function hide([elements]) {
+  elements.forEach(element => element.classList.add('hidden'));
+}
 
-
-
-
+function show([elements]) {
+  elements.forEach(element => element.classList.remove('hidden'));
+}
 
 
 window.addEventListener('load', populateMain)
+
+recipeTarget.addEventListener('click', function(e) {
+  if (event.target.className === 'recipeTarget') {
+    hide([])
+    show([])
+  }
+})
