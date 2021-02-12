@@ -43,13 +43,9 @@ describe('RecipeRepository', function () {
     expect(recipeRepository.filteredList).to.deep.equal([recipes[0], recipes[1]]);
   });
 
-  it('should be able to see if search words are in the ingredients file', function () {
-    recipeRepository.filterRecipesByIngredients(['wheat', 'of']);
-  })
-
   it('should filter recipes by ingredients', function () {
     recipeRepository.filterRecipesByIngredients(['wheat']);
-    expect(recipeRepository.filteredList.length).to.equal(1);
+    expect(recipeRepository.filteredList.length).to.deep.equal(1);
   });
 
   it('should filter recipes by ingredients only once if multiple ingredients are in the same recipe', function () {
