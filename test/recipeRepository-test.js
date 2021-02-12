@@ -50,6 +50,6 @@ describe('RecipeRepository', function () {
 
   it('should filter recipes by ingredients only once if multiple ingredients are in the same recipe', function () {
     recipeRepository.filterRecipesByIngredients(['wheat', 'of']);
-    expect(recipeRepository.filteredList.length).to.equal(1);
+    expect(recipeRepository.filteredList.length).to.deep.equal(1);
   });
 });
