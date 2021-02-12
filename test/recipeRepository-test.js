@@ -48,7 +48,7 @@ describe('RecipeRepository', function () {
   })
 
   it('should filter recipes by ingredients', function () {
-    recipeRepository.filterRecipesByIngredients('wheat');
+    recipeRepository.filterRecipesByIngredients(['wheat']);
     expect(recipeRepository.filteredList.length).to.equal(1);
   });
 
