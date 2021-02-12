@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
-const Ingredient = require('../src/ingredient');
-const superFakeIngredientData = require('../data/fakeIngredientData');
+// const Ingredient = require('../src/ingredient');
+// const superFakeIngredientData = require('../data/fakeIngredientData');
 
 describe('Ingredient', function() {
   let ingredient;

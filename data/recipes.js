@@ -611,7 +611,7 @@ const recipeData = [
       }
     ],
     "name": "Mock Udi\u2019s Gluten Free Whole Grain Bread",
-    "tags": []
+    "tags": ["side dish"]
   },
   {
     "id": 507921,
@@ -2940,7 +2940,7 @@ const recipeData = [
   },
   {
     "id": 698701,
-    "image": "https://spoonacular.com/recipeImages/698701-556x370.jpg",
+    "image": "https://i2.wp.com/www.sipsnibblesbites.com/wp-content/uploads/2018/12/Raspberry-souffle-2.jpg?fit=610%2C406&ssl=1",
     "ingredients": [
       {
         "id": 10014623,
@@ -5382,6 +5382,6 @@ const recipeData = [
   }
 ];
 
-if (typeof module !== 'undefined') {
-  module.exports = recipeData;
-}
+// if (typeof module !== 'undefined') {
+//   module.exports = recipeData;
+// }

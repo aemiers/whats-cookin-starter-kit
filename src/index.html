@@ -25,20 +25,19 @@
     </header>
     <main>
 <!-- HOME PAGE -->
-      <section class="home-page hidden">
+      <section class="home-page">
         <h1>Trending Recipes</h1>
-        <section class="trending-recipes">
-
-          <section class="large-image-section">
-            <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 1" class="large-image">
+        <section id="trendingDisplay"class="trending-recipes">
+          <!-- <section class="large-image-section"> -->
+            <!-- <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 1" class="large-image">
             <div class="heart-overlay">
               <img src="assets/grey-heart.png" alt="grey heart" class="heart large-image-heart">
               <img src="assets/pink-heart.png" alt="pink heart" class="heart large-image-heart hidden">
             </div>
-            <h2>Cookie 1</h2>
-          </section>
+            <h2>Cookie 1</h2> -->
+          <!-- </section> -->
 
-          <section class="side-images">
+          <!-- <section class="side-images">
             <section class="top-side-image">
               <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal2" class="side-image">
               <div class="heart-overlay">
@@ -46,20 +45,19 @@
                 <img src="assets/pink-heart.png" alt="pink heart" class="heart side-heart">
               </div>
               <h2>Cookie 2</h2>
-            </section>
+            </section> -->
             <!-- <div class="side-image-div"> -->
 
             <!-- <div class="side-image-div"> -->
-            <section class="bottom-side-image">
+            <!-- <section class="bottom-side-image">
               <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 3" class="side-image">
               <div class="heart-overlay">
                 <img src="assets/grey-heart.png" alt="grey heart" class="heart side-heart">
                 <img src="assets/pink-heart.png" alt="pink heart" class="heart side-heart hidden">
               </div>
               <h2>Cookie 3</h2>
-            </section>
-
-          </section>
+            </section> -->
+          <!-- </section> -->
         </section>
         <h1 class="sort-by-course-header">Sort by Course</h1>
         <section class="course-chooser">
@@ -91,11 +89,11 @@
 
         <section class="browse-meals">
           <h1>Browse Meals</h1>
-          <section class="meals-grid">
+          <section id="allMeals" class="meals-grid">
 
             <!-- delete below when ready -->
 
-            <article class="mini-recipe">
+            <!-- <article class="mini-recipe">
               <section class="mini-recipe-image-container">
                 <img class="mini-recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
                 <div class="heart-overlay">
@@ -138,7 +136,7 @@
               </section>
               <h4>Default</h4>
               <h2>Default Cookies</h2>
-            </article>
+            </article> -->
 
 
             <!-- delete above when ready -->
@@ -317,7 +315,7 @@
         </section>
       </section>
 <!-- COOKIN' QUEUE PAGE -->
-      <section class="cookin-queue-page ">
+      <section class="cookin-queue-page hidden">
         <h1>User Name's Cookin' Queue</h1>
         <section class="queue-block">
           <h1>1</h1>
@@ -335,24 +333,16 @@
         </section>
       </section>
     </main>
-    <script type="text/javascript" src="../data/users.js"></script>
-    <script type="text/javascript" src="../data/recipes.js"></script>
-    <script type="text/javascript" src="../data/ingredients.js"></script>
-    <script type="text/javascript" src="./scripts.js"></script>
-    <script type="text/javascript" src="../src/recipe.js"></script>
-    <script type="text/javascript" src="../src/recipeRepository.js"></script>
-    <script type="text/javascript" src="../src/userClass.js"></script>
-    <script type="text/javascript" src="../src/userPantry.js"></script>
-    <script type="text/javascript" src="../src/ingredient.js"></script>
   </body>
   <footer>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/recipes.js"></script>
     <script type="text/javascript" src="../data/ingredients.js"></script>
+    <script type="text/javascript" src="./ingredient.js"></script>
+    <script type="text/javascript" src="./recipe.js"></script>
+    <script type="text/javascript" src="./recipeRepository.js"></script>
+    <script type="text/javascript" src="./userClass.js"></script>
+    <script type="text/javascript" src="./userPantry.js"></script>
     <script type="text/javascript" src="./scripts.js"></script>
-    <script type="text/javascript" src="../src/recipe.js"></script>
-    <script type="text/javascript" src="../src/recipeRepository.js"></script>
-    <script type="text/javascript" src="../src/userClass.js"></script>
-    <script type="text/javascript" src="../src/userPantry.js"></script>
   </footer>
 </html>

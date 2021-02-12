@@ -327,6 +327,6 @@ const fakeRecipeData = [{
   ]
 }]
 
-if (typeof module !== 'undefined') {
-  module.exports = fakeRecipeData;
-}
+// if (typeof module !== 'undefined') {
+//   module.exports = fakeRecipeData;
+// }

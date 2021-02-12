@@ -1,5 +1,5 @@
-const Ingredient = require('../src/ingredient');
-const ingredients = require('../data/ingredients');
+// const Ingredient = require('../src/ingredient');
+// const ingredients = require('../data/ingredients');
 class Recipe {
   constructor(recipeData) {
     this.id = recipeData.id;
@@ -30,6 +30,6 @@ class Recipe {
 }
 
 
-if (typeof module !== 'undefined') {
-  module.exports = Recipe;
-}
+// if (typeof module !== 'undefined') {
+//   module.exports = Recipe;
+// }

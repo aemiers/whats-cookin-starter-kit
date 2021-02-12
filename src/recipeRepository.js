@@ -1,6 +1,6 @@
-const Ingredient = require('../src/ingredient');
-const Recipe = require('./recipe');
-const ingredients = require('../data/ingredients');
+// const Ingredient = require('../src/ingredient');
+// const Recipe = require('./recipe');
+// const ingredients = require('../data/ingredients');
 
 class RecipeRepository {
   constructor(recipes) {
@@ -52,6 +52,6 @@ class RecipeRepository {
 
 
 
-if (typeof module !== 'undefined') {
-  module.exports = RecipeRepository;
-}
+// if (typeof module !== 'undefined') {
+//   module.exports = RecipeRepository;
+// }
