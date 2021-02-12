@@ -11,7 +11,7 @@ class Recipe {
   }
 
   findIngredientInfo(ingredientID){
-    const ingredientInfo = ingredients.filter(ingredient => ingredient.id === ingredientID)
+    const ingredientInfo = this.ingredients.filter(ingredient => ingredient.id === ingredientID)
     const newIngredient = new Ingredient(ingredientInfo[0]);
     return newIngredient
   }

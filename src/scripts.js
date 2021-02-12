@@ -1,4 +1,5 @@
 const newRepository = new RecipeRepository(recipeData)
+newRepository.addRecipesToRepository();
 const trendingDisplay = document.querySelector('#trendingDisplay');
 const browseMeals = document.querySelector('#allMeals');
 const recipeTarget = document.querySelector('#recipeTarget');
@@ -6,7 +7,8 @@ const recipeDetailPage = document.querySelector('#recipeDetailPage');
 const homePage = document.querySelector('#homePage');
 const recipeDetailsName = document.querySelector('#recipeDetailsName');
 const recipeDetailsImage = document.querySelector('#recipeDetailsImage');
-const recipeDetailsTags = document.querySelector('#recipePageTags')
+const recipeDetailsTags = document.querySelector('#recipePageTags');
+const ingredientRow = document.querySelector('#ingredientRow');
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length)
@@ -14,7 +16,6 @@ function getRandomIndex(array) {
 
 function populateMain() {
   // let newRepository = new RecipeRepository(recipeData)
-  newRepository.addRecipesToRepository();
   const randomRecipe1 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe2 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe3 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
@@ -81,8 +82,20 @@ function populateAll(recipes) {
     `
   })
 }
+console.log(newRepository.recipeList)
+function displayIngredients(recipe) {
+  recipe.ingredients.forEach(ingredient => {
+    const ingredientName = recipe.findIngredientName(ingredient.id);
+    console.log(ingredientName);
+    ingredientRow.innerHTML = `
+    <img class="check-x" id="check" src="assets/check.png" alt="green check" >
+    <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
+    <p class="ingredient-row-text">4 ${ingredientName}</p>
+    `
+  })
+}
 
-function tagsIteration(recipe) {
+function displayTags(recipe) {
   recipe.tags.forEach(tag => {
     recipeDetailsTags.innerHTML += `
       <li class="recipe-tag">${tag}</li>
@@ -93,7 +106,8 @@ function tagsIteration(recipe) {
 function recipeDetails(recipe) {
   recipeDetailsName.innerText = `${recipe.name}`;
   recipeDetailsImage.src = `${recipe.image}`;
-  tagsIteration(recipe);
+  displayTags(recipe);
+  displayIngredients(recipe);
 }
 
 function hide(elements) {
