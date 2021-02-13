@@ -18,6 +18,15 @@ const trendingDisplay = document.querySelector('#trendingDisplay');
 const browseMealsGrid = document.querySelector('#allMeals');
 const searchResultGrid = document.querySelector('#searchResultMeals');
 const favoritesGrid = document.querySelector('#searchResultMeals');
+// SEARCH BY TAG ICONS
+// const appetizerTagIcon = document.querySelector('#appetizer');
+const breakfastTagIcon = document.querySelector('#breakfast');
+const lunchTagIcon = document.querySelector('#lunch');
+const dinnerTagIcon = document.querySelector('#dinner');
+const dessertTagIcon = document.querySelector('#dessert');
+const sidesTagIcon = document.querySelector('#sides');
+
+
 const recipeTarget = document.querySelector('#recipeTarget');
 
 const recipeDetailsName = document.querySelector('#recipeDetailsName');
@@ -166,6 +175,11 @@ function searchBarSearch() {
   showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
 }
 
+function tagSearch() {
+  console.log('searching by tag')
+  showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
+}
+
 function favoriteRecipe() {
   console.log('Something has been favorited');
 }
@@ -198,8 +212,12 @@ pantryButtonInHeader.addEventListener('click', displayPantry);
 browseMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
 searchResultGrid.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesGrid.addEventListener('click', recipeCardFunctionalityHandler);
-
-
+// appetizerTagIcon.addEventListener('click', tagSearch);
+breakfastTagIcon.addEventListener('click', tagSearch);
+lunchTagIcon.addEventListener('click', tagSearch);
+dinnerTagIcon.addEventListener('click', tagSearch);
+dessertTagIcon.addEventListener('click', tagSearch);
+sidesTagIcon.addEventListener('click', tagSearch);
 
 searchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
