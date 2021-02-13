@@ -33,13 +33,13 @@ const recipeDetailsName = document.querySelector('#recipeDetailsName');
 const recipeDetailsImage = document.querySelector('#recipeDetailsImage');
 const recipeDetailsTags = document.querySelector('#recipePageTags');
 const ingredientRow = document.querySelector('#ingredientRow');
+const ingredientRowText = document.querySelector('#ingredientRowText');
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
 function populateMain() {
-  // let newRepository = new RecipeRepository(recipeData)
   const randomRecipe1 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe2 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe3 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
@@ -114,13 +114,28 @@ console.log(newRepository.recipeList)
 function displayIngredients(recipe) {
   recipe.ingredients.forEach(ingredient => {
     const ingredientName = recipe.findIngredientName(ingredient.id);
-    console.log(ingredient);
-    ingredientRow.innerHTML += `
+    const ingredientPrice = recipe.findIngredientCost(ingredient.id);
+    console.log(ingredientName, ingredientPrice);
+    populateMeasurements(ingredient, ingredientName, ingredientPrice);
+    // populatePrice(ingredient, ingredientPrice)
+  })
+}
+
+// function populatePrice(ingredient, price) {
+//   ingredientRowText.innerText += `$${ingredient.quantity.amount * price}`
+// }
+
+function populateMeasurements(ingredient, name, price) {
+  ingredientRow.innerHTML += `
+  <div class="ingredient-row-left-side">
+    <div class="check-box">
       <img class="check-x" id="check" src="assets/check.png" alt="green check" >
       <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
-      <p class="ingredient-row-text">${ingredient.quantity.amount} ${ingredient.quantity.unit} ${ingredientName}</p>
-    `
-  })
+    </div>
+    <p class="ingredient-row-text">${ingredient.quantity.amount} ${ingredient.quantity.unit} ${name}</p>
+    <p id="ingredientRowText"class="ingredient-row-text">$${(ingredient.quantity.amount * price)/100}</p>
+  </div>
+  `
 }
 
 function displayTags(recipe) {
