@@ -1,8 +1,5 @@
 const newRepository = new RecipeRepository(recipeData)
 newRepository.addRecipesToRepository();
-const trendingDisplay = document.querySelector('#trendingDisplay');
-const browseMeals = document.querySelector('#allMeals');
-const recipeTarget = document.querySelector('#recipeTarget');
 // PAGES
 const homePage = document.querySelector('#homePage');
 const recipeDetailPage = document.querySelector('#recipeDetailPage');
@@ -16,6 +13,10 @@ const searchBar = document.querySelector('#searchBar');
 const favoriteButtonInHeader = document.querySelector('#favoriteButton');
 const queueButtonInHeader = document.querySelector('#queueButton');
 const pantryButtonInHeader = document.querySelector('#pantryButton');
+// BODY
+const trendingDisplay = document.querySelector('#trendingDisplay');
+const browseMeals = document.querySelector('#allMeals');
+const recipeTarget = document.querySelector('#recipeTarget');
 
 const recipeDetailsName = document.querySelector('#recipeDetailsName');
 const recipeDetailsImage = document.querySelector('#recipeDetailsImage');
@@ -92,8 +93,8 @@ function populateAll(recipes) {
           </div>
           <button class="queue-button">Add to My Cookin' Queue</button>
         </section>
-        <h4>${recipe.tags[getRandomIndex(recipe.tags)]}</h4>
-        <h2 id="recipeTarget">${recipe.name}</h2>
+        <h4 class="mini-recipe-tag">${recipe.tags[getRandomIndex(recipe.tags)]}</h4>
+        <h2 class="mini-recipe-title" id="recipeTarget">${recipe.name}</h2>
       </article>
     `
   })
@@ -164,12 +165,36 @@ function showSearchResultsPage() {
   show([searchResultsPage]);
 }
 
+function favoriteRecipe() {
+  console.log('Something has been favorited');
+}
+
+function addToCookinQueue() {
+  //add popup if time saying recipe has been added
+  console.log('Recipe has been added to your Cookin\' Queue!')
+}
+
+function recipeFunctionalityHandler(event) {
+  if (event.target.closest('.mini-recipe-img')) {
+    showRecipeDetailPage();
+  } else if (event.target.closest('.mini-recipe-tag')) {
+    showRecipeDetailPage();
+  } else if (event.target.closest('.mini-recipe-title')) {
+    showRecipeDetailPage();
+  } else if (event.target.closest('.heart')) {
+    //could also try .mini-heart or .heart-overlay
+    favoriteRecipe();
+  } else if (event.target.closest('.queue-button')) {
+    addToCookinQueue();
+  }
+}
+
 window.addEventListener('load', populateMain);
 headerLogo.addEventListener('click', showHomePage);
 favoriteButtonInHeader.addEventListener('click', showFavoritesPage);
 queueButtonInHeader.addEventListener('click', showCookinQueuePage);
 pantryButtonInHeader.addEventListener('click', showUserPantryPage);
-
+browseMeals.addEventListener('click', recipeFunctionalityHandler);
 
 searchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
