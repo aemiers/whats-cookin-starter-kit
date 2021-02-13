@@ -34,6 +34,7 @@ const recipeDetailsImage = document.querySelector('#recipeDetailsImage');
 const recipeDetailsTags = document.querySelector('#recipePageTags');
 const ingredientRow = document.querySelector('#ingredientRow');
 const ingredientRowText = document.querySelector('#ingredientRowText');
+const recipeInstructions = document.querySelector('#recipeInstructions');
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -117,13 +118,20 @@ function displayIngredients(recipe) {
     const ingredientPrice = recipe.findIngredientCost(ingredient.id);
     console.log(ingredientName, ingredientPrice);
     populateMeasurements(ingredient, ingredientName, ingredientPrice);
-    // populatePrice(ingredient, ingredientPrice)
   })
+  displayInstructions(recipe)
 }
 
-// function populatePrice(ingredient, price) {
-//   ingredientRowText.innerText += `$${ingredient.quantity.amount * price}`
-// }
+function displayInstructions(recipe) {
+  recipe.instructions.forEach(step => {
+    recipeInstructions.innerHTML += `
+      <section class="numbered-recipe-chunk">
+        <p class="recipe-number">${step.number}</p>
+        <p>${step.instruction}</p>
+      </section>
+    `
+  })
+}
 
 function populateMeasurements(ingredient, name, price) {
   ingredientRow.innerHTML += `
