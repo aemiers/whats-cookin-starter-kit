@@ -16,6 +16,8 @@ const pantryButtonInHeader = document.querySelector('#pantryButton');
 // BODY
 const trendingDisplay = document.querySelector('#trendingDisplay');
 const browseMeals = document.querySelector('#allMeals');
+const searchResultGrid = document.querySelector('#searchResultMeals');
+const favoritesGrid = document.querySelector('#searchResultMeals');
 const recipeTarget = document.querySelector('#recipeTarget');
 
 const recipeDetailsName = document.querySelector('#recipeDetailsName');
@@ -83,7 +85,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
 
 function populateAll(recipes) {
   recipes.forEach(recipe => {
-    browseMeals.innerHTML += `
+    browseMealsGrid.innerHTML += `
       <article class="mini-recipe">
         <section class="mini-recipe-image-container">
           <img class="mini-recipe-img" src="${recipe.image}" id="defaultId">
@@ -174,7 +176,7 @@ function addToCookinQueue() {
   console.log('Recipe has been added to your Cookin\' Queue!')
 }
 
-function recipeFunctionalityHandler(event) {
+function recipeCardFunctionalityHandler(event) {
   if (event.target.closest('.mini-recipe-img')) {
     showRecipeDetailPage();
   } else if (event.target.closest('.mini-recipe-tag')) {
@@ -194,7 +196,11 @@ headerLogo.addEventListener('click', showHomePage);
 favoriteButtonInHeader.addEventListener('click', showFavoritesPage);
 queueButtonInHeader.addEventListener('click', showCookinQueuePage);
 pantryButtonInHeader.addEventListener('click', showUserPantryPage);
-browseMeals.addEventListener('click', recipeFunctionalityHandler);
+browseMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
+searchResultGrid.addEventListener('click', recipeCardFunctionalityHandler);
+favoritesGrid.addEventListener('click', recipeCardFunctionalityHandler);
+
+
 
 searchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
