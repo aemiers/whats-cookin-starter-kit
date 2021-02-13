@@ -1,5 +1,5 @@
 // const Ingredient = require('../src/ingredient');
-// const ingredients = require('../data/ingredients');
+// const ingredientsData = require('../data/ingredients');
 class Recipe {
   constructor(recipeData) {
     this.id = recipeData.id;
@@ -10,8 +10,8 @@ class Recipe {
     this.tags = recipeData.tags;
   }
 
-  findIngredientInfo(ingredientID){
-    const ingredientInfo = this.ingredients.filter(ingredient => ingredient.id === ingredientID)
+  findIngredientInfo(ingredientID) {
+    const ingredientInfo = ingredientsData.filter(ingredient => ingredient.id === ingredientID)
     const newIngredient = new Ingredient(ingredientInfo[0]);
     return newIngredient
   }
@@ -30,6 +30,6 @@ class Recipe {
 }
 
 
-// if (typeof module !== 'undefined') {
-//   module.exports = Recipe;
-// }
+if (typeof module !== 'undefined') {
+  module.exports = Recipe;
+}

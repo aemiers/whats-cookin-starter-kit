@@ -71,6 +71,6 @@ class RecipeRepository {
   }
 }
 
-// if (typeof module !== 'undefined') {
-//   module.exports = RecipeRepository;
-// }
+if (typeof module !== 'undefined') {
+  module.exports = RecipeRepository;
+}

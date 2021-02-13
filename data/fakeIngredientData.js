@@ -20,6 +20,6 @@ const fakeIngredientData = [{
   "estimatedCostInCents": 834
 }]
 
-// if (typeof module !== 'undefined') {
-//   module.exports = fakeIngredientData;
-// }
+if (typeof module !== 'undefined') {
+  module.exports = fakeIngredientData;
+}
