@@ -84,13 +84,14 @@ function populateAll(recipes) {
 }
 console.log(newRepository.recipeList)
 function displayIngredients(recipe) {
+
   recipe.ingredients.forEach(ingredient => {
     const ingredientName = recipe.findIngredientName(ingredient.id);
-    console.log(ingredientName);
-    ingredientRow.innerHTML = `
-    <img class="check-x" id="check" src="assets/check.png" alt="green check" >
-    <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
-    <p class="ingredient-row-text">4 ${ingredientName}</p>
+    console.log(ingredient);
+    ingredientRow.innerHTML += `
+      <img class="check-x" id="check" src="assets/check.png" alt="green check" >
+      <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
+      <p class="ingredient-row-text">${ingredient.quantity.amount} ${ingredient.quantity.unit} ${ingredientName}</p>
     `
   })
 }
