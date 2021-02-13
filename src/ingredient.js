@@ -1,4 +1,4 @@
-const ingredientsData = require('../data/ingredients');
+// const ingredientsData = require('../data/ingredients');
 
 class Ingredient {
   constructor(ingredient) {

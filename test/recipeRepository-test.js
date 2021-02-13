@@ -54,4 +54,10 @@ describe('RecipeRepository', function () {
     expect(recipeRepository.filteredList.length).to.equal(2);
     expect(recipeRepository.filteredList).to.deep.equal([recipes[1], recipes[0]])
   });
+  // it('should work, but it doesnt', function() {
+  //   console.log('1:', recipeRepository.recipeList)
+  //   console.log('2:',recipeRepository.recipeList[2])
+  //   console.log('3:', recipeRepository.recipeList[2].id)
+  //   console.log('4:', recipeRepository.recipeList[2].findIngredientInfo(recipeRepository.recipeList[2].ingredients[3]))
+  // })
 });
