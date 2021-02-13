@@ -9,8 +9,9 @@ const recipeDetailPage = document.querySelector('#recipeDetailPage');
 const favoritesPage = document.querySelector('#favoritesPage');
 const userPantryPage = document.querySelector('#userPantryPage');
 const cookinQueuePage = document.querySelector('#cookinQueuePage');
+// HEADER
 const headerLogo = document.querySelector('#header-logo')
-
+const searchBar = document.querySelector('#searchBar')
 
 const recipeDetailsName = document.querySelector('#recipeDetailsName');
 const recipeDetailsImage = document.querySelector('#recipeDetailsImage');
