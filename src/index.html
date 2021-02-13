@@ -14,14 +14,14 @@
 <body>
   <header>
     <nav>
-      <img src="assets/Recipe Research Transparent.png" alt="Recipe Research Logo" class="header-logo" id="header-logo">
+      <img src="assets/Recipe Research Transparent.png" alt="Recipe Research Logo" class="header-logo" id="headerLogo">
       <div class="header-menu">
         <input id="searchBar" class="search-bar" type="text" placeholder="Search Recipes" alt="Enter Search Criteria">
         <!-- <img src="assets/search-icon.png" alt="Search Glass" class="search-icon">
             <img src="assets/Person Logo.png" alt="User Icon" class="person-icon"> -->
-        <h4 class="nav-labels">Favorites</h4>
-        <h4 class="nav-labels">Queue</h4>
-        <h4 class="nav-labels">Pantry</h4>
+        <h4 id="favoriteButton" class="nav-labels">Favorites</h4>
+        <h4 id="queueButton" class="nav-labels">Queue</h4>
+        <h4 id="pantryButton" class="nav-labels">Pantry</h4>
       </div>
     </nav>
   </header>
@@ -130,7 +130,7 @@
       </section>
     </section>
     <!-- SEARCH RESULT PAGE -->
-    <section class="search-result-page hidden">
+    <section id="searchResultsPage" class="search-result-page hidden">
       <h1>Search Results</h1>
       <section class="meals-grid">
         <!-- delete below when ready -->

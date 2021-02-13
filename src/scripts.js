@@ -7,11 +7,15 @@ const recipeTarget = document.querySelector('#recipeTarget');
 const homePage = document.querySelector('#homePage');
 const recipeDetailPage = document.querySelector('#recipeDetailPage');
 const favoritesPage = document.querySelector('#favoritesPage');
+const searchResultsPage = document.querySelector('#searchResultsPage');
 const userPantryPage = document.querySelector('#userPantryPage');
 const cookinQueuePage = document.querySelector('#cookinQueuePage');
 // HEADER
-const headerLogo = document.querySelector('#header-logo')
-const searchBar = document.querySelector('#searchBar')
+const headerLogo = document.querySelector('#headerLogo');
+const searchBar = document.querySelector('#searchBar');
+const favoriteButtonInHeader = document.querySelector('#favoriteButton');
+const queueButtonInHeader = document.querySelector('#queueButton');
+const pantryButtonInHeader = document.querySelector('#pantryButton');
 
 const recipeDetailsName = document.querySelector('#recipeDetailsName');
 const recipeDetailsImage = document.querySelector('#recipeDetailsImage');
@@ -19,7 +23,7 @@ const recipeDetailsTags = document.querySelector('#recipePageTags');
 const ingredientRow = document.querySelector('#ingredientRow');
 
 function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length)
+  return Math.floor(Math.random() * array.length);
 }
 
 function populateMain() {
@@ -131,34 +135,47 @@ function show(elements) {
 }
 
 function showHomePage() {
-  hide([recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage]);
+  hide([recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage]);
   show([homePage])
 }
 
 function showRecipeDetailPage() {
-  hide([homePage, favoritesPage, userPantryPage, cookinQueuePage]);
+  hide([homePage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage]);
   show([recipeDetailPage]);
 }
 
 function showFavoritesPage() {
-  hide([homePage, recipeDetailPage, userPantryPage, cookinQueuePage])
+  hide([homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage])
   show([favoritesPage]);
 }
 
 function showUserPantryPage() {
-  hide([homePage, recipeDetailPage, favoritesPage, cookinQueuePage])
+  hide([homePage, recipeDetailPage, favoritesPage, searchResultsPage, cookinQueuePage])
   show([userPantryPage]);
 }
 
 function showCookinQueuePage() {
-  hide([homePage, recipeDetailPage, favoritesPage, userPantryPage])
+  hide([homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage])
   show([cookinQueuePage]);
 }
 
-
+function showSearchResultsPage() {
+  hide([homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage]);
+  show([searchResultsPage]);
+}
 
 window.addEventListener('load', populateMain);
 headerLogo.addEventListener('click', showHomePage);
+favoriteButtonInHeader.addEventListener('click', showFavoritesPage);
+queueButtonInHeader.addEventListener('click', showCookinQueuePage);
+pantryButtonInHeader.addEventListener('click', showUserPantryPage);
+
+
+searchBar.addEventListener('keydown', function (event) {
+  if (event.keyCode === 13) {
+    showSearchResultsPage();
+  }
+})
 // recipeTarget.addEventListener('click', function(e) {
 //   if (event.target.closest('.mini-recipe') === 'mini-recipe') {
 //     hide([homePage])
