@@ -84,7 +84,6 @@ function populateAll(recipes) {
 }
 console.log(newRepository.recipeList)
 function displayIngredients(recipe) {
-
   recipe.ingredients.forEach(ingredient => {
     const ingredientName = recipe.findIngredientName(ingredient.id);
     console.log(ingredient);
