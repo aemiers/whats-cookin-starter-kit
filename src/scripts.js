@@ -15,7 +15,7 @@ const queueButtonInHeader = document.querySelector('#queueButton');
 const pantryButtonInHeader = document.querySelector('#pantryButton');
 // BODY
 const trendingDisplay = document.querySelector('#trendingDisplay');
-const browseMeals = document.querySelector('#allMeals');
+const browseMealsGrid = document.querySelector('#allMeals');
 const searchResultGrid = document.querySelector('#searchResultMeals');
 const favoritesGrid = document.querySelector('#searchResultMeals');
 const recipeTarget = document.querySelector('#recipeTarget');
@@ -137,34 +137,33 @@ function show(elements) {
   elements.forEach(element => element.classList.remove('hidden'));
 }
 
-function showHomePage() {
-  hide([recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage]);
-  show([homePage])
+function showHidePages(page1, page2, page3, page4, page5, page6) {
+  show([page1]);
+  hide([page2, page3, page4, page5, page6]);
 }
 
-function showRecipeDetailPage() {
-  hide([homePage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage]);
-  show([recipeDetailPage]);
+function goHome() {
+  showHidePages(homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
 }
 
-function showFavoritesPage() {
-  hide([homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage])
-  show([favoritesPage]);
+function enlargeRecipe() {
+  showHidePages(recipeDetailPage, homePage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
 }
 
-function showUserPantryPage() {
-  hide([homePage, recipeDetailPage, favoritesPage, searchResultsPage, cookinQueuePage])
-  show([userPantryPage]);
+function displayFavorites() {
+  showHidePages(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage)
 }
 
-function showCookinQueuePage() {
-  hide([homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage])
-  show([cookinQueuePage]);
+function displayPantry() {
+  showHidePages(userPantryPage, homePage, recipeDetailPage, favoritesPage, searchResultsPage, cookinQueuePage)
 }
 
-function showSearchResultsPage() {
-  hide([homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage]);
-  show([searchResultsPage]);
+function displayQueue() {
+  showHidePages(cookinQueuePage, homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage)
+}
+
+function searchBarSearch() {
+  showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
 }
 
 function favoriteRecipe() {
@@ -178,11 +177,11 @@ function addToCookinQueue() {
 
 function recipeCardFunctionalityHandler(event) {
   if (event.target.closest('.mini-recipe-img')) {
-    showRecipeDetailPage();
+    enlargeRecipe();
   } else if (event.target.closest('.mini-recipe-tag')) {
-    showRecipeDetailPage();
+    enlargeRecipe();
   } else if (event.target.closest('.mini-recipe-title')) {
-    showRecipeDetailPage();
+    enlargeRecipe();
   } else if (event.target.closest('.heart')) {
     //could also try .mini-heart or .heart-overlay
     favoriteRecipe();
@@ -192,10 +191,10 @@ function recipeCardFunctionalityHandler(event) {
 }
 
 window.addEventListener('load', populateMain);
-headerLogo.addEventListener('click', showHomePage);
-favoriteButtonInHeader.addEventListener('click', showFavoritesPage);
-queueButtonInHeader.addEventListener('click', showCookinQueuePage);
-pantryButtonInHeader.addEventListener('click', showUserPantryPage);
+headerLogo.addEventListener('click', goHome);
+favoriteButtonInHeader.addEventListener('click', displayFavorites);
+queueButtonInHeader.addEventListener('click', displayQueue);
+pantryButtonInHeader.addEventListener('click', displayPantry);
 browseMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
 searchResultGrid.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesGrid.addEventListener('click', recipeCardFunctionalityHandler);
@@ -204,7 +203,7 @@ favoritesGrid.addEventListener('click', recipeCardFunctionalityHandler);
 
 searchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
-    showSearchResultsPage();
+    searchBarSearch();
   }
 })
 // recipeTarget.addEventListener('click', function(e) {
