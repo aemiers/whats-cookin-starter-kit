@@ -1,13 +1,15 @@
-const Ingredient = require('../src/ingredient');
+// const Ingredient = require('../src/ingredient');
+// const UserPantry = require('../src/userPantry')
+const ingredientsData = require('../data/fakeIngredientData');
+const fakeRecipeData = require('../data/fakeRecipeData');
 const Recipe = require('./recipe');
-const ingredients = require('../data/ingredients');
 
 class RecipeRepository {
   constructor(recipes) {
     this.rawData = recipes;
     this.recipeList = [];
-    this.filteredList = []
-
+    this.filteredList = [];
+    this.filteredIngredientID = [];
   }
 
   addRecipesToRepository() {
@@ -28,12 +30,31 @@ class RecipeRepository {
         }
       })
     })
-    console.log(this.filteredList)
   }
 
-  filterRecipesByIngredients(keywords) {
-    const searchWords = keywords;
-    const splitSearch = searchWords.split(' ');
+  matchID(searchWords, ingredientData) {
+    const splitWords = searchWords.split(' ')
+    splitWords.forEach(word => {
+      const searchWordsFormatted = word.toLowerCase();
+      ingredientData.map(ingredient => {
+        if (ingredient.name.includes(searchWordsFormatted)) {
+          this.filteredIngredientID.push(ingredient.id)
+        }
+      })
+    })
+  }
+
+  filterRecipesByIngredients(searchWords, ingredientData, recipeData) {
+    this.matchID(searchWords, ingredientData);
+    this.filteredIngredientID.forEach(ingredientId => {
+      recipeData.map(recipe => {
+        recipe.ingredients.map(ingredient => {
+          if (ingredient.id === ingredientId && !this.filteredList.includes(recipe)) {
+            this.filteredList.push(recipe)
+          }
+        })
+      })
+    })
   }
 
   filterRecipesByName(name) {
@@ -49,8 +70,6 @@ class RecipeRepository {
     })
   }
 }
-
-
 
 if (typeof module !== 'undefined') {
   module.exports = RecipeRepository;
