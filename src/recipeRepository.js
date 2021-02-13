@@ -19,8 +19,8 @@ class RecipeRepository {
     })
   }
 
-  filterRecipesByTags(keywords) {
-    const searchWords = keywords.toLowerCase();
+  filterRecipesByTags(searchWords) {
+    const searchWords = searchWords.toLowerCase();
     const splitSearch = searchWords.split(' ');
     splitSearch.forEach(word => {
       const foundRecipe = this.recipeList.filter(recipe => recipe.tags.includes(word))
@@ -57,8 +57,8 @@ class RecipeRepository {
     })
   }
 
-  filterRecipesByName(name) {
-    const searchName = name.toLowerCase();
+  filterRecipesByName(searchWords) {
+    const searchName = searchWords.toLowerCase();
     const splitName = searchName.split(' ');
     splitName.forEach(word => {
       const foundRecipe = this.recipeList.filter(recipe => recipe.name.toLowerCase().includes(word))
@@ -68,6 +68,12 @@ class RecipeRepository {
         }
       })
     })
+  }
+
+  searchRecipes() {
+    filterRecipesByTags(keywords);
+    filterRecipesByIngredients(searchWords, ingredientData, recipeData);
+    filterRecipesByName(name);
   }
 }
 

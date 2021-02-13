@@ -193,26 +193,15 @@ function recipeCardFunctionalityHandler(event) {
   if (event.target.closest('.mini-recipe-img')) {
     enlargeRecipe();
   } else if (event.target.closest('.mini-recipe-tag')) {
-    enlargeRecipe();
+    tagSearch();
   } else if (event.target.closest('.mini-recipe-title')) {
     enlargeRecipe();
   } else if (event.target.closest('.heart')) {
-    //could also try .mini-heart or .heart-overlay
     favoriteRecipe();
   } else if (event.target.closest('.queue-button')) {
     addToCookinQueue();
   }
 }
-
-// function searchByIconHandler(event) {
-//   if (event.target.closest('#appetizer')) {
-//     console.log('this is an appetizer')
-//     tagSearch();
-//   } else if (event.target.closest('#breakfast')) {
-//     console.log('this is an appetizer')
-//     tagSearch();
-//   }
-// }
 
 window.addEventListener('load', populateMain);
 headerLogo.addEventListener('click', goHome);
