@@ -32,11 +32,11 @@ class RecipeRepository {
     })
   }
 
-  matchID(searchWords) {
+  matchID(searchWords, ingredientData) {
     const splitWords = searchWords.split(' ')
     splitWords.forEach(word => {
       const searchWordsFormatted = word.toLowerCase();
-      ingredientsData.map(ingredient => {
+      ingredientData.map(ingredient => {
         if (ingredient.name.includes(searchWordsFormatted)) {
           this.filteredIngredientID.push(ingredient.id)
         }
@@ -44,11 +44,10 @@ class RecipeRepository {
     })
   }
 
-  filterRecipesByIngredients(searchWords) {
-    this.matchID(searchWords);
-    console.log('filteredID:', this.filteredIngredientID)
+  filterRecipesByIngredients(searchWords, ingredientData, recipeData) {
+    this.matchID(searchWords, ingredientData);
     this.filteredIngredientID.forEach(ingredientId => {
-      fakeRecipeData.map(recipe => {
+      recipeData.map(recipe => {
         recipe.ingredients.map(ingredient => {
           if (ingredient.id === ingredientId && !this.filteredList.includes(recipe)) {
             this.filteredList.push(recipe)
