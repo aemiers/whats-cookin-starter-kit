@@ -1,4 +1,4 @@
-const ingredientsData = require('../data/ingredients');
+// const ingredientsData = require('../data/ingredients');
 
 class Ingredient {
   constructor(ingredient) {
@@ -9,12 +9,6 @@ class Ingredient {
   }
 }
 
-<<<<<<< HEAD
-
-// if (typeof module !== 'undefined') {
-//   module.exports = Ingredient;
-// }
-=======
 // if (typeof module !== 'undefined') {
 //   module.exports = Ingredient;
 // }
