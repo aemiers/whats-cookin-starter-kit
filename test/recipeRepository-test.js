@@ -44,12 +44,14 @@ describe('RecipeRepository', function () {
   });
 
   it('should filter recipes by ingredients', function () {
-    recipeRepository.filterRecipesByIngredients(['wheat']);
-    expect(recipeRepository.filteredList.length).to.deep.equal(1);
+    recipeRepository.filterRecipesByIngredients('wheat');
+    expect(recipeRepository.filteredList.length).to.equal(1);
+    expect(recipeRepository.filteredList[0]).to.deep.equal(recipes[0])
   });
 
   it('should filter recipes by ingredients only once if multiple ingredients are in the same recipe', function () {
-    recipeRepository.filterRecipesByIngredients(['wheat', 'of']);
-    expect(recipeRepository.filteredList.length).to.deep.equal(1);
+    recipeRepository.filterRecipesByIngredients('POrK WheaT');
+    expect(recipeRepository.filteredList.length).to.equal(2);
+    expect(recipeRepository.filteredList).to.deep.equal([recipes[1], recipes[0]])
   });
 });

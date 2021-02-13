@@ -9,6 +9,7 @@ class RecipeRepository {
     this.rawData = recipes;
     this.recipeList = [];
     this.filteredList = [];
+    this.filteredIngredientID = [];
   }
 
   addRecipesToRepository() {
@@ -31,17 +32,22 @@ class RecipeRepository {
     })
   }
 
-  filterRecipesByIngredients(searchWords) {
-    const filteredIngredientId = [];
-    searchWords.forEach(word => {
-      const searchWordsFormatted = word.toLowerCase().split(' ');
+  matchID(searchWords) {
+    const splitWords = searchWords.split(' ')
+    splitWords.forEach(word => {
+      const searchWordsFormatted = word.toLowerCase();
       ingredientsData.map(ingredient => {
         if (ingredient.name.includes(searchWordsFormatted)) {
-          filteredIngredientId.push(ingredient.id)
+          this.filteredIngredientID.push(ingredient.id)
         }
       })
-    });
-    filteredIngredientId.forEach(ingredientId => {
+    })
+  }
+
+  filterRecipesByIngredients(searchWords) {
+    this.matchID(searchWords);
+    console.log('filteredID:', this.filteredIngredientID)
+    this.filteredIngredientID.forEach(ingredientId => {
       fakeRecipeData.map(recipe => {
         recipe.ingredients.map(ingredient => {
           if (ingredient.id === ingredientId && !this.filteredList.includes(recipe)) {
