@@ -9,13 +9,13 @@ const recipeDetailPage = document.querySelector('#recipeDetailPage');
 const favoritesPage = document.querySelector('#favoritesPage');
 const userPantryPage = document.querySelector('#userPantryPage');
 const cookinQueuePage = document.querySelector('#cookinQueuePage');
+const headerLogo = document.querySelector('#header-logo')
 
 
 const recipeDetailsName = document.querySelector('#recipeDetailsName');
 const recipeDetailsImage = document.querySelector('#recipeDetailsImage');
 const recipeDetailsTags = document.querySelector('#recipePageTags');
 const ingredientRow = document.querySelector('#ingredientRow');
-const headerLogo = document.querySelector('#header-logo')
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length)
@@ -156,8 +156,8 @@ function showCookinQueuePage() {
 
 
 
-window.addEventListener('load', populateMain)
-
+window.addEventListener('load', populateMain);
+headerLogo.addEventListener('click', showHomePage);
 // recipeTarget.addEventListener('click', function(e) {
 //   if (event.target.closest('.mini-recipe') === 'mini-recipe') {
 //     hide([homePage])
