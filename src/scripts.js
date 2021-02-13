@@ -142,7 +142,7 @@ function populateMeasurements(ingredient, name, price) {
       <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
     </div>
     <p class="ingredient-row-text">${ingredient.quantity.amount} ${ingredient.quantity.unit} ${name}</p>
-    <p id="ingredientRowText"class="ingredient-row-text">$${(ingredient.quantity.amount * price)/100}</p>
+    <p id="ingredientRowText"class="ingredient-row-text">$${((ingredient.quantity.amount * price)/100).toFixed(2)}</p>
   </div>
   `
 }
