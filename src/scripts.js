@@ -43,6 +43,7 @@ const recipeDetailsTags = document.querySelector('#recipePageTags');
 const ingredientRow = document.querySelector('#ingredientRow');
 const ingredientRowText = document.querySelector('#ingredientRowText');
 const recipeInstructions = document.querySelector('#recipeInstructions');
+const heart = document.querySelector('.heart');
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -75,8 +76,8 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
       <div class="image-section-wrapper">
         <img src="${recipe1.image}" alt="Meal 1" class="large-image">
         <div class="heart-overlay">
-          <img src="assets/grey-heart.png" alt="grey heart" class="heart large-image-heart">
-          <img src="assets/pink-heart.png" alt="pink heart" class="heart large-image-heart hidden">
+          <img src="assets/grey-heart.png" id="grey-heart" alt="grey heart" class="heart large-image-heart">
+          <img src="assets/pink-heart.png" id="pink-heart" alt="pink heart" class="heart large-image-heart hidden">
         </div>
       </div>
       <button class="queue-button">Add to My Cookin' Queue</button>
@@ -87,8 +88,8 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
         <div class="image-section-wrapper">
           <img src="${recipe2.image}" alt="Meal2" class="side-image">
           <div class="heart-overlay">
-            <img src="assets/grey-heart.png" alt="grey heart" class="heart side-heart">
-            <img src="assets/pink-heart.png" alt="pink heart" class="heart side-heart hidden">
+            <img src="assets/grey-heart.png" id="grey-heart" alt="grey heart" class="heart side-heart">
+            <img src="assets/pink-heart.png" id="pink-heart" alt="pink heart" class="heart side-heart hidden">
           </div>
         </div>
         <button class="queue-button">Add to My Cookin' Queue</button>
@@ -98,8 +99,8 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
         <div class="image-section-wrapper">
           <img src="${recipe3.image}" alt="Meal 3" class="side-image">
           <div class="heart-overlay">
-            <img src="assets/grey-heart.png" alt="grey heart" class="heart side-heart">
-            <img src="assets/pink-heart.png" alt="pink heart" class="heart side-heart hidden">
+            <img src="assets/grey-heart.png" id="grey-heart" alt="grey heart" class="heart side-heart">
+            <img src="assets/pink-heart.png" id="pink-heart" alt="pink heart" class="heart side-heart hidden">
           </div>
         </div>
         <button class="queue-button">Add to My Cookin' Queue</button>
@@ -116,8 +117,8 @@ function populateAll(recipes, location) {
         <div class="mini-recipe-image-container">
           <img class="mini-recipe-img" src="${recipe.image}" id="defaultId">
           <div class="heart-overlay">
-            <img src="assets/grey-heart.png" alt="grey heart" class="heart mini-heart">
-              <img src="assets/pink-heart.png" alt="pink heart" class="heart mini-heart hidden">
+            <img src="assets/grey-heart.png" id="grey-heart" alt="grey heart" class="heart mini-heart">
+              <img src="assets/pink-heart.png" id="pink-heart" alt="pink heart" class="heart mini-heart hidden">
           </div>
         </div>
           <button class="queue-button">Add to My Cookin' Queue</button>
@@ -188,17 +189,17 @@ function show(elements) {
   elements.forEach(element => element.classList.remove('hidden'));
 }
 
-function showHidePages(page1, page2, page3, page4, page5, page6) {
+function showHide(page1, page2, page3, page4, page5, page6) {
   show([page1]);
   hide([page2, page3, page4, page5, page6]);
 }
 
 function goHome() {
-  showHidePages(homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
+  showHide(homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
 }
 
 function enlargeRecipe() {
-  showHidePages(recipeDetailPage, homePage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
+  showHide(recipeDetailPage, homePage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
   newRepository.recipeList.forEach(recipe => {
     if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
       recipeDetails(recipe)
@@ -207,21 +208,21 @@ function enlargeRecipe() {
 }
 
 function displayFavorites() {
-  showHidePages(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
+  showHide(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
   populateAll(newRepository.recipeList, favoritesGrid);
-
 }
 
+
 function displayPantry() {
-  showHidePages(userPantryPage, homePage, recipeDetailPage, favoritesPage, searchResultsPage, cookinQueuePage)
+  showHide(userPantryPage, homePage, recipeDetailPage, favoritesPage, searchResultsPage, cookinQueuePage)
 }
 
 function displayQueue() {
-  showHidePages(cookinQueuePage, homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage)
+  showHide(cookinQueuePage, homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage)
 }
 
 function searchBarSearch() {
-  showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
+  showHide(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
   resetInnerHTML(searchResultGrid);
   let searchBarInput = searchBar.value;
   newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData);
@@ -229,41 +230,43 @@ function searchBarSearch() {
 }
 
 function favoritesSearchBarSearch() {
-  showHidePages(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
+  showHide(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
   populateAll(newRepository.recipeList, favoritesGrid);
   resetInnerHTML(favoritesGrid);
   let searchBarInput = favoritesSearchBar.value;
   newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData);
-  //, ingredientData, recipeData
   populateAll(newRepository.filteredList, favoritesGrid)
 }
 
-// ingredients, newRepository.recipeList
 
 function tagSearch(event) {
-  // console.log('searching by tag');
-  showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
+  showHide(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
   resetInnerHTML(searchResultGrid);
   let tagSearchInput = event;
   console.log('tagSearchInput', tagSearchInput)
   newRepository.searchRecipes(event);
-  // console.log('tagSearchName', tagName)
-  // newRepository.filterRecipeByTags(tagName);
   populateAll(newRepository.filteredList, searchResultGrid);
 }
 
-function favoriteRecipe() {
-  console.log('Something has been favorited');
+function toggleHeart() {
+  grey - heart.classList.toggle("hidden");
+  pink - heart.classList.toggle("hidden");
 }
 
+function favoriteRecipeHandler() {
+  console.log('Something has been favorited');
+  toggleHeart;
+}
+
+
+
 function addToCookinQueue() {
-  //add popup if time saying recipe has been added
   console.log('Recipe has been added to your Cookin\' Queue!')
 }
 
 function recipeCardFunctionalityHandler(event) {
   if (event.target.closest('.heart')) {
-    favoriteRecipe();
+    favoriteRecipeHandler();
   } else if (event.target.closest('.recipe-target') && !event.target.closest('.queue-button')) {
     enlargeRecipe();
     // } else if (event.target.closest('.mini-recipe-tag')) {
