@@ -75,7 +75,9 @@ class RecipeRepository {
 
   }
 
-  searchRecipes(keywords) {
+  searchRecipes(keywords, ingredientData, recipeData) {
+    this.resetFilteredList();
+    // console.log('filtered list', this.filteredList)
     this.filterRecipesByTags(keywords);
     // this.filterRecipesByIngredients(keywords, ingredientData, recipeData)
     this.filterRecipesByName(keywords);

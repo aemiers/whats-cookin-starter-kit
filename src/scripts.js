@@ -62,6 +62,9 @@ function randomize(array) {
   }
 }
 
+function resetInnerHTML(location) {
+  location.innerHTML = ''
+}
 function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
   trendingDisplay.innerHTML = `
     <section id="${recipe1.id}" class="large-image-section recipe-target">
@@ -208,19 +211,23 @@ function displayQueue() {
 
 function searchBarSearch() {
   showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
-  newRepository.filteredList = [];
+  resetInnerHTML(searchResultGrid);
   let searchBarInput = searchBar.value;
   newRepository.searchRecipes(searchBarInput);
   populateAll(newRepository.filteredList, searchResultGrid)
 }
-}
+
 // ingredients, newRepository.recipeList
 
-function tagSearch() {
+function tagSearch(event) {
   // console.log('searching by tag');
   showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
-  let searchBarInput = searchBar.value;
-  newRepository.filterRecipeByTags(searchBarInput)
+  resetInnerHTML(searchResultGrid);
+  let tagSearchInput = event;
+  console.log('tagSearchInput', tagSearchInput)
+  newRepository.searchRecipes(event);
+  // console.log('tagSearchName', tagName)
+  // newRepository.filterRecipeByTags(tagName);
   populateAll(newRepository.filteredList, searchResultGrid);
 }
 
@@ -258,12 +265,24 @@ favoritesGrid.addEventListener('click', recipeCardFunctionalityHandler);
 trendingDisplay.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
 
-appetizerTagIcon.addEventListener('click', tagSearch);
-breakfastTagIcon.addEventListener('click', tagSearch);
-lunchTagIcon.addEventListener('click', tagSearch);
-dinnerTagIcon.addEventListener('click', tagSearch);
-dessertTagIcon.addEventListener('click', tagSearch);
-sidesTagIcon.addEventListener('click', tagSearch);
+appetizerTagIcon.addEventListener('click', function (event) {
+  tagSearch(event.target.id);
+})
+breakfastTagIcon.addEventListener('click', function (event) {
+  tagSearch(event.target.id);
+});
+lunchTagIcon.addEventListener('click', function (event) {
+  tagSearch(event.target.id);
+});
+dinnerTagIcon.addEventListener('click', function (event) {
+  tagSearch(event.target.id);
+});
+dessertTagIcon.addEventListener('click', function (event) {
+  tagSearch(event.target.id);
+});
+sidesTagIcon.addEventListener('click', function (event) {
+  tagSearch(event.target.id);
+});
 
 searchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
