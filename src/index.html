@@ -17,9 +17,10 @@
       <img src="assets/Recipe Research Transparent.png" alt="Recipe Research Logo" class="header-logo" id="headerLogo">
       <div class="header-menu">
         <input id="searchBar" class="search-bar" type="text" placeholder="Search Recipes" alt="Enter Search Criteria">
-        <h4 id="favoriteButton" class="nav-labels">Favorites</h4>
-        <h4 id="queueButton" class="nav-labels">Queue</h4>
-        <h4 id="pantryButton" class="nav-labels">Pantry</h4>
+        <a id="homeButton" class="nav-labels">Home</a>
+        <a id="favoriteButton" class="nav-labels">Favorites</a>
+        <a id="queueButton" class="nav-labels">Queue</a>
+        <a id="pantryButton" class="nav-labels">Pantry</a>
       </div>
     </nav>
   </header>
@@ -66,74 +67,25 @@
     <!-- FAVORITES PAGE -->
     <section id="favoritesPage" class="favorites-page hidden">
       <h1>User Name's Favorite Recipes</h1>
-      <div>
-        <input id="favoritesSearchBar" class="search-bar" type="text" placeholder="Search Favorites"
+      <div class="favorites-search-container">
+        <input id="favoritesSearchBar" class="search-bar favorite-bar" type="text" placeholder="Search Favorites"
           alt="Enter Search Criteria">
       </div>
       <section id="favoritesMealsGrid" class="meals-grid">
 
         <!-- delete below when ready -->
         <article class="mini-recipe">
-          <section class="mini-recipe-image-container">
+          <div class="mini-recipe-image-container">
             <img class="mini-recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
             <div class="heart-overlay">
               <img src="assets/grey-heart.png" alt="grey heart" class="heart mini-heart">
               <img src="assets/pink-heart.png" alt="pink heart" class="heart mini-heart hidden">
             </div>
-            <button class="queue-button">Add to My Cookin' Queue</button>
-          </section>
+          </div>
+          <button class="queue-button">Add to My Cookin' Queue</button>
           <h4>Default</h4>
           <h2>Default Cookies</h2>
         </article>
-        <article class="mini-recipe">
-          <section class="mini-recipe-image-container">
-            <img class="mini-recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
-            <div class="heart-overlay">
-              <img src="assets/grey-heart.png" alt="grey heart" class="heart mini-heart">
-              <img src="assets/pink-heart.png" alt="pink heart" class="heart mini-heart hidden">
-            </div>
-            <button class="queue-button">Add to My Cookin' Queue</button>
-          </section>
-          <h4>Default</h4>
-          <h2>Default Cookies</h2>
-        </article>
-        <article class="mini-recipe">
-          <section class="mini-recipe-image-container">
-            <img class="mini-recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
-            <div class="heart-overlay">
-              <img src="assets/grey-heart.png" alt="grey heart" class="heart mini-heart">
-              <img src="assets/pink-heart.png" alt="pink heart" class="heart mini-heart hidden">
-            </div>
-            <button class="queue-button">Add to My Cookin' Queue</button>
-          </section>
-          <h4>Default</h4>
-          <h2>Default Cookies</h2>
-        </article>
-        <article class="mini-recipe">
-          <section class="mini-recipe-image-container">
-            <img class="mini-recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
-            <div class="heart-overlay">
-              <img src="assets/grey-heart.png" alt="grey heart" class="heart mini-heart">
-              <img src="assets/pink-heart.png" alt="pink heart" class="heart mini-heart hidden">
-            </div>
-            <button class="queue-button">Add to My Cookin' Queue</button>
-          </section>
-          <h4>Default</h4>
-          <h2>Default Cookies</h2>
-        </article>
-        <article class="mini-recipe">
-          <section class="mini-recipe-image-container">
-            <img class="mini-recipe-img" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" id="defaultId">
-            <div class="heart-overlay">
-              <img src="assets/grey-heart.png" alt="grey heart" class="heart mini-heart">
-              <img src="assets/pink-heart.png" alt="pink heart" class="heart mini-heart hidden">
-            </div>
-            <button class="queue-button">Add to My Cookin' Queue</button>
-          </section>
-          <h4>Default</h4>
-          <h2>Default Cookies</h2>
-        </article>
-
       </section>
     </section>
     <!-- SEARCH RESULT PAGE -->
@@ -207,7 +159,7 @@
     <section id="recipeDetailPage" class="recipe-detail-page hidden">
       <h1 id="recipeDetailsName">Name of Recipe Here</h1>
       <div class="recipe1-visual">
-        <div recipe-page-image-container>
+        <div class="recipe-page-image-container">
           <img id="recipeDetailsImage" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 1"
             class="recipe-page-image">
           <div class="heart-overlay">
@@ -272,50 +224,48 @@
 
     <section id="userPantryPage" class="user-pantry hidden">
       <h1>User Name's Pantry</h1>
-      <h2>Add an Ingredient to Your Pantry</h2>
-      <form class="add-ingredient-form">
-        <input id="ingredientName" class="ingredient-entry" type="text" alt="Enter Ingredient Name"
-          placeholder="Ingredient Name">
-        <input id="quantity" class="ingredient-entry" type="text" alt="Enter Ingredient Quantity"
-          placeholder="Quantity">
-        <input id="price" class="ingredient-entry" type="text" alt="Enter Ingredient Price" placeholder="Price">
-        <input id="unit" class="ingredient-entry" type="text" alt="Enter Ingredient Unit" placeholder="Unit">
-        <img src="assets/plus.png" alt="Add Ingredient Button" class="add-ingredient-button">
-      </form>
-      <h2>Ingredients in Your Pantry</h2>
-      <div class="button-box">
-        <button class="pantry-sort-button">A-Z</button>
-        <button class="pantry-sort-button">Quantity</button>
-        <button class="pantry-sort-button">Cost</button>
-      </div>
-      <section class="ingredient-list">
-        <!-- green checkmark row - delete below here when ready-->
-        <section class="ingredient-row">
-          <div class="ingredient-row-left-side">
-            <img class="check-x" id="check" src="assets/check.png" alt="green check">
-            <img class="check-x hidden" id="x" src="assets/x.png" alt="red x">
-            <p class="ingredient-row-text">4 medium red onions</p>
-          </div>
-          <div class="ingredient-row-pantry-right-side">
-            <p class="ingredient-row-text">$ per unit</p>
-            <img class="check-x" id="x-pantry" src="assets/x.png" alt="red x">
-          </div>
-        </section>
+      <div class="ingredient-page-container">
+        <h2>Add an Ingredient to Your Pantry</h2>
+        <form class="add-ingredient-form">
+          <input id="ingredientName" class="ingredient-entry ingredient-name" type="text" alt="Enter Ingredient Name"
+            placeholder="Ingredient Name">
+          <input id="quantity" class="ingredient-entry" type="text" alt="Enter Ingredient Quantity"
+            placeholder="Quantity">
+          <input id="price" class="ingredient-entry" type="text" alt="Enter Ingredient Price" placeholder="Price">
+          <input id="unit" class="ingredient-entry" type="text" alt="Enter Ingredient Unit" placeholder="Unit">
+          <img src="assets/plus.png" alt="Add Ingredient Button" class="add-ingredient-button">
+        </form>
+        <h2>Ingredients in Your Pantry</h2>
+        <div class="button-box">
+          <button class="pantry-sort-button az-button">A-Z</button>
+          <button class="pantry-sort-button">Quantity</button>
+          <button class="pantry-sort-button">Cost</button>
+        </div>
+        <section class="ingredient-list">
+          <!-- green checkmark row - delete below here when ready-->
 
-        <!-- second row, make sure it turns white -->
-        <section class="ingredient-row">
-          <div class="ingredient-row-left-side">
-            <img class="check-x" id="check" src="assets/check.png" alt="green check">
-            <img class="check-x hidden" id="x" src="assets/x.png" alt="red x">
-            <p class="ingredient-row-text">2 carrots</p>
-          </div>
-          <div class="ingredient-row-pantry-right-side">
-            <p class="ingredient-row-text">$ per unit</p>
-            <img class="check-x" id="x-pantry" src="assets/x.png" alt="red x">
-          </div>
+          <section class="ingredient-row">
+            <div class="ingredient-row-left-side">
+              <div class="check-box">
+                <img class="check-x" id="check" src="assets/check.png" alt="green check">
+              </div>
+              <p class="ingredient-row-text">4 medium red onions</p>
+              <p class="ingredient-row-text ingredient-row-text-right">$ per unit</p>
+              <img class="check-x ingredient-row-price" id="x-pantry" src="assets/x.png" alt="red x">
+            </div>
+            <div class="ingredient-row-left-side">
+              <div class="check-box">
+                <img class="check-x" id="check" src="assets/check.png" alt="green check">
+              </div>
+              <p class="ingredient-row-text">4 medium red onions</p>
+              <p class="ingredient-row-text ingredient-row-text-right">$ per unit</p>
+              <img class="check-x ingredient-row-price" id="x-pantry" src="assets/x.png" alt="red x">
+            </div>
+          </section>
+
         </section>
-        <!-- delete above here when ready -->
-      </section>
+      </div>
+
     </section>
     <!-- COOKIN' QUEUE PAGE -->
     <section id="cookinQueuePage" class="cookin-queue-page hidden">
