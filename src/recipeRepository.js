@@ -14,6 +14,7 @@ class RecipeRepository {
 
   resetFilteredList() {
     this.filteredList = [];
+    console.log('cleared');
   }
 
   addRecipesToRepository() {
@@ -27,7 +28,7 @@ class RecipeRepository {
     const searchWords = keywords.toLowerCase();
     const splitSearch = searchWords.split(' ');
     splitSearch.forEach(word => {
-      const foundRecipe = this.recipeList.filter(recipe => recipe.tags.includes(word))
+      const foundRecipe = this.recipeList.filter(recipe => recipe.tags.includes(word) || recipe.tags.includes(keywords))
       foundRecipe.forEach(recipe => {
         if (!this.filteredList.includes(recipe)) {
           this.filteredList.push(recipe)
@@ -41,7 +42,7 @@ class RecipeRepository {
     splitWords.forEach(word => {
       const searchWordsFormatted = word.toLowerCase();
       ingredientData.map(ingredient => {
-        if (ingredient.name.includes(searchWordsFormatted)) {
+        if (ingredient.name.includes(searchWordsFormatted) || ingredient.name.includes(keywords)) {
           this.filteredIngredientID.push(ingredient.id)
         }
       })
@@ -49,7 +50,6 @@ class RecipeRepository {
   }
 
   filterRecipesByIngredients(keywords, ingredientData, recipeData) {
-    console.log('1', filterRecipesByIngredients)
     this.matchID(keywords, ingredientData);
     this.filteredIngredientID.forEach(ingredientId => {
       recipeData.map(recipe => {
@@ -76,12 +76,10 @@ class RecipeRepository {
 
   }
 
-  searchRecipes(keywords) {
-    //, ingredientData, recipeData
+  searchRecipes(keywords, ingredientData, recipeData) {
     this.resetFilteredList();
-    // console.log('filtered list', this.filteredList)
     this.filterRecipesByTags(keywords);
-    // this.filterRecipesByIngredients(keywords, ingredientData, recipeData);
+    this.filterRecipesByIngredients(keywords, ingredientData, recipeData);
     this.filterRecipesByName(keywords);
   }
 }

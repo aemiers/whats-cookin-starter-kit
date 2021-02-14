@@ -216,7 +216,7 @@ function searchBarSearch() {
   showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
   resetInnerHTML(searchResultGrid);
   let searchBarInput = searchBar.value;
-  newRepository.searchRecipes(searchBarInput);
+  newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData);
   // , ingredientData, recipeData
   populateAll(newRepository.filteredList, searchResultGrid)
 }
@@ -226,7 +226,7 @@ function favoritesSearchBarSearch() {
   populateAll(newRepository.recipeList, favoritesGrid);
   resetInnerHTML(favoritesGrid);
   let searchBarInput = favoritesSearchBar.value;
-  newRepository.searchRecipes(searchBarInput);
+  newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData);
   //, ingredientData, recipeData
   populateAll(newRepository.filteredList, favoritesGrid)
 }
