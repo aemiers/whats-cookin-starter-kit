@@ -1,8 +1,8 @@
 const chai = require('chai');
 const expect = chai.expect;
-const Recipe = require('../src/recipe');
-const recipes = require('../data/fakeRecipeData');
-const superFakeIngredientData = require('../data/fakeIngredientData');
+// const Recipe = require('../src/recipe');
+// const recipes = require('../data/fakeRecipeData');
+// const superFakeIngredientData = require('../data/fakeIngredientData');
 
 describe('Recipe', function() {
   let recipe;

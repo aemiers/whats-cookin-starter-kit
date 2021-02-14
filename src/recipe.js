@@ -1,5 +1,5 @@
-const Ingredient = require('../src/ingredient');
-const ingredientsData = require('../data/ingredients');
+// const Ingredient = require('../src/ingredient');
+// const ingredientsData = require('../data/ingredients');
 class Recipe {
   constructor(recipeData) {
     this.id = recipeData.id;
