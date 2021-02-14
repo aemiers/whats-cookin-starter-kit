@@ -1,5 +1,6 @@
 // const RecipeRepository = require("./recipeRepository");
 // const recipeData = require("../data/recipeData");
+const newUser = new User(usersData[getRandomIndex(usersData)]);
 
 const newRepository = new RecipeRepository(recipeData);
 newRepository.addRecipesToRepository();
@@ -13,6 +14,7 @@ const cookinQueuePage = document.querySelector('#cookinQueuePage');
 // HEADER
 const headerLogo = document.querySelector('#headerLogo');
 const searchBar = document.querySelector('#searchBar');
+const homeButtonInHeader = document.querySelector('#homeButton');
 const favoriteButtonInHeader = document.querySelector('#favoriteButton');
 const queueButtonInHeader = document.querySelector('#queueButton');
 const pantryButtonInHeader = document.querySelector('#pantryButton');
@@ -275,6 +277,7 @@ function recipeCardFunctionalityHandler(event) {
 
 window.addEventListener('load', populateMain);
 headerLogo.addEventListener('click', goHome);
+homeButtonInHeader.addEventListener('click', goHome);
 favoriteButtonInHeader.addEventListener('click', displayFavorites);
 queueButtonInHeader.addEventListener('click', displayQueue);
 pantryButtonInHeader.addEventListener('click', displayPantry);
