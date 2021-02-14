@@ -217,7 +217,6 @@ function searchBarSearch() {
   resetInnerHTML(searchResultGrid);
   let searchBarInput = searchBar.value;
   newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData);
-  // , ingredientData, recipeData
   populateAll(newRepository.filteredList, searchResultGrid)
 }
 

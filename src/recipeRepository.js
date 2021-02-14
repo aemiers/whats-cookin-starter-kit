@@ -32,6 +32,7 @@ class RecipeRepository {
       foundRecipe.forEach(recipe => {
         if (!this.filteredList.includes(recipe)) {
           this.filteredList.push(recipe)
+          console.log('Tag:', recipe);
         }
       })
     })
@@ -56,6 +57,7 @@ class RecipeRepository {
         recipe.ingredients.map(ingredient => {
           if (ingredient.id === ingredientId && !this.filteredList.includes(recipe)) {
             this.filteredList.push(recipe)
+            console.log('Ingredient:', recipe)
           }
         })
       })
@@ -70,6 +72,7 @@ class RecipeRepository {
       foundRecipe.forEach(recipe => {
         if (!this.filteredList.includes(recipe)) {
           this.filteredList.push(recipe)
+          console.log('Name:', recipe)
         }
       })
     })
