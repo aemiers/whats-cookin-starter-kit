@@ -1,11 +1,11 @@
-// const RecipeRepository = require('./src/recipeRepository');
-// const UserPantry = require('./src/userPantry');
+// const RecipeRepository = require('./recipeRepository');
+// const UserPantry = require('./userPantry');
 
 class User {
-  constructor(usersData) {
-    this.id = uderData.id;
-    this.name = usersData.name;
-    this.pantry = new UserPantry()
+  constructor(userData) {
+    this.id = userData.id;
+    this.name = userData.name;
+    this.pantry = userData.pantry
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
@@ -14,12 +14,24 @@ class User {
 
   }
 
-  addFavorite() {
-
+  addFavorite(recipe) {
+    if (!this.favoriteRecipes.includes(recipe)) {
+    this.favoriteRecipes.unshift(recipe)
+    }
   }
 
-  addToCookQueue() {
+  removeFavorite(badRecipe) {
+    let i = 0;
+    this.favoriteRecipes.forEach(recipe => {
+      if (recipe.id === badRecipe.id) {
+        this.favoriteRecipes.splice(i, 1);
+      }
+      i++
+    })
+  }
 
+  addToCookQueue(recipe) {
+    this.recipesToCook.push(recipe)
   }
 
 }

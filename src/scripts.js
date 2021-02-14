@@ -125,18 +125,19 @@ function populateAll(recipes, location) {
     `
   })
 }
-console.log(newRepository.recipeList)
+
 function displayIngredients(recipe) {
+  ingredientRow.innerHTML = '';
   recipe.ingredients.forEach(ingredient => {
     const ingredientName = recipe.findIngredientName(ingredient.id);
     const ingredientPrice = recipe.findIngredientCost(ingredient.id);
-    console.log(ingredientName, ingredientPrice);
     populateMeasurements(ingredient, ingredientName, ingredientPrice);
   })
   displayInstructions(recipe)
 }
 
 function displayInstructions(recipe) {
+  recipeInstructions.innerHTML = ''
   recipe.instructions.forEach(step => {
     recipeInstructions.innerHTML += `
       <section class="numbered-recipe-chunk">
@@ -221,8 +222,7 @@ function searchBarSearch() {
   showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
   resetInnerHTML(searchResultGrid);
   let searchBarInput = searchBar.value;
-  newRepository.searchRecipes(searchBarInput);
-  // , ingredientData, recipeData
+  newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData);
   populateAll(newRepository.filteredList, searchResultGrid)
 }
 
@@ -231,7 +231,7 @@ function favoritesSearchBarSearch() {
   populateAll(newRepository.recipeList, favoritesGrid);
   resetInnerHTML(favoritesGrid);
   let searchBarInput = favoritesSearchBar.value;
-  newRepository.searchRecipes(searchBarInput);
+  newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData);
   //, ingredientData, recipeData
   populateAll(newRepository.filteredList, favoritesGrid)
 }
@@ -260,14 +260,14 @@ function addToCookinQueue() {
 }
 
 function recipeCardFunctionalityHandler(event) {
-  if (event.target.closest('.recipe-target')) {
+  if (event.target.closest('.heart')) {
+    favoriteRecipe();
+  } else if (event.target.closest('.recipe-target') && !event.target.closest('.queue-button')) {
     enlargeRecipe();
     // } else if (event.target.closest('.mini-recipe-tag')) {
     //   enlargeRecipe();
     // } else if (event.target.closest('.mini-recipe-title')) {
     //   enlargeRecipe();
-  } else if (event.target.closest('.heart')) {
-    favoriteRecipe();
   } else if (event.target.closest('.queue-button')) {
     addToCookinQueue();
   }
