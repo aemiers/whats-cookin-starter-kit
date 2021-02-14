@@ -1,10 +1,10 @@
 const chai = require('chai');
 const expect = chai.expect;
-// const RecipeRepository = require('../src/recipeRepository');
-// const Recipe = require('../src/recipe');
-// const Ingredient = require('../src/ingredient');
-// const recipes = require('../data/fakeRecipeData');
-// const superFakeIngredientData = require('../data/fakeIngredientData');
+const RecipeRepository = require('../src/recipeRepository');
+const Recipe = require('../src/recipe');
+const Ingredient = require('../src/ingredient');
+const recipes = require('../data/fakeRecipeData');
+const superFakeIngredientData = require('../data/fakeIngredientData');
 
 describe('RecipeRepository', function () {
   let recipeRepository;

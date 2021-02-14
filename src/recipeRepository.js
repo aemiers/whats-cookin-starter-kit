@@ -12,10 +12,6 @@ class RecipeRepository {
     this.filteredIngredientID = [];
   }
 
-  redundancyCheck(recipe) {
-    this.filteredList.map(listItem => !listItem.id === recipe.id)
-  }
-
   resetFilteredList() {
     this.filteredList = [];
     console.log('cleared');
@@ -34,9 +30,9 @@ class RecipeRepository {
     splitSearch.forEach(word => {
       const foundRecipe = this.recipeList.filter(recipe => recipe.tags.includes(word) || recipe.tags.includes(keywords))
       foundRecipe.forEach(recipe => {
-        if (this.redundancyCheck(recipe)) {
+        if (!this.filteredList.includes(recipe)) {
           this.filteredList.push(recipe)
-          console.log('Tag:', recipe);
+          console.log('Tag:', recipe)
         }
       })
     })
@@ -59,7 +55,7 @@ class RecipeRepository {
     this.filteredIngredientID.forEach(ingredientId => {
       recipeData.map(recipe => {
         recipe.ingredients.map(ingredient => {
-          if (ingredient.id === ingredientId && !this.filteredList.includes(recipe.id)) {
+          if (ingredient.id === ingredientId && !this.filteredList.includes(recipe)) {
             this.filteredList.push(recipe)
             console.log('Ingredient:', recipe)
           }
@@ -74,7 +70,8 @@ class RecipeRepository {
     splitName.forEach(word => {
       const foundRecipe = this.recipeList.filter(recipe => recipe.name.toLowerCase().includes(word))
       foundRecipe.forEach(recipe => {
-        if (this.redundancyCheck(recipe)) {
+        const recipeExist = this.filteredList.some(filteredRecipe => filteredRecipe.id === recipe.id)
+        if (!recipeExist) {
           this.filteredList.push(recipe)
           console.log('Name:', recipe)
         }
@@ -85,9 +82,9 @@ class RecipeRepository {
 
   searchRecipes(keywords, ingredientData, recipeData) {
     this.resetFilteredList();
-    this.filterRecipesByName(keywords);
-    this.filterRecipesByIngredients(keywords, ingredientData, recipeData);
     this.filterRecipesByTags(keywords);
+    this.filterRecipesByIngredients(keywords, ingredientData, recipeData);
+    this.filterRecipesByName(keywords);
   }
 }
 
