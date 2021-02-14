@@ -19,8 +19,8 @@ class RecipeRepository {
     })
   }
 
-  filterRecipesByTags(searchWords) {
-    const searchWords = searchWords.toLowerCase();
+  filterRecipesByTags(keywords) {
+    const searchWords = keywords.toLowerCase();
     const splitSearch = searchWords.split(' ');
     splitSearch.forEach(word => {
       const foundRecipe = this.recipeList.filter(recipe => recipe.tags.includes(word))
@@ -32,8 +32,8 @@ class RecipeRepository {
     })
   }
 
-  matchID(searchWords, ingredientData) {
-    const splitWords = searchWords.split(' ')
+  matchID(keywords, ingredientData) {
+    const splitWords = keywords.split(' ')
     splitWords.forEach(word => {
       const searchWordsFormatted = word.toLowerCase();
       ingredientData.map(ingredient => {
@@ -44,8 +44,8 @@ class RecipeRepository {
     })
   }
 
-  filterRecipesByIngredients(searchWords, ingredientData, recipeData) {
-    this.matchID(searchWords, ingredientData);
+  filterRecipesByIngredients(keywords, ingredientData, recipeData) {
+    this.matchID(keywords, ingredientData);
     this.filteredIngredientID.forEach(ingredientId => {
       recipeData.map(recipe => {
         recipe.ingredients.map(ingredient => {
@@ -57,8 +57,8 @@ class RecipeRepository {
     })
   }
 
-  filterRecipesByName(searchWords) {
-    const searchName = searchWords.toLowerCase();
+  filterRecipesByName(keywords) {
+    const searchName = keywords.toLowerCase();
     const splitName = searchName.split(' ');
     splitName.forEach(word => {
       const foundRecipe = this.recipeList.filter(recipe => recipe.name.toLowerCase().includes(word))
@@ -70,10 +70,10 @@ class RecipeRepository {
     })
   }
 
-  searchRecipes() {
-    filterRecipesByTags(keywords);
-    filterRecipesByIngredients(searchWords, ingredientData, recipeData);
-    filterRecipesByName(name);
+  searchRecipes(keywords) {
+    this.filterRecipesByTags(keywords);
+    // this.filterRecipesByIngredients(keywords, ingredientData, recipeData)
+    this.filterRecipesByName(keywords);
   }
 }
 

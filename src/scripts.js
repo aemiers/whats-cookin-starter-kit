@@ -1,4 +1,7 @@
-const newRepository = new RecipeRepository(recipeData)
+// const RecipeRepository = require("./recipeRepository");
+// const recipeData = require("../data/recipeData");
+
+const newRepository = new RecipeRepository(recipeData);
 newRepository.addRecipesToRepository();
 // PAGES
 const homePage = document.querySelector('#homePage');
@@ -45,8 +48,7 @@ function populateMain() {
   const randomRecipe3 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   pushToTrendingDisplay(randomRecipe1, randomRecipe2, randomRecipe3)
   randomize(newRepository.recipeList)
-  populateAll(newRepository.recipeList)
-
+  populateAll(newRepository.recipeList, browseMealsGrid)
 }
 
 function randomize(array) {
@@ -92,9 +94,9 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
   `
 }
 
-function populateAll(recipes) {
+function populateAll(recipes, location) {
   recipes.forEach(recipe => {
-    browseMealsGrid.innerHTML += `
+    location.innerHTML += `
       <article class="mini-recipe">
         <section class="mini-recipe-image-container">
           <img class="mini-recipe-img" src="${recipe.image}" id="defaultId">
@@ -160,7 +162,9 @@ function enlargeRecipe() {
 }
 
 function displayFavorites() {
-  showHidePages(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage)
+  showHidePages(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
+  populateAll(newRepository.recipeList, favoritesGrid);
+
 }
 
 function displayPantry() {
@@ -173,11 +177,18 @@ function displayQueue() {
 
 function searchBarSearch() {
   showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
+  let searchBarInput = searchBar.value;
+  console.log('searchBarInput', searchBarInput);
+  newRepository.searchRecipes(searchBarInput);
+  console.log(newRepository.recipeList)
+  populateAll(newRepository.recipeList, searchResultGrid)
 }
+// ingredients, newRepository.recipeList
 
 function tagSearch() {
   console.log('searching by tag')
   showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
+  populateAll(newRepository.recipeList, searchResultGrid);
 }
 
 function favoriteRecipe() {
@@ -223,9 +234,3 @@ searchBar.addEventListener('keydown', function (event) {
     searchBarSearch();
   }
 })
-// recipeTarget.addEventListener('click', function(e) {
-//   if (event.target.closest('.mini-recipe') === 'mini-recipe') {
-//     hide([homePage])
-//     show([])
-//   }
-// })
