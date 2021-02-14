@@ -1,4 +1,7 @@
-const newRepository = new RecipeRepository(recipeData)
+// const RecipeRepository = require("./recipeRepository");
+// const recipeData = require("../data/recipeData");
+
+const newRepository = new RecipeRepository(recipeData);
 newRepository.addRecipesToRepository();
 // PAGES
 const homePage = document.querySelector('#homePage');
@@ -20,7 +23,7 @@ const searchResultGrid = document.querySelector('#searchResultMeals');
 const favoritesGrid = document.querySelector('#searchResultMeals');
 const favoritesMealsGrid = document.querySelector('#favoritesMealsGrid');
 // SEARCH BY TAG ICONS
-// const appetizerTagIcon = document.querySelector('#appetizer');
+const appetizerTagIcon = document.querySelector('#appetizer');
 const breakfastTagIcon = document.querySelector('#breakfast');
 const lunchTagIcon = document.querySelector('#lunch');
 const dinnerTagIcon = document.querySelector('#dinner');
@@ -47,8 +50,7 @@ function populateMain() {
   const randomRecipe3 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   pushToTrendingDisplay(randomRecipe1, randomRecipe2, randomRecipe3)
   randomize(newRepository.recipeList)
-  populateAll(newRepository.recipeList)
-
+  populateAll(newRepository.recipeList, browseMealsGrid)
 }
 
 function randomize(array) {
@@ -94,9 +96,9 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
   `
 }
 
-function populateAll(recipes) {
+function populateAll(recipes, location) {
   recipes.forEach(recipe => {
-    browseMealsGrid.innerHTML += `
+    location.innerHTML += `
       <article id="${recipe.id}"class="mini-recipe recipe-target">
         <section class="mini-recipe-image-container">
           <img class="mini-recipe-img" src="${recipe.image}" id="defaultId">
@@ -142,7 +144,7 @@ function populateMeasurements(ingredient, name, price) {
       <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
     </div>
     <p class="ingredient-row-text">${ingredient.quantity.amount} ${ingredient.quantity.unit} ${name}</p>
-    <p id="ingredientRowText"class="ingredient-row-text">$${((ingredient.quantity.amount * price)/100).toFixed(2)}</p>
+    <p id="ingredientRowText"class="ingredient-row-text">$${((ingredient.quantity.amount * price) / 100).toFixed(2)}</p>
   </div>
   `
 }
@@ -191,7 +193,9 @@ function enlargeRecipe() {
 }
 
 function displayFavorites() {
-  showHidePages(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage)
+  showHidePages(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
+  populateAll(newRepository.recipeList, favoritesGrid);
+
 }
 
 function displayPantry() {
@@ -204,11 +208,18 @@ function displayQueue() {
 
 function searchBarSearch() {
   showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
+  let searchBarInput = searchBar.value;
+  console.log('searchBarInput', searchBarInput);
+  newRepository.searchRecipes(searchBarInput);
+  console.log(newRepository.recipeList)
+  populateAll(newRepository.recipeList, searchResultGrid)
 }
+// ingredients, newRepository.recipeList
 
 function tagSearch() {
   console.log('searching by tag')
   showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
+  populateAll(newRepository.recipeList, searchResultGrid);
 }
 
 function favoriteRecipe() {
@@ -223,12 +234,11 @@ function addToCookinQueue() {
 function recipeCardFunctionalityHandler(event) {
   if (event.target.closest('.recipe-target')) {
     enlargeRecipe();
-  // } else if (event.target.closest('.mini-recipe-tag')) {
-  //   enlargeRecipe();
-  // } else if (event.target.closest('.mini-recipe-title')) {
-  //   enlargeRecipe();
+    // } else if (event.target.closest('.mini-recipe-tag')) {
+    //   enlargeRecipe();
+    // } else if (event.target.closest('.mini-recipe-title')) {
+    //   enlargeRecipe();
   } else if (event.target.closest('.heart')) {
-    //could also try .mini-heart or .heart-overlay
     favoriteRecipe();
   } else if (event.target.closest('.queue-button')) {
     addToCookinQueue();
@@ -246,7 +256,7 @@ favoritesGrid.addEventListener('click', recipeCardFunctionalityHandler);
 trendingDisplay.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
 
-// appetizerTagIcon.addEventListener('click', tagSearch);
+appetizerTagIcon.addEventListener('click', tagSearch);
 breakfastTagIcon.addEventListener('click', tagSearch);
 lunchTagIcon.addEventListener('click', tagSearch);
 dinnerTagIcon.addEventListener('click', tagSearch);
@@ -258,9 +268,3 @@ searchBar.addEventListener('keydown', function (event) {
     searchBarSearch();
   }
 })
-// recipeTarget.addEventListener('click', function(e) {
-//   if (event.target.closest('.mini-recipe') === 'mini-recipe') {
-//     hide([homePage])
-//     show([])
-//   }
-// })
