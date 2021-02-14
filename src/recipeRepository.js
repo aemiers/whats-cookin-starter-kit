@@ -1,8 +1,8 @@
-const Ingredient = require('../src/ingredient');
-const UserPantry = require('../src/userPantry')
-const ingredientsData = require('../data/fakeIngredientData');
-const fakeRecipeData = require('../data/fakeRecipeData');
-const Recipe = require('./recipe');
+// const Ingredient = require('../src/ingredient');
+// const UserPantry = require('../src/userPantry')
+// const ingredientsData = require('../data/fakeIngredientData');
+// const fakeRecipeData = require('../data/fakeRecipeData');
+// const Recipe = require('./recipe');
 
 class RecipeRepository {
   constructor(recipes) {
@@ -33,7 +33,8 @@ class RecipeRepository {
       foundRecipe.forEach(recipe => {
         if (!pushListR.includes(recipe)) {
           pushListR.push(recipe)
-          console.log('Tag:', recipe)
+          console.log('Tag:', pushListR)
+          // console.log('Tag:', recipe)
         }
       })
     })
@@ -46,6 +47,7 @@ class RecipeRepository {
       ingredientData.map(ingredient => {
         if (ingredient.name.includes(searchWordsFormatted) || ingredient.name.includes(keywords)) {
           pushListI.push(ingredient.id)
+          console.log('matchID:', pushListI)
         }
       })
     })
@@ -58,7 +60,8 @@ class RecipeRepository {
         recipe.ingredients.map(ingredient => {
           if (ingredient.id === ingredientId && !pushListR.includes(recipe)) {
             pushListR.push(recipe)
-            console.log('Ingredient:', recipe)
+            console.log('Ingredient:', pushListR)
+            // console.log('Ingredient:', recipe)
           }
         })
       })
@@ -74,7 +77,8 @@ class RecipeRepository {
         const recipeExist = pushListR.some(filteredRecipe => filteredRecipe.id === recipe.id)
         if (!recipeExist) {
           pushListR.push(recipe)
-          console.log('Name:', recipe)
+          console.log('Name:', pushListR)
+          // console.log('Name:', recipe)
         }
       })
     })
@@ -82,10 +86,11 @@ class RecipeRepository {
   }
 
   searchRecipes(keywords, ingredientData, recipeData, pushListI, pushListR, searchList) {
-    this.resetFilteredList();
-    this.filterRecipesByTags(keywords, searchList, pushListI);
+    this.filterRecipesByTags(keywords, searchList, pushListR);
     this.filterRecipesByIngredients(keywords, ingredientData, pushListI, recipeData, pushListR);
-    this.filterRecipesByName(keywords);
+    this.filterRecipesByName(keywords, searchList, pushListR);
+    // this.resetFilteredList();
+    // console.log(this.filteredList)
   }
 }
 

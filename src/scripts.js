@@ -219,8 +219,11 @@ function displayQueue() {
 function searchBarSearch() {
   showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
   resetInnerHTML(searchResultGrid);
+  newRepository.resetFilteredList();
+  newRepository.filteredIngredientID = [];
   let searchBarInput = searchBar.value;
-  newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData);
+  newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData, newRepository.filteredIngredientID, newRepository.filteredList, newRepository.recipeList);
+  console.log('SearchBarSearch:', newRepository.filteredList);
   populateAll(newRepository.filteredList, searchResultGrid)
 }
 
