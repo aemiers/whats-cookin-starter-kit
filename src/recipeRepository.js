@@ -12,6 +12,10 @@ class RecipeRepository {
     this.filteredIngredientID = [];
   }
 
+  resetFilteredList() {
+    this.filteredList = [];
+  }
+
   addRecipesToRepository() {
     this.rawData.forEach(recipe => {
       const newRecipe = new Recipe(recipe)
@@ -68,6 +72,7 @@ class RecipeRepository {
         }
       })
     })
+
   }
 
   searchRecipes(keywords) {

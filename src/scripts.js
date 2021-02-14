@@ -208,18 +208,20 @@ function displayQueue() {
 
 function searchBarSearch() {
   showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
+  newRepository.filteredList = [];
   let searchBarInput = searchBar.value;
-  console.log('searchBarInput', searchBarInput);
   newRepository.searchRecipes(searchBarInput);
-  console.log(newRepository.recipeList)
-  populateAll(newRepository.recipeList, searchResultGrid)
+  populateAll(newRepository.filteredList, searchResultGrid)
+}
 }
 // ingredients, newRepository.recipeList
 
 function tagSearch() {
-  console.log('searching by tag')
+  // console.log('searching by tag');
   showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
-  populateAll(newRepository.recipeList, searchResultGrid);
+  let searchBarInput = searchBar.value;
+  newRepository.filterRecipeByTags(searchBarInput)
+  populateAll(newRepository.filteredList, searchResultGrid);
 }
 
 function favoriteRecipe() {
