@@ -14,6 +14,7 @@ class RecipeRepository {
 
   resetFilteredList() {
     this.filteredList = [];
+    this.filteredIngredientID = [];
     console.log('cleared');
   }
 
