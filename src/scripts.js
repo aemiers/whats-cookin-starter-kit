@@ -70,32 +70,38 @@ function resetInnerHTML(location) {
 function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
   trendingDisplay.innerHTML = `
     <section id="${recipe1.id}" class="large-image-section recipe-target">
-      <img src="${recipe1.image}" alt="Meal 1" class="large-image">
-      <div class="heart-overlay">
-        <img src="assets/grey-heart.png" alt="grey heart" class="heart large-image-heart">
-        <img src="assets/pink-heart.png" alt="pink heart" class="heart large-image-heart hidden">
+      <div class="image-section-wrapper">
+        <img src="${recipe1.image}" alt="Meal 1" class="large-image">
+        <div class="heart-overlay">
+          <img src="assets/grey-heart.png" alt="grey heart" class="heart large-image-heart">
+          <img src="assets/pink-heart.png" alt="pink heart" class="heart large-image-heart hidden">
+        </div>
       </div>
       <button class="queue-button">Add to My Cookin' Queue</button>
-      <h2 id="recipeTarget">${recipe1.name}</h2>
+      <h2  class="section-name-heading" id="recipeTarget">${recipe1.name}</h2>
     </section>
     <section class="side-images">
       <section id="${recipe2.id}" class="top-side-image recipe-target">
-        <img src="${recipe2.image}" alt="Meal2" class="side-image">
-        <div class="heart-overlay">
-          <img src="assets/grey-heart.png" alt="grey heart" class="heart side-heart">
-          <img src="assets/pink-heart.png" alt="pink heart" class="heart side-heart">
+        <div class="image-section-wrapper">
+          <img src="${recipe2.image}" alt="Meal2" class="side-image">
+          <div class="heart-overlay">
+            <img src="assets/grey-heart.png" alt="grey heart" class="heart side-heart">
+            <img src="assets/pink-heart.png" alt="pink heart" class="heart side-heart hidden">
+          </div>
         </div>
         <button class="queue-button">Add to My Cookin' Queue</button>
-        <h2 id="recipeTarget">${recipe2.name}</h2>
+        <h2 class="section-name-heading" id="recipeTarget">${recipe2.name}</h2>
       </section>
       <section id="${recipe3.id}" class="bottom-side-image recipe-target">
-        <img src="${recipe3.image}" alt="Meal 3" class="side-image">
-        <div class="heart-overlay">
-          <img src="assets/grey-heart.png" alt="grey heart" class="heart side-heart">
-          <img src="assets/pink-heart.png" alt="pink heart" class="heart side-heart hidden">
+        <div class="image-section-wrapper">
+          <img src="${recipe3.image}" alt="Meal 3" class="side-image">
+          <div class="heart-overlay">
+            <img src="assets/grey-heart.png" alt="grey heart" class="heart side-heart">
+            <img src="assets/pink-heart.png" alt="pink heart" class="heart side-heart hidden">
+          </div>
         </div>
         <button class="queue-button">Add to My Cookin' Queue</button>
-        <h2 id="recipeTarget">${recipe3.name}</h2>
+        <h2 class="section-name-heading" id="recipeTarget">${recipe3.name}</h2>
       </section>
     </section>
   `
@@ -105,16 +111,16 @@ function populateAll(recipes, location) {
   recipes.forEach(recipe => {
     location.innerHTML += `
       <article id="${recipe.id}"class="mini-recipe recipe-target">
-        <section class="mini-recipe-image-container">
+        <div class="mini-recipe-image-container">
           <img class="mini-recipe-img" src="${recipe.image}" id="defaultId">
           <div class="heart-overlay">
             <img src="assets/grey-heart.png" alt="grey heart" class="heart mini-heart">
-            <img src="assets/pink-heart.png" alt="pink heart" class="heart mini-heart hidden">
+              <img src="assets/pink-heart.png" alt="pink heart" class="heart mini-heart hidden">
           </div>
+        </div>
           <button class="queue-button">Add to My Cookin' Queue</button>
-        </section>
-        <h4 class="mini-recipe-tag">${recipe.tags[getRandomIndex(recipe.tags)]}</h4>
-        <h2 class="mini-recipe-title" id="recipeTarget">${recipe.name}</h2>
+          <h4 class="mini-recipe-tag">${recipe.tags[getRandomIndex(recipe.tags)]}</h4>
+          <h2 class="mini-recipe-title" id="recipeTarget">${recipe.name}</h2>
       </article>
     `
   })
@@ -150,7 +156,7 @@ function populateMeasurements(ingredient, name, price) {
       <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
     </div>
     <p class="ingredient-row-text">${ingredient.quantity.amount} ${ingredient.quantity.unit} ${name}</p>
-    <p id="ingredientRowText"class="ingredient-row-text">$${((ingredient.quantity.amount * price) / 100).toFixed(2)}</p>
+    <p id="ingredientRowText"class="ingredient-row-price">$${((ingredient.quantity.amount * price) / 100).toFixed(2)}</p>
   </div>
   `
 }
