@@ -1,7 +1,5 @@
-// const RecipeRepository = require("./recipeRepository");
-// const recipeData = require("../data/recipeData");
-
 const newRepository = new RecipeRepository(recipeData);
+const newUser = new User(usersData[getRandomIndex(usersData)])
 newRepository.addRecipesToRepository();
 // PAGES
 const homePage = document.querySelector('#homePage');

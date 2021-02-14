@@ -10,8 +10,8 @@ class User {
     this.recipesToCook = [];
   }
 
-  sortFavorites() {
-
+  sortFavorites(keywords, ingredientData, recipeData) {
+    newRepository.searchRecipes(keywords, ingredientData, recipeData)
   }
 
   addFavorite(recipe) {
