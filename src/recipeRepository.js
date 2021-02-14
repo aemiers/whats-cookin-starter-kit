@@ -49,6 +49,7 @@ class RecipeRepository {
   }
 
   filterRecipesByIngredients(keywords, ingredientData, recipeData) {
+    console.log('1', filterRecipesByIngredients)
     this.matchID(keywords, ingredientData);
     this.filteredIngredientID.forEach(ingredientId => {
       recipeData.map(recipe => {
@@ -75,11 +76,12 @@ class RecipeRepository {
 
   }
 
-  searchRecipes(keywords, ingredientData, recipeData) {
+  searchRecipes(keywords) {
+    //, ingredientData, recipeData
     this.resetFilteredList();
     // console.log('filtered list', this.filteredList)
     this.filterRecipesByTags(keywords);
-    // this.filterRecipesByIngredients(keywords, ingredientData, recipeData)
+    // this.filterRecipesByIngredients(keywords, ingredientData, recipeData);
     this.filterRecipesByName(keywords);
   }
 }

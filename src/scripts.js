@@ -22,6 +22,8 @@ const browseMealsGrid = document.querySelector('#allMeals');
 const searchResultGrid = document.querySelector('#searchResultMeals');
 const favoritesGrid = document.querySelector('#searchResultMeals');
 const favoritesMealsGrid = document.querySelector('#favoritesMealsGrid');
+const favoritesSearchBar = document.querySelector('#favoritesSearchBar');
+
 // SEARCH BY TAG ICONS
 const appetizerTagIcon = document.querySelector('#appetizer');
 const breakfastTagIcon = document.querySelector('#breakfast');
@@ -214,7 +216,18 @@ function searchBarSearch() {
   resetInnerHTML(searchResultGrid);
   let searchBarInput = searchBar.value;
   newRepository.searchRecipes(searchBarInput);
+  // , ingredientData, recipeData
   populateAll(newRepository.filteredList, searchResultGrid)
+}
+
+function favoritesSearchBarSearch() {
+  showHidePages(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
+  populateAll(newRepository.recipeList, favoritesGrid);
+  resetInnerHTML(favoritesGrid);
+  let searchBarInput = favoritesSearchBar.value;
+  newRepository.searchRecipes(searchBarInput);
+  //, ingredientData, recipeData
+  populateAll(newRepository.filteredList, favoritesGrid)
 }
 
 // ingredients, newRepository.recipeList
@@ -262,6 +275,7 @@ pantryButtonInHeader.addEventListener('click', displayPantry);
 browseMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
 searchResultGrid.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesGrid.addEventListener('click', recipeCardFunctionalityHandler);
+
 trendingDisplay.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
 
@@ -280,12 +294,16 @@ dinnerTagIcon.addEventListener('click', function (event) {
 dessertTagIcon.addEventListener('click', function (event) {
   tagSearch(event.target.id);
 });
-sidesTagIcon.addEventListener('click', function (event) {
-  tagSearch(event.target.id);
-});
+sidesTagIcon.addEventListener('click', tagSearch);
 
 searchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
     searchBarSearch();
+  }
+})
+
+favoritesSearchBar.addEventListener('click', function (event) {
+  if (event.keyCode === 13) {
+    favoritesSearchBarSearch();
   }
 })
