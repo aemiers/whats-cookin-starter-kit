@@ -18,6 +18,7 @@ const trendingDisplay = document.querySelector('#trendingDisplay');
 const browseMealsGrid = document.querySelector('#allMeals');
 const searchResultGrid = document.querySelector('#searchResultMeals');
 const favoritesGrid = document.querySelector('#searchResultMeals');
+const favoritesMealsGrid = document.querySelector('#favoritesMealsGrid');
 // SEARCH BY TAG ICONS
 // const appetizerTagIcon = document.querySelector('#appetizer');
 const breakfastTagIcon = document.querySelector('#breakfast');
@@ -33,13 +34,14 @@ const recipeDetailsName = document.querySelector('#recipeDetailsName');
 const recipeDetailsImage = document.querySelector('#recipeDetailsImage');
 const recipeDetailsTags = document.querySelector('#recipePageTags');
 const ingredientRow = document.querySelector('#ingredientRow');
+const ingredientRowText = document.querySelector('#ingredientRowText');
+const recipeInstructions = document.querySelector('#recipeInstructions');
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
 function populateMain() {
-  // let newRepository = new RecipeRepository(recipeData)
   const randomRecipe1 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe2 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe3 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
@@ -60,7 +62,7 @@ function randomize(array) {
 
 function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
   trendingDisplay.innerHTML = `
-    <section class="large-image-section">
+    <section id="${recipe1.id}" class="large-image-section recipe-target">
       <img src="${recipe1.image}" alt="Meal 1" class="large-image">
       <div class="heart-overlay">
         <img src="assets/grey-heart.png" alt="grey heart" class="heart large-image-heart">
@@ -70,7 +72,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
       <h2 id="recipeTarget">${recipe1.name}</h2>
     </section>
     <section class="side-images">
-      <section class="top-side-image">
+      <section id="${recipe2.id}" class="top-side-image recipe-target">
         <img src="${recipe2.image}" alt="Meal2" class="side-image">
         <div class="heart-overlay">
           <img src="assets/grey-heart.png" alt="grey heart" class="heart side-heart">
@@ -79,7 +81,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
         <button class="queue-button">Add to My Cookin' Queue</button>
         <h2 id="recipeTarget">${recipe2.name}</h2>
       </section>
-      <section class="bottom-side-image">
+      <section id="${recipe3.id}" class="bottom-side-image recipe-target">
         <img src="${recipe3.image}" alt="Meal 3" class="side-image">
         <div class="heart-overlay">
           <img src="assets/grey-heart.png" alt="grey heart" class="heart side-heart">
@@ -95,7 +97,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
 function populateAll(recipes) {
   recipes.forEach(recipe => {
     browseMealsGrid.innerHTML += `
-      <article class="mini-recipe">
+      <article id="${recipe.id}"class="mini-recipe recipe-target">
         <section class="mini-recipe-image-container">
           <img class="mini-recipe-img" src="${recipe.image}" id="defaultId">
           <div class="heart-overlay">
@@ -114,13 +116,35 @@ console.log(newRepository.recipeList)
 function displayIngredients(recipe) {
   recipe.ingredients.forEach(ingredient => {
     const ingredientName = recipe.findIngredientName(ingredient.id);
-    console.log(ingredient);
-    ingredientRow.innerHTML += `
-      <img class="check-x" id="check" src="assets/check.png" alt="green check" >
-      <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
-      <p class="ingredient-row-text">${ingredient.quantity.amount} ${ingredient.quantity.unit} ${ingredientName}</p>
+    const ingredientPrice = recipe.findIngredientCost(ingredient.id);
+    console.log(ingredientName, ingredientPrice);
+    populateMeasurements(ingredient, ingredientName, ingredientPrice);
+  })
+  displayInstructions(recipe)
+}
+
+function displayInstructions(recipe) {
+  recipe.instructions.forEach(step => {
+    recipeInstructions.innerHTML += `
+      <section class="numbered-recipe-chunk">
+        <p class="recipe-number">${step.number}</p>
+        <p>${step.instruction}</p>
+      </section>
     `
   })
+}
+
+function populateMeasurements(ingredient, name, price) {
+  ingredientRow.innerHTML += `
+  <div class="ingredient-row-left-side">
+    <div class="check-box">
+      <img class="check-x" id="check" src="assets/check.png" alt="green check" >
+      <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
+    </div>
+    <p class="ingredient-row-text">${ingredient.quantity.amount} ${ingredient.quantity.unit} ${name}</p>
+    <p id="ingredientRowText"class="ingredient-row-text">$${((ingredient.quantity.amount * price)/100).toFixed(2)}</p>
+  </div>
+  `
 }
 
 function displayTags(recipe) {
@@ -137,6 +161,8 @@ function recipeDetails(recipe) {
   displayTags(recipe);
   displayIngredients(recipe);
 }
+
+
 
 function hide(elements) {
   elements.forEach(element => element.classList.add('hidden'));
@@ -157,6 +183,11 @@ function goHome() {
 
 function enlargeRecipe() {
   showHidePages(recipeDetailPage, homePage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
+  newRepository.recipeList.forEach(recipe => {
+    if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
+      recipeDetails(recipe)
+    }
+  })
 }
 
 function displayFavorites() {
@@ -190,12 +221,12 @@ function addToCookinQueue() {
 }
 
 function recipeCardFunctionalityHandler(event) {
-  if (event.target.closest('.mini-recipe-img')) {
+  if (event.target.closest('.recipe-target')) {
     enlargeRecipe();
-  } else if (event.target.closest('.mini-recipe-tag')) {
-    enlargeRecipe();
-  } else if (event.target.closest('.mini-recipe-title')) {
-    enlargeRecipe();
+  // } else if (event.target.closest('.mini-recipe-tag')) {
+  //   enlargeRecipe();
+  // } else if (event.target.closest('.mini-recipe-title')) {
+  //   enlargeRecipe();
   } else if (event.target.closest('.heart')) {
     //could also try .mini-heart or .heart-overlay
     favoriteRecipe();
@@ -212,6 +243,9 @@ pantryButtonInHeader.addEventListener('click', displayPantry);
 browseMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
 searchResultGrid.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesGrid.addEventListener('click', recipeCardFunctionalityHandler);
+trendingDisplay.addEventListener('click', recipeCardFunctionalityHandler);
+favoritesMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
+
 // appetizerTagIcon.addEventListener('click', tagSearch);
 breakfastTagIcon.addEventListener('click', tagSearch);
 lunchTagIcon.addEventListener('click', tagSearch);
