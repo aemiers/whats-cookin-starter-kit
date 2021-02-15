@@ -1,5 +1,6 @@
 // const RecipeRepository = require('./recipeRepository');
 // const UserPantry = require('./userPantry');
+// const fakeRecipeData = require('../data/fakeRecipeData');
 
 class User {
   constructor(userData) {
@@ -7,11 +8,15 @@ class User {
     this.name = userData.name;
     this.pantry = userData.pantry
     this.favoriteRecipes = [];
+    this.filteredFavorites = [];
     this.recipesToCook = [];
+    this.filteredIngredientID = [];
   }
 
-  sortFavorites(keywords, ingredientData, recipeData) {
-    newRepository.searchRecipes(keywords, ingredientData, recipeData)
+  sortFavorites(keywords, ingredientData, recipeData, pushListI, pushListR, searchList) {
+    const newRepository = new RecipeRepository(fakeRecipeData);
+    newRepository.addRecipesToRepository();
+    newRepository.searchRecipes(keywords, ingredientData, recipeData, pushListI, pushListR, searchList)
   }
 
   addFavorite(recipe) {

@@ -222,7 +222,8 @@ function searchBarSearch() {
   newRepository.resetFilteredList();
   newRepository.filteredIngredientID = [];
   let searchBarInput = searchBar.value;
-  newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData, newRepository.filteredIngredientID, newRepository.filteredList, newRepository.recipeList);
+  newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData,
+    newRepository.filteredIngredientID, newRepository.filteredList, newRepository.recipeList);
   console.log('SearchBarSearch:', newRepository.filteredList);
   populateAll(newRepository.filteredList, searchResultGrid)
 }
