@@ -26,6 +26,9 @@ const favoritesSearchBar = document.querySelector('#favoritesSearchBar');
 const userFavorites = document.querySelector('#userFavorites');
 const userPantry = document.querySelector('#userPantry');
 const userQueue = document.querySelector('#userQueue');
+const cookinQueueTags = document.querySelector('#cookinQueueTags');
+const cookinQueueRecipe = document.querySelector('#cookinQueueRecipe');
+const cookinQueueBlock = document.querySelector('#cookinQueueBlock');
 // SEARCH BY TAG ICONS
 const appetizerTagIcon = document.querySelector('#appetizer');
 const breakfastTagIcon = document.querySelector('#breakfast');
@@ -171,9 +174,9 @@ function populateMeasurements(ingredient, name, price) {
   `
 }
 
-function displayTags(recipe) {
+function displayTags(recipe, placement) {
   recipe.tags.forEach(tag => {
-    recipeDetailsTags.innerHTML += `
+    placement.innerHTML += `
       <li class="recipe-tag">${tag}</li>
     `
   })
@@ -182,8 +185,33 @@ function displayTags(recipe) {
 function recipeDetails(recipe) {
   recipeDetailsName.innerText = `${recipe.name}`;
   recipeDetailsImage.src = `${recipe.image}`;
-  displayTags(recipe);
+  displayTags(recipe, recipeDetailsTags);
   displayIngredients(recipe);
+}
+
+function cookinQueueCards(recipe) {
+  cookinQueueBlock.innerHTML ='';
+  let i = 1
+  newUser.recipesToCook.forEach(cookChoice => {
+    cookinQueueBlock.innerHTML += `
+      <article id="${cookChoice.id}" class="queue-block">
+        <h1>${i++}</h1>
+        <section class="queue-recipe-image-container">
+          <img class="queue-recipe-img" src="${cookChoice.image}" id="defaultId">
+        </section>
+        <div class="queue-words-container">
+          <ul id="cookinQueueTags" class="recipe-page-tags">
+          </ul>
+          <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
+        </div>
+      </article>
+    `
+  })
+}
+
+function cookinQueueDeets(recipe) {
+  cookinQueueCards(recipe);
+  // displayTags(recipe, cookinQueueTags)
 }
 
 
@@ -278,7 +306,13 @@ function favoriteRecipe() {
 }
 
 function addToCookinQueue() {
-  //add popup if time saying recipe has been added
+  showHidePages(cookinQueuePage, homePage, favoritesPage, searchResultsPage, userPantryPage, recipeDetailPage)
+  newRepository.recipeList.forEach(recipe => {
+    if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
+      newUser.addToCookQueue(recipe);
+      cookinQueueDeets(recipe);
+    }
+  })
   console.log('Recipe has been added to your Cookin\' Queue!')
 }
 
