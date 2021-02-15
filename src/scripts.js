@@ -1,7 +1,5 @@
-// const RecipeRepository = require("./recipeRepository");
-// const recipeData = require("../data/recipeData");
-
 const newRepository = new RecipeRepository(recipeData);
+const newUser = new User(usersData[getRandomIndex(usersData)])
 newRepository.addRecipesToRepository();
 // PAGES
 const homePage = document.querySelector('#homePage');
@@ -16,6 +14,8 @@ const searchBar = document.querySelector('#searchBar');
 const favoriteButtonInHeader = document.querySelector('#favoriteButton');
 const queueButtonInHeader = document.querySelector('#queueButton');
 const pantryButtonInHeader = document.querySelector('#pantryButton');
+const welcomeUser = document.querySelector('#welcomeUser');
+const homeButton = document.querySelector('#homeButton');
 // BODY
 const trendingDisplay = document.querySelector('#trendingDisplay');
 const browseMealsGrid = document.querySelector('#allMeals');
@@ -53,6 +53,7 @@ function populateMain() {
   pushToTrendingDisplay(randomRecipe1, randomRecipe2, randomRecipe3)
   randomize(newRepository.recipeList)
   populateAll(newRepository.recipeList, browseMealsGrid)
+  welcomeUser.innerText = `${newUser.name}`
 }
 
 function randomize(array) {
@@ -221,19 +222,32 @@ function displayQueue() {
 function searchBarSearch() {
   showHidePages(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
   resetInnerHTML(searchResultGrid);
+  newRepository.resetFilteredList();
+  newRepository.filteredIngredientID = [];
   let searchBarInput = searchBar.value;
-  newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData);
+  newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData,
+    newRepository.filteredIngredientID, newRepository.filteredList, newRepository.recipeList);
+  // console.log('SearchBarSearch:', newRepository.filteredList);
   populateAll(newRepository.filteredList, searchResultGrid)
+  searchBar.value = '';
 }
 
 function favoritesSearchBarSearch() {
-  showHidePages(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
-  populateAll(newRepository.recipeList, favoritesGrid);
+  showHidePages(searchResultsPage, homePage, favoritesPage, recipeDetailPage, userPantryPage, cookinQueuePage);
   resetInnerHTML(favoritesGrid);
+  newUser.resetRecipes();
   let searchBarInput = favoritesSearchBar.value;
-  newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData);
+  newUser.sortFavorites(searchBarInput, ingredientsData, recipeData,
+    newUser.filteredIngredientID, newUser.filteredFavorites, newUser.favoriteRecipes);
   //, ingredientData, recipeData
-  populateAll(newRepository.filteredList, favoritesGrid)
+  populateAll(newUser.filteredFavorites, favoritesGrid)
+  favoritesSearchBar.value = '';
+}
+
+function addFavorites(recipe) {
+  resetInnerHTML(favoritesMealsGrid);
+  newUser.addFavorite(recipe);
+  populateAll(newUser.favoriteRecipes, favoritesMealsGrid);
 }
 
 // ingredients, newRepository.recipeList
@@ -275,6 +289,7 @@ function recipeCardFunctionalityHandler(event) {
 
 window.addEventListener('load', populateMain);
 headerLogo.addEventListener('click', goHome);
+homeButton.addEventListener('click', goHome);
 favoriteButtonInHeader.addEventListener('click', displayFavorites);
 queueButtonInHeader.addEventListener('click', displayQueue);
 pantryButtonInHeader.addEventListener('click', displayPantry);
@@ -308,7 +323,7 @@ searchBar.addEventListener('keydown', function (event) {
   }
 })
 
-favoritesSearchBar.addEventListener('click', function (event) {
+favoritesSearchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
     favoritesSearchBarSearch();
   }
