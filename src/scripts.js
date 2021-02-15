@@ -202,12 +202,6 @@ function enlargeRecipe() {
   })
 }
 
-function displayFavorites() {
-  showHide(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
-  populateAll(newRepository.recipeList, favoritesGrid);
-}
-
-
 function displayPantry() {
   showHide(userPantryPage, homePage, recipeDetailPage, favoritesPage, searchResultsPage, cookinQueuePage)
 }
@@ -243,10 +237,6 @@ function tagSearch(event) {
   populateAll(newRepository.filteredList, searchResultGrid);
 }
 
-// function favoriteRecipeHandler(event, recipe) {
-//   changeHeart(event);
-// }
-
 function favoriteRecipeHandler(event) {
   let clickedHeartRecipeID = parseInt(event.target.parentNode.parentNode.parentNode.id);
   if (event.target.id === 'greyHeart') {
@@ -259,6 +249,12 @@ function favoriteRecipeHandler(event) {
     newUser.removeFavorite(newRepository.findRecipeByRecipeID(clickedHeartRecipeID));
   }
 }
+
+function displayFavorites() {
+  showHide(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
+  populateAll(newUser.favoriteRecipes, favoritesMealsGrid);
+}
+
 function addToCookinQueue() {
   console.log('Recipe has been added to your Cookin\' Queue!')
 }

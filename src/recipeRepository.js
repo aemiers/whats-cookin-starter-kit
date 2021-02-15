@@ -85,10 +85,19 @@ class RecipeRepository {
   }
 
   findRecipeByRecipeID(favoritedRecipeId) {
-    let foundFavoritedRecipe = this.recipeList.find(foundFavoritedRecipe =>
-      foundFavoritedRecipe.id === favoritedRecipeId);
-    // console.log('favorited recipe data', foundFavoritedRecipe)
-    return foundFavoritedRecipe;
+    let foundClickedHeartRecipe = this.recipeList.find(foundClickedHeartRecipe =>
+      foundClickedHeartRecipe.id === favoritedRecipeId);
+    this.addRemoveFavoriteToRecipe(foundClickedHeartRecipe);
+    return foundClickedHeartRecipe;
+  }
+
+  addRemoveFavoriteToRecipe(recipe) {
+    if (recipe.favorited === false) {
+      recipe.favorited = true;
+    } else {
+      recipe.favorited = false;
+    }
+    console.log(recipe.favorited)
   }
 }
 
