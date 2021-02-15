@@ -23,7 +23,11 @@ const searchResultGrid = document.querySelector('#searchResultMeals');
 const favoritesGrid = document.querySelector('#searchResultMeals');
 const favoritesMealsGrid = document.querySelector('#favoritesMealsGrid');
 const favoritesSearchBar = document.querySelector('#favoritesSearchBar');
-
+const userFavorites = document.querySelector('#userFavorites');
+const userPantry = document.querySelector('#userPantry');
+const userQueue = document.querySelector('#userQueue');
+const cookinQueueRecipe = document.querySelector('#cookinQueueRecipe');
+const cookinQueueBlock = document.querySelector('#cookinQueueBlock');
 // SEARCH BY TAG ICONS
 const appetizerTagIcon = document.querySelector('#appetizer');
 const breakfastTagIcon = document.querySelector('#breakfast');
@@ -50,10 +54,17 @@ function populateMain() {
   const randomRecipe1 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe2 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe3 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
-  pushToTrendingDisplay(randomRecipe1, randomRecipe2, randomRecipe3)
-  randomize(newRepository.recipeList)
-  populateAll(newRepository.recipeList, browseMealsGrid)
-  welcomeUser.innerText = `${newUser.name}`
+  pushToTrendingDisplay(randomRecipe1, randomRecipe2, randomRecipe3);
+  randomize(newRepository.recipeList);
+  populateAll(newRepository.recipeList, browseMealsGrid);
+  populateUserName();
+}
+
+function populateUserName() {
+  welcomeUser.innerText = `${newUser.name}`;
+  userFavorites.innerText = `${newUser.name}'s Favorite Recipes`;
+  userPantry.innerText = `${newUser.name}'s Pantry`;
+  userQueue.innerText =  `${newUser.name}'s Cookin' Queue`;
 }
 
 function randomize(array) {
@@ -109,7 +120,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
 }
 
 function populateAll(recipes, location) {
-  recipes.forEach(recipe => {
+  recipes.forEach((recipe, i) => {
     location.innerHTML += `
       <article id="${recipe.id}"class="mini-recipe recipe-target">
         <div class="mini-recipe-image-container">
@@ -120,10 +131,13 @@ function populateAll(recipes, location) {
           </div>
         </div>
           <button class="queue-button">Add to My Cookin' Queue</button>
-          <h4 class="mini-recipe-tag">${recipe.tags[getRandomIndex(recipe.tags)]}</h4>
+          <ul id="miniRecipeTag${i+100}" class="mini-recipe-tag">
+          </ul>
           <h2 class="mini-recipe-title" id="recipeTarget">${recipe.name}</h2>
       </article>
     `
+    const miniRecipeTag = document.querySelector(`#miniRecipeTag${i+100}`);
+    displayTags(recipe, miniRecipeTag);
   })
 }
 
@@ -162,9 +176,9 @@ function populateMeasurements(ingredient, name, price) {
   `
 }
 
-function displayTags(recipe) {
+function displayTags(recipe, placement) {
   recipe.tags.forEach(tag => {
-    recipeDetailsTags.innerHTML += `
+    placement.innerHTML += `
       <li class="recipe-tag">${tag}</li>
     `
   })
@@ -173,8 +187,34 @@ function displayTags(recipe) {
 function recipeDetails(recipe) {
   recipeDetailsName.innerText = `${recipe.name}`;
   recipeDetailsImage.src = `${recipe.image}`;
-  displayTags(recipe);
+  displayTags(recipe, recipeDetailsTags);
   displayIngredients(recipe);
+}
+
+function cookinQueueCards(recipe) {
+  cookinQueueBlock.innerHTML ='';
+  newUser.recipesToCook.forEach((cookChoice, i) => {
+    cookinQueueBlock.innerHTML += `
+      <article id="${cookChoice.id}" class="queue-block">
+        <h1>${i+1}</h1>
+        <section class="queue-recipe-image-container">
+          <img class="queue-recipe-img" src="${cookChoice.image}" id="defaultId">
+        </section>
+        <div class="queue-words-container">
+          <ul id="cookinQueueTags${i+1}" class="recipe-page-tags">
+          </ul>
+          <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
+        </div>
+      </article>
+    `
+    let cookinQueueTags = document.querySelector(`#cookinQueueTags${i+1}`)
+    displayTags(cookChoice, cookinQueueTags)
+
+  })
+}
+
+function cookinQueueDeets(recipe) {
+  cookinQueueCards(recipe);
 }
 
 
@@ -269,7 +309,13 @@ function favoriteRecipe() {
 }
 
 function addToCookinQueue() {
-  //add popup if time saying recipe has been added
+  showHidePages(cookinQueuePage, homePage, favoritesPage, searchResultsPage, userPantryPage, recipeDetailPage)
+  newRepository.recipeList.forEach(recipe => {
+    if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
+      newUser.addToCookQueue(recipe);
+      cookinQueueDeets(recipe);
+    }
+  })
   console.log('Recipe has been added to your Cookin\' Queue!')
 }
 
@@ -278,8 +324,9 @@ function recipeCardFunctionalityHandler(event) {
     favoriteRecipe();
   } else if (event.target.closest('.recipe-target') && !event.target.closest('.queue-button')) {
     enlargeRecipe();
-    // } else if (event.target.closest('.mini-recipe-tag')) {
-    //   enlargeRecipe();
+  } else if (event.target.closest('.queue-block')) {
+    console.log('enlarge')
+      enlargeRecipe();
     // } else if (event.target.closest('.mini-recipe-title')) {
     //   enlargeRecipe();
   } else if (event.target.closest('.queue-button')) {
@@ -296,7 +343,7 @@ pantryButtonInHeader.addEventListener('click', displayPantry);
 browseMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
 searchResultGrid.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesGrid.addEventListener('click', recipeCardFunctionalityHandler);
-
+recipeDetailPage.addEventListener('click', recipeCardFunctionalityHandler);
 trendingDisplay.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
 
