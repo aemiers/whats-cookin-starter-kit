@@ -243,24 +243,20 @@ function tagSearch(event) {
   populateAll(newRepository.filteredList, searchResultGrid);
 }
 
-function favoriteRecipeHandler(event, recipe) {
-  changeHeart(event);
-}
+// function favoriteRecipeHandler(event, recipe) {
+//   changeHeart(event);
+// }
 
-function changeHeart(event) {
+function favoriteRecipeHandler(event) {
+  let clickedHeartRecipeID = parseInt(event.target.parentNode.parentNode.parentNode.id);
   if (event.target.id === 'greyHeart') {
     event.target.src = 'assets/pink-heart.png';
     event.target.id = 'pinkHeart';
-    let favoritedRecipeID = parseInt(event.target.parentNode.parentNode.parentNode.id);
-    // console.log(typeof (favoritedRecipeID))
-    newRepository.findRecipeByRecipeID(favoritedRecipeID, recipeData);
-    // newUser.addFavorite(favoriteRecipe, recipeData);
-
-    // newUser.addFavorite(recipe);
+    newUser.addFavorite(newRepository.findRecipeByRecipeID(clickedHeartRecipeID));
   } else if (event.target.id === 'pinkHeart') {
     event.target.src = 'assets/grey-heart.png';
     event.target.id = 'greyHeart';
-    // newUser.removeFavorite(recipe);
+    newUser.removeFavorite(newRepository.findRecipeByRecipeID(clickedHeartRecipeID));
   }
 }
 function addToCookinQueue() {

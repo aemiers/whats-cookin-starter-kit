@@ -17,6 +17,7 @@ class User {
   addFavorite(recipe) {
     if (!this.favoriteRecipes.includes(recipe)) {
       this.favoriteRecipes.unshift(recipe)
+      console.log('liked', this.favoriteRecipes)
     }
   }
 
@@ -28,6 +29,8 @@ class User {
       }
       i++
     })
+    console.log('unliked', this.favoriteRecipes)
+
   }
 
   // findRecipeById(favoritedRecipeName, recipeData) {

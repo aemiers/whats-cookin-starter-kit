@@ -87,7 +87,8 @@ class RecipeRepository {
   findRecipeByRecipeID(favoritedRecipeId) {
     let foundFavoritedRecipe = this.recipeList.find(foundFavoritedRecipe =>
       foundFavoritedRecipe.id === favoritedRecipeId);
-    return foundFavoritedRecipe
+    // console.log('favorited recipe data', foundFavoritedRecipe)
+    return foundFavoritedRecipe;
   }
 }
 
