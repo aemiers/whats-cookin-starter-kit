@@ -74,7 +74,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
       <div class="image-section-wrapper">
         <img src="${recipe1.image}" alt="Meal 1" class="large-image">
         <div class="heart-overlay">
-          <img src="assets/grey-heart.png" class="heart large-image-heart">
+          <img src="${recipe1.heartImage}"  class="heart large-image-heart">
         </div>
       </div>
       <button class="queue-button">Add to My Cookin' Queue</button>
@@ -85,7 +85,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
         <div class="image-section-wrapper">
           <img src="${recipe2.image}" alt="Meal2" class="side-image">
           <div class="heart-overlay">
-            <img src="assets/grey-heart.png" class="heart side-heart">
+            <img src="${recipe2.heartImage}" class="heart side-heart">
           </div>
         </div>
         <button class="queue-button">Add to My Cookin' Queue</button>
@@ -95,7 +95,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
         <div class="image-section-wrapper">
           <img src="${recipe3.image}" alt="Meal 3" class="side-image">
           <div class="heart-overlay">
-            <img src="assets/grey-heart.png" class="heart side-heart">
+            <img src="${recipe3.heartImage}"  class="heart side-heart">
           </div>
         </div>
         <button class="queue-button">Add to My Cookin' Queue</button>
@@ -119,7 +119,7 @@ function populateAll(recipes, location) {
         <div class="mini-recipe-image-container">
           <img class="mini-recipe-img" src="${recipe.image}" id="defaultId">
           <div class="heart-overlay">
-            <img src="${recipe.heartImage}" id="greyHeart" class="heart mini-heart">
+            <img src="${recipe.heartImage}" class="heart mini-heart">
           </div>
         </div>
           <button class="queue-button">Add to My Cookin' Queue</button>
@@ -249,17 +249,12 @@ function favoriteRecipeHandler(event) {
   newRepository.updateFavoriteOnRecipe(clickedRecipe);
   if (clickedRecipe.favorited === false) {
     event.target.src = 'assets/grey-heart.png';
-    // event.target.id = 'greyHeart';
     newUser.removeFavorite(clickedRecipe);
   } else if (clickedRecipe.favorited) {
     event.target.src = 'assets/pink-heart.png';
-    // event.target.id = 'pinkHeart';
     newUser.addFavorite(clickedRecipe);
   }
 }
-
-
-
 
 function displayFavorites() {
   showHide(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
