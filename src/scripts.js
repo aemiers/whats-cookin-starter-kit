@@ -23,7 +23,9 @@ const searchResultGrid = document.querySelector('#searchResultMeals');
 const favoritesGrid = document.querySelector('#searchResultMeals');
 const favoritesMealsGrid = document.querySelector('#favoritesMealsGrid');
 const favoritesSearchBar = document.querySelector('#favoritesSearchBar');
-
+const userFavorites = document.querySelector('#userFavorites');
+const userPantry = document.querySelector('#userPantry');
+const userQueue = document.querySelector('#userQueue');
 // SEARCH BY TAG ICONS
 const appetizerTagIcon = document.querySelector('#appetizer');
 const breakfastTagIcon = document.querySelector('#breakfast');
@@ -50,10 +52,17 @@ function populateMain() {
   const randomRecipe1 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe2 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe3 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
-  pushToTrendingDisplay(randomRecipe1, randomRecipe2, randomRecipe3)
-  randomize(newRepository.recipeList)
-  populateAll(newRepository.recipeList, browseMealsGrid)
-  welcomeUser.innerText = `${newUser.name}`
+  pushToTrendingDisplay(randomRecipe1, randomRecipe2, randomRecipe3);
+  randomize(newRepository.recipeList);
+  populateAll(newRepository.recipeList, browseMealsGrid);
+  populateUserName();
+}
+
+function populateUserName() {
+  welcomeUser.innerText = `${newUser.name}`;
+  userFavorites.innerText = `${newUser.name}'s Favorite Recipes`;
+  userPantry.innerText = `${newUser.name}'s Pantry`;
+  userQueue.innerText =  `${newUser.name}'s Cookin' Queue`;
 }
 
 function randomize(array) {
