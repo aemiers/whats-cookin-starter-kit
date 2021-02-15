@@ -26,7 +26,6 @@ const favoritesSearchBar = document.querySelector('#favoritesSearchBar');
 const userFavorites = document.querySelector('#userFavorites');
 const userPantry = document.querySelector('#userPantry');
 const userQueue = document.querySelector('#userQueue');
-const cookinQueueTags = document.querySelector('#cookinQueueTags');
 const cookinQueueRecipe = document.querySelector('#cookinQueueRecipe');
 const cookinQueueBlock = document.querySelector('#cookinQueueBlock');
 // SEARCH BY TAG ICONS
@@ -191,27 +190,28 @@ function recipeDetails(recipe) {
 
 function cookinQueueCards(recipe) {
   cookinQueueBlock.innerHTML ='';
-  let i = 1
-  newUser.recipesToCook.forEach(cookChoice => {
+  newUser.recipesToCook.forEach((cookChoice, i) => {
     cookinQueueBlock.innerHTML += `
       <article id="${cookChoice.id}" class="queue-block">
-        <h1>${i++}</h1>
+        <h1>${i+1}</h1>
         <section class="queue-recipe-image-container">
           <img class="queue-recipe-img" src="${cookChoice.image}" id="defaultId">
         </section>
         <div class="queue-words-container">
-          <ul id="cookinQueueTags" class="recipe-page-tags">
+          <ul id="cookinQueueTags${i+1}" class="recipe-page-tags">
           </ul>
           <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
         </div>
       </article>
     `
+    let cookinQueueTags = document.querySelector(`#cookinQueueTags${i+1}`)
+    displayTags(cookChoice, cookinQueueTags)
+
   })
 }
 
 function cookinQueueDeets(recipe) {
   cookinQueueCards(recipe);
-  // displayTags(recipe, cookinQueueTags)
 }
 
 
