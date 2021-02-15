@@ -109,7 +109,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
 function populateAll(recipes, location) {
   recipes.forEach(recipe => {
     location.innerHTML += `
-      <article id="${recipe.id}"class="mini-recipe recipe-target">
+      <article id="${recipe.id}" class="mini-recipe recipe-target">
         <div class="mini-recipe-image-container">
           <img class="mini-recipe-img" src="${recipe.image}" id="defaultId">
           <div class="heart-overlay">
@@ -123,9 +123,6 @@ function populateAll(recipes, location) {
     `
   })
 }
-
-
-
 
 function displayIngredients(recipe) {
   ingredientRow.innerHTML = '';
@@ -246,18 +243,24 @@ function tagSearch(event) {
   populateAll(newRepository.filteredList, searchResultGrid);
 }
 
-function favoriteRecipeHandler() {
-  console.log('Something has been favorited');
-  // toggleHeart();
+function favoriteRecipeHandler(event, recipe) {
+  changeHeart(event);
 }
 
 function changeHeart(event) {
   if (event.target.id === 'greyHeart') {
     event.target.src = 'assets/pink-heart.png';
-    event.target.id = 'pinkHeart'
+    event.target.id = 'pinkHeart';
+    let favoritedRecipeID = parseInt(event.target.parentNode.parentNode.parentNode.id);
+    // console.log(typeof (favoritedRecipeID))
+    newRepository.findRecipeByRecipeID(favoritedRecipeID, recipeData);
+    // newUser.addFavorite(favoriteRecipe, recipeData);
+
+    // newUser.addFavorite(recipe);
   } else if (event.target.id === 'pinkHeart') {
     event.target.src = 'assets/grey-heart.png';
     event.target.id = 'greyHeart';
+    // newUser.removeFavorite(recipe);
   }
 }
 function addToCookinQueue() {
@@ -266,8 +269,7 @@ function addToCookinQueue() {
 
 function recipeCardFunctionalityHandler(event) {
   if (event.target.closest('.heart')) {
-    changeHeart(event);
-    favoriteRecipeHandler();
+    favoriteRecipeHandler(event);
   } else if (event.target.closest('.recipe-target') && !event.target.closest('.queue-button')) {
     enlargeRecipe();
     // } else if (event.target.closest('.mini-recipe-tag')) {
@@ -315,7 +317,7 @@ searchBar.addEventListener('keydown', function (event) {
   }
 })
 
-favoritesSearchBar.addEventListener('click', function (event) {
+favoritesSearchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
     favoritesSearchBarSearch();
   }

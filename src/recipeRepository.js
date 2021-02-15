@@ -15,7 +15,6 @@ class RecipeRepository {
   resetFilteredList() {
     this.filteredList = [];
     this.filteredIngredientID = [];
-    console.log('cleared');
   }
 
   addRecipesToRepository() {
@@ -33,7 +32,6 @@ class RecipeRepository {
       foundRecipe.forEach(recipe => {
         if (!this.filteredList.includes(recipe)) {
           this.filteredList.push(recipe)
-          console.log('Tag:', recipe)
         }
       })
     })
@@ -58,7 +56,6 @@ class RecipeRepository {
         recipe.ingredients.map(ingredient => {
           if (ingredient.id === ingredientId && !this.filteredList.includes(recipe)) {
             this.filteredList.push(recipe)
-            console.log('Ingredient:', recipe)
           }
         })
       })
@@ -74,7 +71,6 @@ class RecipeRepository {
         const recipeExist = this.filteredList.some(filteredRecipe => filteredRecipe.id === recipe.id)
         if (!recipeExist) {
           this.filteredList.push(recipe)
-          console.log('Name:', recipe)
         }
       })
     })
@@ -86,6 +82,12 @@ class RecipeRepository {
     this.filterRecipesByTags(keywords);
     this.filterRecipesByIngredients(keywords, ingredientData, recipeData);
     this.filterRecipesByName(keywords);
+  }
+
+  findRecipeByRecipeID(favoritedRecipeId) {
+    let foundFavoritedRecipe = this.recipeList.find(foundFavoritedRecipe =>
+      foundFavoritedRecipe.id === favoritedRecipeId);
+    return foundFavoritedRecipe
   }
 }
 

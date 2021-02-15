@@ -16,7 +16,7 @@ class User {
 
   addFavorite(recipe) {
     if (!this.favoriteRecipes.includes(recipe)) {
-    this.favoriteRecipes.unshift(recipe)
+      this.favoriteRecipes.unshift(recipe)
     }
   }
 
@@ -29,6 +29,16 @@ class User {
       i++
     })
   }
+
+  // findRecipeById(favoritedRecipeName, recipeData) {
+  //   console.log(favoritedRecipeName)
+  //   recipeData.map(recipe => {
+  //     if (recipe.name === favoritedRecipeName) {
+  //       this.favoriteRecipes.push(recipe)
+  //     }
+  //   })
+  //   console.log('favorite array', this.favoriteRecipes);
+  // }
 
   addToCookQueue(recipe) {
     this.recipesToCook.push(recipe)
