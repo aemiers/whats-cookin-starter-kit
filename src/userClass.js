@@ -1,5 +1,6 @@
 // const RecipeRepository = require('./recipeRepository');
 // const UserPantry = require('./userPantry');
+// const fakeRecipeData = require('../data/fakeRecipeData');
 
 class User {
   constructor(userData) {
@@ -7,17 +8,28 @@ class User {
     this.name = userData.name;
     this.pantry = userData.pantry
     this.favoriteRecipes = [];
+    this.filteredFavorites = [];
     this.recipesToCook = [];
+    this.filteredIngredientID = [];
   }
 
-  sortFavorites() {
+  resetRecipes() {
+    this.filteredFavorites = [];
+    this.filteredIngredientID = [];
+  }
 
+  sortFavorites(keywords, ingredientData, recipeData, pushListI, pushListR, searchList) {
+    // const newRepository = new RecipeRepository(fakeRecipeData);
+    // newRepository.addRecipesToRepository();
+    // this.resetRecipes();
+    newRepository.searchRecipes(keywords, ingredientData, recipeData, pushListI, pushListR, searchList)
   }
 
   addFavorite(recipe) {
-    if (!this.favoriteRecipes.includes(recipe)) {
+    const recipeExist = this.favoriteRecipes.some(filteredRecipe => filteredRecipe.id === recipe.id)
+    if (!recipeExist) {
       this.favoriteRecipes.unshift(recipe)
-      console.log('liked', this.favoriteRecipes)
+
     }
   }
 
