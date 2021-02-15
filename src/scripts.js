@@ -1,7 +1,6 @@
 // const RecipeRepository = require("./recipeRepository");
 // const recipeData = require("../data/recipeData");
 const newUser = new User(usersData[getRandomIndex(usersData)]);
-
 const newRepository = new RecipeRepository(recipeData);
 newRepository.addRecipesToRepository();
 // PAGES
@@ -75,7 +74,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
       <div class="image-section-wrapper">
         <img src="${recipe1.image}" alt="Meal 1" class="large-image">
         <div class="heart-overlay">
-          <img src="assets/grey-heart.png" id="greyHeart" alt="grey heart" class="heart large-image-heart">
+          <img src="assets/grey-heart.png" class="heart large-image-heart">
         </div>
       </div>
       <button class="queue-button">Add to My Cookin' Queue</button>
@@ -86,7 +85,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
         <div class="image-section-wrapper">
           <img src="${recipe2.image}" alt="Meal2" class="side-image">
           <div class="heart-overlay">
-            <img src="assets/grey-heart.png" id="greyHeart" alt="grey heart" class="heart side-heart">
+            <img src="assets/grey-heart.png" class="heart side-heart">
           </div>
         </div>
         <button class="queue-button">Add to My Cookin' Queue</button>
@@ -96,7 +95,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
         <div class="image-section-wrapper">
           <img src="${recipe3.image}" alt="Meal 3" class="side-image">
           <div class="heart-overlay">
-            <img src="assets/grey-heart.png" id="greyHeart" alt="grey heart" class="heart side-heart">
+            <img src="assets/grey-heart.png" class="heart side-heart">
           </div>
         </div>
         <button class="queue-button">Add to My Cookin' Queue</button>
@@ -106,6 +105,13 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
   `
 }
 
+function displayFavoritedHearts() {
+  if (recipe.favorited) {
+    recipe.src = 'assets/pink-heart.png';
+    recipe.id = 'pinkHeart';
+  }
+}
+
 function populateAll(recipes, location) {
   recipes.forEach(recipe => {
     location.innerHTML += `
@@ -113,7 +119,7 @@ function populateAll(recipes, location) {
         <div class="mini-recipe-image-container">
           <img class="mini-recipe-img" src="${recipe.image}" id="defaultId">
           <div class="heart-overlay">
-            <img src="assets/grey-heart.png" alt="grey heart" id="greyHeart" class="heart mini-heart grey-heart">
+            <img src="${recipe.heartImage}" id="greyHeart" class="heart mini-heart">
           </div>
         </div>
           <button class="queue-button">Add to My Cookin' Queue</button>
@@ -239,16 +245,21 @@ function tagSearch(event) {
 
 function favoriteRecipeHandler(event) {
   let clickedHeartRecipeID = parseInt(event.target.parentNode.parentNode.parentNode.id);
-  if (event.target.id === 'greyHeart') {
-    event.target.src = 'assets/pink-heart.png';
-    event.target.id = 'pinkHeart';
-    newUser.addFavorite(newRepository.findRecipeByRecipeID(clickedHeartRecipeID));
-  } else if (event.target.id === 'pinkHeart') {
+  let clickedRecipe = newRepository.findRecipeByRecipeID(clickedHeartRecipeID);
+  newRepository.updateFavoriteOnRecipe(clickedRecipe);
+  if (clickedRecipe.favorited === false) {
     event.target.src = 'assets/grey-heart.png';
-    event.target.id = 'greyHeart';
-    newUser.removeFavorite(newRepository.findRecipeByRecipeID(clickedHeartRecipeID));
+    // event.target.id = 'greyHeart';
+    newUser.removeFavorite(clickedRecipe);
+  } else if (clickedRecipe.favorited) {
+    event.target.src = 'assets/pink-heart.png';
+    // event.target.id = 'pinkHeart';
+    newUser.addFavorite(clickedRecipe);
   }
 }
+
+
+
 
 function displayFavorites() {
   showHide(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);

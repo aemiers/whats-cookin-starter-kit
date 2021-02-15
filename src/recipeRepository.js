@@ -77,6 +77,23 @@ class RecipeRepository {
 
   }
 
+  updateFavoriteOnRecipe(recipe) {
+    if (recipe.favorited === false) {
+      recipe.favorited = true;
+      recipe.heartImage = 'assets/pink-heart.png';
+    } else if (recipe.favorited) {
+      recipe.favorited = false;
+      recipe.heartImage = 'assets/grey-heart.png';
+    }
+    console.log(recipe.favorited)
+  }
+
+  findRecipeByRecipeID(recipeId) {
+    let foundClickedHeartRecipe = this.recipeList.find(foundClickedHeartRecipe =>
+      foundClickedHeartRecipe.id === recipeId);
+    return foundClickedHeartRecipe;
+  }
+
   searchRecipes(keywords, ingredientData, recipeData) {
     this.resetFilteredList();
     this.filterRecipesByTags(keywords);
@@ -84,21 +101,7 @@ class RecipeRepository {
     this.filterRecipesByName(keywords);
   }
 
-  findRecipeByRecipeID(favoritedRecipeId) {
-    let foundClickedHeartRecipe = this.recipeList.find(foundClickedHeartRecipe =>
-      foundClickedHeartRecipe.id === favoritedRecipeId);
-    this.addRemoveFavoriteToRecipe(foundClickedHeartRecipe);
-    return foundClickedHeartRecipe;
-  }
 
-  addRemoveFavoriteToRecipe(recipe) {
-    if (recipe.favorited === false) {
-      recipe.favorited = true;
-    } else {
-      recipe.favorited = false;
-    }
-    console.log(recipe.favorited)
-  }
 }
 
 if (typeof module !== 'undefined') {
