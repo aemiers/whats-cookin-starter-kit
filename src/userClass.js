@@ -13,15 +13,23 @@ class User {
     this.filteredIngredientID = [];
   }
 
+  resetRecipes() {
+    this.filteredFavorites = [];
+    this.filteredIngredientID = [];
+  }
+
   sortFavorites(keywords, ingredientData, recipeData, pushListI, pushListR, searchList) {
-    const newRepository = new RecipeRepository(fakeRecipeData);
-    newRepository.addRecipesToRepository();
+    // const newRepository = new RecipeRepository(fakeRecipeData);
+    // newRepository.addRecipesToRepository();
+    // this.resetRecipes();
     newRepository.searchRecipes(keywords, ingredientData, recipeData, pushListI, pushListR, searchList)
   }
 
   addFavorite(recipe) {
-    if (!this.favoriteRecipes.includes(recipe)) {
+    const recipeExist = this.favoriteRecipes.some(filteredRecipe => filteredRecipe.id === recipe.id)
+    if (!recipeExist) {
     this.favoriteRecipes.unshift(recipe)
+
     }
   }
 

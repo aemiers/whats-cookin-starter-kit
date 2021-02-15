@@ -224,18 +224,27 @@ function searchBarSearch() {
   let searchBarInput = searchBar.value;
   newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData,
     newRepository.filteredIngredientID, newRepository.filteredList, newRepository.recipeList);
-  console.log('SearchBarSearch:', newRepository.filteredList);
+  // console.log('SearchBarSearch:', newRepository.filteredList);
   populateAll(newRepository.filteredList, searchResultGrid)
+  searchBar.value = '';
 }
 
 function favoritesSearchBarSearch() {
-  showHidePages(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
-  populateAll(newRepository.recipeList, favoritesGrid);
+  showHidePages(searchResultsPage, homePage, favoritesPage, recipeDetailPage, userPantryPage, cookinQueuePage);
   resetInnerHTML(favoritesGrid);
+  resetInnerHTML(favoritesMealsGrid);
+  newUser.resetRecipes();
   let searchBarInput = favoritesSearchBar.value;
-  newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData);
+  newUser.sortFavorites(searchBarInput, ingredientsData, recipeData,
+    newUser.filteredIngredientID, newUser.filteredFavorites, newUser.favoriteRecipes);
   //, ingredientData, recipeData
-  populateAll(newRepository.filteredList, favoritesGrid)
+  populateAll(newUser.filteredFavorites, favoritesGrid)
+  favoritesSearchBar.value = '';
+}
+
+function addFavorites(recipe) {
+  newUser.addFavorite(recipe);
+  populateAll(newUser.favoriteRecipes, favoritesMealsGrid);
 }
 
 // ingredients, newRepository.recipeList
@@ -310,7 +319,7 @@ searchBar.addEventListener('keydown', function (event) {
   }
 })
 
-favoritesSearchBar.addEventListener('click', function (event) {
+favoritesSearchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
     favoritesSearchBarSearch();
   }

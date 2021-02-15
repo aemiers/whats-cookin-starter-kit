@@ -22,7 +22,7 @@ class RecipeRepository {
 
   resetFilteredList() {
     this.filteredList = [];
-    console.log('cleared');
+    // console.log('cleared');
   }
 
   filterRecipesByTags(keywords, searchList, pushListR) {
@@ -88,7 +88,7 @@ class RecipeRepository {
 
   searchRecipes(keywords, ingredientData, recipeData, pushListI, pushListR, searchList) {
     this.filterRecipesByTags(keywords, searchList, pushListR);
-    this.filterRecipesByIngredients(keywords, ingredientData, pushListI, recipeData, pushListR);
+    // this.filterRecipesByIngredients(keywords, ingredientData, pushListI, recipeData, pushListR);
     this.filterRecipesByName(keywords, searchList, pushListR);
     // this.resetFilteredList();
     // console.log(this.filteredList)
