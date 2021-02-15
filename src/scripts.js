@@ -68,6 +68,7 @@ function randomize(array) {
 function resetInnerHTML(location) {
   location.innerHTML = ''
 }
+
 function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
   trendingDisplay.innerHTML = `
     <section id="${recipe1.id}" class="large-image-section recipe-target">
@@ -103,13 +104,6 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
       </section>
     </section>
   `
-}
-
-function displayFavoritedHearts() {
-  if (recipe.favorited) {
-    recipe.src = 'assets/pink-heart.png';
-    recipe.id = 'pinkHeart';
-  }
 }
 
 function populateAll(recipes, location) {
@@ -180,8 +174,6 @@ function recipeDetails(recipe) {
   displayIngredients(recipe);
 }
 
-
-
 function hide(elements) {
   elements.forEach(element => element.classList.add('hidden'));
 }
@@ -196,8 +188,9 @@ function showHide(page1, page2, page3, page4, page5, page6) {
 }
 
 function goHome() {
-  resetInnerHTML(favoritesMealsGrid);
-  showHide(homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
+  showHide(homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage);
+  resetInnerHTML(browseMealsGrid);
+  populateMain();
 }
 
 function enlargeRecipe() {
@@ -252,6 +245,7 @@ function favoriteRecipeHandler(event) {
     event.target.src = 'assets/grey-heart.png';
     newUser.removeFavorite(clickedRecipe);
     resetInnerHTML(favoritesMealsGrid);
+    populateAll(newUser.favoriteRecipes, favoritesMealsGrid);
   } else if (clickedRecipe.favorited) {
     event.target.src = 'assets/pink-heart.png';
     newUser.addFavorite(clickedRecipe);
@@ -259,8 +253,8 @@ function favoriteRecipeHandler(event) {
 }
 
 function displayFavorites() {
-  resetInnerHTML(favoritesMealsGrid);
   showHide(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
+  resetInnerHTML(favoritesMealsGrid);
   populateAll(newUser.favoriteRecipes, favoritesMealsGrid);
 }
 
