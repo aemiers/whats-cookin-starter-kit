@@ -43,7 +43,6 @@ const recipeDetailsTags = document.querySelector('#recipePageTags');
 const ingredientRow = document.querySelector('#ingredientRow');
 const ingredientRowText = document.querySelector('#ingredientRowText');
 const recipeInstructions = document.querySelector('#recipeInstructions');
-const heart = document.querySelector('.heart');
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -76,8 +75,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
       <div class="image-section-wrapper">
         <img src="${recipe1.image}" alt="Meal 1" class="large-image">
         <div class="heart-overlay">
-          <img src="assets/grey-heart.png" id="grey-heart" alt="grey heart" class="heart large-image-heart">
-          <img src="assets/pink-heart.png" id="pink-heart" alt="pink heart" class="heart large-image-heart hidden">
+          <img src="assets/grey-heart.png" id="greyHeart" alt="grey heart" class="heart large-image-heart">
         </div>
       </div>
       <button class="queue-button">Add to My Cookin' Queue</button>
@@ -88,8 +86,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
         <div class="image-section-wrapper">
           <img src="${recipe2.image}" alt="Meal2" class="side-image">
           <div class="heart-overlay">
-            <img src="assets/grey-heart.png" id="grey-heart" alt="grey heart" class="heart side-heart">
-            <img src="assets/pink-heart.png" id="pink-heart" alt="pink heart" class="heart side-heart hidden">
+            <img src="assets/grey-heart.png" id="greyHeart" alt="grey heart" class="heart side-heart">
           </div>
         </div>
         <button class="queue-button">Add to My Cookin' Queue</button>
@@ -99,8 +96,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
         <div class="image-section-wrapper">
           <img src="${recipe3.image}" alt="Meal 3" class="side-image">
           <div class="heart-overlay">
-            <img src="assets/grey-heart.png" id="grey-heart" alt="grey heart" class="heart side-heart">
-            <img src="assets/pink-heart.png" id="pink-heart" alt="pink heart" class="heart side-heart hidden">
+            <img src="assets/grey-heart.png" id="greyHeart" alt="grey heart" class="heart side-heart">
           </div>
         </div>
         <button class="queue-button">Add to My Cookin' Queue</button>
@@ -117,8 +113,7 @@ function populateAll(recipes, location) {
         <div class="mini-recipe-image-container">
           <img class="mini-recipe-img" src="${recipe.image}" id="defaultId">
           <div class="heart-overlay">
-            <img src="assets/grey-heart.png" id="grey-heart" alt="grey heart" class="heart mini-heart">
-              <img src="assets/pink-heart.png" id="pink-heart" alt="pink heart" class="heart mini-heart hidden">
+            <img src="assets/grey-heart.png" alt="grey heart" id="greyHeart" class="heart mini-heart grey-heart">
           </div>
         </div>
           <button class="queue-button">Add to My Cookin' Queue</button>
@@ -128,6 +123,9 @@ function populateAll(recipes, location) {
     `
   })
 }
+
+
+
 
 function displayIngredients(recipe) {
   ingredientRow.innerHTML = '';
@@ -248,24 +246,27 @@ function tagSearch(event) {
   populateAll(newRepository.filteredList, searchResultGrid);
 }
 
-function toggleHeart() {
-  grey - heart.classList.toggle("hidden");
-  pink - heart.classList.toggle("hidden");
-}
-
 function favoriteRecipeHandler() {
   console.log('Something has been favorited');
-  toggleHeart;
+  // toggleHeart();
 }
 
-
-
+function changeHeart(event) {
+  if (event.target.id === 'greyHeart') {
+    event.target.src = 'assets/pink-heart.png';
+    event.target.id = 'pinkHeart'
+  } else if (event.target.id === 'pinkHeart') {
+    event.target.src = 'assets/grey-heart.png';
+    event.target.id = 'greyHeart';
+  }
+}
 function addToCookinQueue() {
   console.log('Recipe has been added to your Cookin\' Queue!')
 }
 
 function recipeCardFunctionalityHandler(event) {
   if (event.target.closest('.heart')) {
+    changeHeart(event);
     favoriteRecipeHandler();
   } else if (event.target.closest('.recipe-target') && !event.target.closest('.queue-button')) {
     enlargeRecipe();
