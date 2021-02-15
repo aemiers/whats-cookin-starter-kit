@@ -120,7 +120,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
 }
 
 function populateAll(recipes, location) {
-  recipes.forEach(recipe => {
+  recipes.forEach((recipe, i) => {
     location.innerHTML += `
       <article id="${recipe.id}"class="mini-recipe recipe-target">
         <div class="mini-recipe-image-container">
@@ -131,10 +131,13 @@ function populateAll(recipes, location) {
           </div>
         </div>
           <button class="queue-button">Add to My Cookin' Queue</button>
-          <h4 class="mini-recipe-tag">${recipe.tags[getRandomIndex(recipe.tags)]}</h4>
+          <ul id="miniRecipeTag${i+100}" class="mini-recipe-tag">
+          </ul>
           <h2 class="mini-recipe-title" id="recipeTarget">${recipe.name}</h2>
       </article>
     `
+    const miniRecipeTag = document.querySelector(`#miniRecipeTag${i+100}`);
+    displayTags(recipe, miniRecipeTag);
   })
 }
 
@@ -321,8 +324,9 @@ function recipeCardFunctionalityHandler(event) {
     favoriteRecipe();
   } else if (event.target.closest('.recipe-target') && !event.target.closest('.queue-button')) {
     enlargeRecipe();
-    // } else if (event.target.closest('.mini-recipe-tag')) {
-    //   enlargeRecipe();
+  } else if (event.target.closest('.queue-block')) {
+    console.log('enlarge')
+      enlargeRecipe();
     // } else if (event.target.closest('.mini-recipe-title')) {
     //   enlargeRecipe();
   } else if (event.target.closest('.queue-button')) {
@@ -339,7 +343,7 @@ pantryButtonInHeader.addEventListener('click', displayPantry);
 browseMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
 searchResultGrid.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesGrid.addEventListener('click', recipeCardFunctionalityHandler);
-
+recipeDetailPage.addEventListener('click', recipeCardFunctionalityHandler);
 trendingDisplay.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
 
