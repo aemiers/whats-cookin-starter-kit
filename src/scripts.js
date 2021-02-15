@@ -232,7 +232,6 @@ function searchBarSearch() {
 function favoritesSearchBarSearch() {
   showHidePages(searchResultsPage, homePage, favoritesPage, recipeDetailPage, userPantryPage, cookinQueuePage);
   resetInnerHTML(favoritesGrid);
-  resetInnerHTML(favoritesMealsGrid);
   newUser.resetRecipes();
   let searchBarInput = favoritesSearchBar.value;
   newUser.sortFavorites(searchBarInput, ingredientsData, recipeData,
@@ -243,6 +242,7 @@ function favoritesSearchBarSearch() {
 }
 
 function addFavorites(recipe) {
+  resetInnerHTML(favoritesMealsGrid);
   newUser.addFavorite(recipe);
   populateAll(newUser.favoriteRecipes, favoritesMealsGrid);
 }

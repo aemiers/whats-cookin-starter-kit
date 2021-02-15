@@ -47,26 +47,27 @@ class RecipeRepository {
       ingredientData.map(ingredient => {
         if (ingredient.name.includes(searchWordsFormatted) || ingredient.name.includes(keywords)) {
           pushListI.push(ingredient.id)
+          // console.log('matchID:', pushListI)
         }
       })
     })
     // console.log('matchID:', pushListI)
   }
 
-  filterRecipesByIngredients(keywords, ingredientData, pushListI, recipeData, pushListR) {
+  filterRecipesByIngredients(keywords, ingredientData, pushListI, recipeData, pushListR, searchList) {
     this.matchID(keywords, ingredientData, pushListI);
     pushListI.forEach(ingredientId => {
-      recipeData.map(recipe => {
+      searchList.map(recipe => {
         recipe.ingredients.map(ingredient => {
           const recipeExist = pushListR.some(filteredRecipe => filteredRecipe.id === recipe.id)
           if (ingredient.id === ingredientId && !recipeExist) {
             pushListR.push(recipe)
-            // console.log('Ingredient:', pushListR)
             // console.log('Ingredient:', recipe)
           }
         })
       })
     })
+    // console.log('Ingredient:', pushListR)
   }
 
   filterRecipesByName(keywords, searchList, pushListR) {
@@ -88,7 +89,7 @@ class RecipeRepository {
 
   searchRecipes(keywords, ingredientData, recipeData, pushListI, pushListR, searchList) {
     this.filterRecipesByTags(keywords, searchList, pushListR);
-    // this.filterRecipesByIngredients(keywords, ingredientData, pushListI, recipeData, pushListR);
+    this.filterRecipesByIngredients(keywords, ingredientData, pushListI, recipeData, pushListR, searchList);
     this.filterRecipesByName(keywords, searchList, pushListR);
     // this.resetFilteredList();
     // console.log(this.filteredList)
