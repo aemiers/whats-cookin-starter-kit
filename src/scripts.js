@@ -14,6 +14,7 @@ const searchBar = document.querySelector('#searchBar');
 const favoriteButtonInHeader = document.querySelector('#favoriteButton');
 const queueButtonInHeader = document.querySelector('#queueButton');
 const pantryButtonInHeader = document.querySelector('#pantryButton');
+const welcomeUser = document.querySelector('#welcomeUser');
 // BODY
 const trendingDisplay = document.querySelector('#trendingDisplay');
 const browseMealsGrid = document.querySelector('#allMeals');
@@ -51,6 +52,7 @@ function populateMain() {
   pushToTrendingDisplay(randomRecipe1, randomRecipe2, randomRecipe3)
   randomize(newRepository.recipeList)
   populateAll(newRepository.recipeList, browseMealsGrid)
+  welcomeUser.innerText = `${newUser.name}`
 }
 
 function randomize(array) {
