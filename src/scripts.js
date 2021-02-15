@@ -196,6 +196,7 @@ function showHide(page1, page2, page3, page4, page5, page6) {
 }
 
 function goHome() {
+  resetInnerHTML(favoritesMealsGrid);
   showHide(homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
 }
 
@@ -250,6 +251,7 @@ function favoriteRecipeHandler(event) {
   if (clickedRecipe.favorited === false) {
     event.target.src = 'assets/grey-heart.png';
     newUser.removeFavorite(clickedRecipe);
+    resetInnerHTML(favoritesMealsGrid);
   } else if (clickedRecipe.favorited) {
     event.target.src = 'assets/pink-heart.png';
     newUser.addFavorite(clickedRecipe);
@@ -257,6 +259,7 @@ function favoriteRecipeHandler(event) {
 }
 
 function displayFavorites() {
+  resetInnerHTML(favoritesMealsGrid);
   showHide(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
   populateAll(newUser.favoriteRecipes, favoritesMealsGrid);
 }
