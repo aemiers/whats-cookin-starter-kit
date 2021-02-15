@@ -15,6 +15,7 @@ const favoriteButtonInHeader = document.querySelector('#favoriteButton');
 const queueButtonInHeader = document.querySelector('#queueButton');
 const pantryButtonInHeader = document.querySelector('#pantryButton');
 const welcomeUser = document.querySelector('#welcomeUser');
+const homeButton = document.querySelector('#homeButton');
 // BODY
 const trendingDisplay = document.querySelector('#trendingDisplay');
 const browseMealsGrid = document.querySelector('#allMeals');
@@ -288,6 +289,7 @@ function recipeCardFunctionalityHandler(event) {
 
 window.addEventListener('load', populateMain);
 headerLogo.addEventListener('click', goHome);
+homeButton.addEventListener('click', goHome);
 favoriteButtonInHeader.addEventListener('click', displayFavorites);
 queueButtonInHeader.addEventListener('click', displayQueue);
 pantryButtonInHeader.addEventListener('click', displayPantry);
