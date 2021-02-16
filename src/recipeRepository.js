@@ -2,7 +2,7 @@
 // const UserPantry = require('../src/userPantry')
 // const ingredientsData = require('../data/fakeIngredientData');
 // const fakeRecipeData = require('../data/fakeRecipeData');
-// const Recipe = require('./recipe');
+const Recipe = require('./recipe');
 
 class RecipeRepository {
   constructor(recipes) {
@@ -46,11 +46,11 @@ class RecipeRepository {
       ingredientData.map(ingredient => {
         if (ingredient.name.includes(searchWordsFormatted) || ingredient.name.includes(keywords)) {
           pushListI.push(ingredient.id)
-         // console.log('matchID:', pushListI)
+          // console.log('matchID:', pushListI)
         }
       })
     })
-   // console.log('matchID:', pushListI)
+    // console.log('matchID:', pushListI)
   }
 
   filterRecipesByIngredients(keywords, ingredientData, pushListI, recipeData, pushListR, searchList) {
