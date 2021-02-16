@@ -30,6 +30,7 @@ const userQueue = document.querySelector('#userQueue');
 const cookinQueueRecipe = document.querySelector('#cookinQueueRecipe');
 const cookinQueueBlock = document.querySelector('#cookinQueueBlock');
 const recipePageImageContainer = document.querySelector('#recipePageImageContainer');
+const ingredientTotal = document.querySelector('#ingredientTotal');
 // SEARCH BY TAG ICONS
 const appetizerTagIcon = document.querySelector('#appetizer');
 const breakfastTagIcon = document.querySelector('#breakfast');
@@ -142,10 +143,12 @@ function populateAll(recipes, location, startingNumber) {
 
 function displayIngredients(recipe) {
   ingredientRow.innerHTML = '';
+  let total = 0;
   recipe.ingredients.forEach(ingredient => {
     const ingredientName = recipe.findIngredientName(ingredient.id);
     const ingredientPrice = recipe.findIngredientCost(ingredient.id);
     populateMeasurements(ingredient, ingredientName, ingredientPrice);
+    ingredientTotal.innerText = `$${total += (ingredient.quantity.amount * ingredientPrice) / 100}`
   })
   displayInstructions(recipe)
 }
@@ -184,6 +187,7 @@ function displayTags(recipe, placement) {
 }
 
 function recipeDetails(recipe) {
+  recipeDetailsTags.innerHTML = '';
   recipePageImageContainer.id = `${recipe.id}`
   recipeDetailsName.innerText = `${recipe.name}`;
   recipeDetailsImage.src = `${recipe.image}`;
@@ -195,7 +199,7 @@ function cookinQueueCards(recipe) {
   cookinQueueBlock.innerHTML = '';
   newUser.recipesToCook.forEach((cookChoice, i) => {
     cookinQueueBlock.innerHTML += `
-      <article id="${cookChoice.id}" class="queue-block">
+      <article id="${cookChoice.id}" class="queue-block recipe-target">
         <h1>${i + 1}</h1>
         <section class="queue-recipe-image-container">
           <img class="queue-recipe-img" src="${cookChoice.image}" id="defaultId">
@@ -209,7 +213,6 @@ function cookinQueueCards(recipe) {
     `
     let cookinQueueTags = document.querySelector(`#cookinQueueTags${i + 1}`)
     displayTags(cookChoice, cookinQueueTags)
-
   })
 }
 
@@ -352,6 +355,7 @@ favoritesGrid.addEventListener('click', recipeCardFunctionalityHandler);
 recipeDetailPage.addEventListener('click', recipeCardFunctionalityHandler);
 trendingDisplay.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
+cookinQueueBlock.addEventListener('click', recipeCardFunctionalityHandler);
 
 appetizerTagIcon.addEventListener('click', function (event) {
   tagSearch(event.target.id);
