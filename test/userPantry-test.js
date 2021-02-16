@@ -81,9 +81,10 @@ describe('UserPantry', function () {
     userPantry.populatePantryIngredientIDs();
     userPantry.cookRecipe(recipe1);
     expect(userPantry.neededIngredients).to.deep.equal([]);
-    expect(userPantry.pantry[36]).to.deep.equal({
+    expect(userPantry.pantry[35]).to.deep.equal({
       "ingredient": 19334,
       "amount": 1.5
     })
+    expect(userPantry.length).to.deep.equal(36);
   })
 });

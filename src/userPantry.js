@@ -38,13 +38,13 @@ class UserPantry {
         const ingredientQuantity = ingredient.quantity.amount;
         let pantryQuantity = this.pantry[index].amount;
         this.pantry[index].amount = pantryQuantity -= ingredientQuantity;
-        if (this.pantry[index].amount === 0) {
-          console.log(this.pantry[index].amount)
-          // this.pantry.splice([index], 1)
-        }
+        // if (this.pantry[index].amount === 0) {
+        //   console.log(this.pantry[index].amount)
+        //   // this.pantry.splice([index], 1)
+        // }
       })
     }
-    // console.log(this.pantry)
+    console.log(this.pantry)
     //if pantry ingredient amount <= 0, splice at that index 1 element
   }
 }
