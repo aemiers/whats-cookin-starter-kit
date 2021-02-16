@@ -148,8 +148,9 @@ function displayIngredients(recipe) {
     const ingredientName = recipe.findIngredientName(ingredient.id);
     const ingredientPrice = recipe.findIngredientCost(ingredient.id);
     populateMeasurements(ingredient, ingredientName, ingredientPrice);
-    ingredientTotal.innerText = `$${total += (ingredient.quantity.amount * ingredientPrice) / 100}`
+    total += (ingredient.quantity.amount * ingredientPrice) / 100
   })
+  ingredientTotal.innerText = `$${total.toFixed(2)}`;
   displayInstructions(recipe)
 }
 
