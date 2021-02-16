@@ -227,8 +227,30 @@ function cookinQueueCards(recipe) {
   })
 }
 
+function pantryLayout(pantry) {
+  ingredientRow.innerHTML = '';
+  let total = 0;
+  pantry.pantry.forEach(ingredient => {
+    const ingredientName = pantry.findIngredientName(ingredient.ingredient);
+    const ingredientPrice = pantry.findIngredientCost(ingredient.ingredient);
+    populatePantryMeasurements(pantry, ingredientName, ingredientPrice);
+    total += (pantry.pantry.amount * ingredientPrice) / 100
+  })
+  ingredientTotal.innerText = `$${total.toFixed(2)}`;
+}
 
-
+function populatePantryMeasurements(ingredient, name, price) {
+  ingredientRow.innerHTML += `
+  <div class="ingredient-row-left-side">
+    <div class="check-box">
+      <img class="check-x" id="check" src="assets/check.png" alt="green check" >
+      <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
+    </div>
+    <p class="ingredient-row-text">${ingredient.amount} ${ingredient.unit} ${name}</p>
+    <p id="ingredientRowText"class="ingredient-row-price">$${((ingredient.amount * price) / 100).toFixed(2)}</p>
+  </div>
+  `
+}
 
 
 function hide(elements) {
@@ -348,7 +370,7 @@ function recipeCardFunctionalityHandler(event) {
     console.log('enlarge')
     enlargeRecipe();
   } else if (event.target.closest('.cook')) {
-      currentPantry.useIngredients();
+      currentPantry.cookRecipe();
   } else if (event.target.closest('.queue-button')) {
     addToCookinQueue();
   }

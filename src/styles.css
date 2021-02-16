@@ -434,6 +434,12 @@ nav {
 
 .az-button {
   background-color: #7dc3ad;
+  outline: none;
+}
+
+.az-button:hover {
+  color: #7dc3ad;
+  background-color: white;
 }
 
 .ingredient-row-text-right {
