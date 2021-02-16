@@ -54,6 +54,20 @@ describe('UserPantry', function () {
     expect(userPantry.neededIngredients[2].id).to.equal(10019903);
   })
 
+  it('should put ingredients in the needed ingredients array when the user does not have enough of it in their pantry', function () {
+    userPantry.populatePantryIngredientIDs();
+    userPantry.compareIngredients(recipe1);
+    expect(userPantry.neededIngredients[0].id).to.equal(19206);
+    expect(userPantry.neededIngredients.length).to.equal(4);
+  })
+
+  it('should filter recipe ingredients when given a different recipe', function () {
+    userPantry.populatePantryIngredientIDs();
+    userPantry.compareIngredients(recipe2);
+    expect(userPantry.neededIngredients[0].id).to.equal(19206);
+    expect(userPantry.neededIngredients.length).to.equal(4);
+  })
+
   // it('should be remove ingredients from the needed ingredients array when the user has the ingredient in their pantry', function () {
   //   userPantry.populateNeededIngredients(recipe1);
   //   userPantry.compareIngredients();
