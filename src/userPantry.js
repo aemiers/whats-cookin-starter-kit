@@ -11,6 +11,8 @@ class UserPantry {
   }
 
   useIngredients() {
+    console.log('cook!');
+    // if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
 
   }
 }

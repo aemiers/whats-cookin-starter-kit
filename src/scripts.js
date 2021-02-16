@@ -1,6 +1,7 @@
 const newRepository = new RecipeRepository(recipeData);
 const newUser = new User(usersData[getRandomIndex(usersData)])
 newRepository.addRecipesToRepository();
+const currentPantry = new UserPantry(newUser);
 // PAGES
 const homePage = document.querySelector('#homePage');
 const recipeDetailPage = document.querySelector('#recipeDetailPage');
@@ -209,6 +210,7 @@ function cookinQueueCards(recipe) {
           <ul id="cookinQueueTags${i + 1}" class="recipe-page-tags">
           </ul>
           <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
+          <button class="az-button pantry-sort-button cook">Cook!</button>
         </div>
       </article>
     `
@@ -332,13 +334,13 @@ function addToCookinQueue() {
 function recipeCardFunctionalityHandler(event) {
   if (event.target.closest('.heart')) {
     favoriteRecipeHandler(event);
-  } else if (event.target.closest('.recipe-target') && !event.target.closest('.queue-button')) {
+  } else if (event.target.closest('.recipe-target') && !event.target.closest('.queue-button') && !event.target.closest('.az-button')) {
     enlargeRecipe();
-  } else if (event.target.closest('.queue-block')) {
+  } else if (event.target.closest('.queue-block') && !event.target.closest('.az-button')) {
     console.log('enlarge')
     enlargeRecipe();
-    // } else if (event.target.closest('.mini-recipe-title')) {
-    //   enlargeRecipe();
+  } else if (event.target.closest('.cook')) {
+      currentPantry.useIngredients();
   } else if (event.target.closest('.queue-button')) {
     addToCookinQueue();
   }
