@@ -40,17 +40,7 @@ class UserPantry {
     console.log(this.neededIngredients)
   }
 
-  //THIS WORKS
-  // compareIngredients(recipe) {
-  //   recipe.ingredients.forEach(ingredient => {
-  //     if (!this.pantryIngredientIDs.includes(ingredient.id)) {
-  //       this.neededIngredients.push(ingredient)
-  //       console.log(this.neededIngredients)
-  //     }
-  //   })
-  // }
-
-  useIngredients() {
+  cookRecipe() {
     //for each ingredient
     //find ingredient by id
     //subtract amount used in recipe from user's pantry
