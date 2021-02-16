@@ -22,7 +22,7 @@ class UserPantry {
   }
 
   compareIngredients(recipe) {
-    console.log(recipe.ingredients)
+    // console.log(recipe.ingredients)
     recipe.ingredients.forEach(ingredient => {
       if (this.pantryIngredientIDs.indexOf(ingredient.id) === -1) {
         this.neededIngredients.push(ingredient)

@@ -14,7 +14,7 @@ describe('UserPantry', function () {
   let userPantry;
   let recipeRepository;
   let recipe1;
-  // let recipe2;
+  let recipe2;
   beforeEach(function () {
     user = new User(fakeUserData[0]);
     recipeRepository = new RecipeRepository(fakeRecipeData);
@@ -50,8 +50,8 @@ describe('UserPantry', function () {
     userPantry.populatePantryIngredientIDs();
     userPantry.compareIngredients(recipe1);
     expect(userPantry.neededIngredients.length).to.equal(4);
-    expect(userPantry.neededIngredients[0].id).to.equal(19334);
-    expect(userPantry.neededIngredients[2].id).to.equal(10019903);
+    expect(userPantry.neededIngredients[0].id).to.equal(19206);
+    expect(userPantry.neededIngredients[2].id).to.equal(1012047);
   })
 
   it('should put ingredients in the needed ingredients array when the user does not have enough of it in their pantry', function () {
