@@ -49,6 +49,7 @@ const recipeDetailsTags = document.querySelector('#recipePageTags');
 const ingredientRow = document.querySelector('#ingredientRow');
 const ingredientRowText = document.querySelector('#ingredientRowText');
 const recipeInstructions = document.querySelector('#recipeInstructions');
+const pantryIngredients = document.querySelector('#pantryIngredients');
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -64,6 +65,7 @@ function populateMain() {
   randomize(newRepository.recipeList);
   populateAll(newRepository.recipeList, browseMealsGrid);
   populateUserName();
+  pantryLayout(currentPantry);
 }
 
 function recipeCheck(recipe1, recipe2) {
@@ -232,21 +234,22 @@ function pantryLayout(pantry) {
   let total = 0;
   pantry.pantry.forEach(ingredient => {
     const ingredientName = pantry.findIngredientName(ingredient.ingredient);
+    console.log('ingredientName:', ingredientName);
     const ingredientPrice = pantry.findIngredientCost(ingredient.ingredient);
-    populatePantryMeasurements(pantry, ingredientName, ingredientPrice);
+    console.log('ingredientPrice:', ingredientPrice)
+    populatePantryMeasurements(ingredient, ingredientName, ingredientPrice);
     total += (pantry.pantry.amount * ingredientPrice) / 100
   })
-  ingredientTotal.innerText = `$${total.toFixed(2)}`;
 }
 
 function populatePantryMeasurements(ingredient, name, price) {
-  ingredientRow.innerHTML += `
+  pantryIngredients.innerHTML += `
   <div class="ingredient-row-left-side">
     <div class="check-box">
       <img class="check-x" id="check" src="assets/check.png" alt="green check" >
       <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
     </div>
-    <p class="ingredient-row-text">${ingredient.amount} ${ingredient.unit} ${name}</p>
+    <p class="ingredient-row-text">${ingredient.amount} ${name}</p>
     <p id="ingredientRowText"class="ingredient-row-price">$${((ingredient.amount * price) / 100).toFixed(2)}</p>
   </div>
   `
