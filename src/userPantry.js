@@ -35,15 +35,16 @@ class UserPantry {
     if (this.neededIngredients.length === 0) {
       recipe.ingredients.forEach(ingredient => {
         let index = this.pantryIngredientIDs.indexOf(ingredient.id);
-        console.log('index', index)
         const ingredientQuantity = ingredient.quantity.amount;
-        console.log('ingredientQuantity', ingredientQuantity)
         let pantryQuantity = this.pantry[index].amount;
-        console.log('pantryQuantity', pantryQuantity)
         this.pantry[index].amount = pantryQuantity -= ingredientQuantity;
+        if (this.pantry[index].amount === 0) {
+          console.log(this.pantry[index].amount)
+          // this.pantry.splice([index], 1)
+        }
       })
     }
-    console.log(this.pantry)
+    // console.log(this.pantry)
     //if pantry ingredient amount <= 0, splice at that index 1 element
   }
 }
