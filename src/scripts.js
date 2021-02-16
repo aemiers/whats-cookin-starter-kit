@@ -29,6 +29,7 @@ const userPantry = document.querySelector('#userPantry');
 const userQueue = document.querySelector('#userQueue');
 const cookinQueueRecipe = document.querySelector('#cookinQueueRecipe');
 const cookinQueueBlock = document.querySelector('#cookinQueueBlock');
+const recipePageImageContainer = document.querySelector('#recipePageImageContainer');
 // SEARCH BY TAG ICONS
 const appetizerTagIcon = document.querySelector('#appetizer');
 const breakfastTagIcon = document.querySelector('#breakfast');
@@ -118,7 +119,7 @@ function pushToTrendingDisplay(recipe1, recipe2, recipe3) {
   `
 }
 
-function populateAll(recipes, location) {
+function populateAll(recipes, location, startingNumber) {
   recipes.forEach((recipe, i) => {
     location.innerHTML += `
       <article id="${recipe.id}" class="mini-recipe recipe-target">
@@ -129,12 +130,12 @@ function populateAll(recipes, location) {
           </div>
         </div>
           <button class="queue-button">Add to My Cookin' Queue</button>
-          <ul id="miniRecipeTag${i + 100}" class="mini-recipe-tag">
+          <ul id="miniRecipeTag${i + `${startingNumber}`}" class="mini-recipe-tag">
           </ul>
           <h2 class="mini-recipe-title" id="recipeTarget">${recipe.name}</h2>
       </article>
     `
-    const miniRecipeTag = document.querySelector(`#miniRecipeTag${i + 100}`);
+    const miniRecipeTag = document.querySelector(`#miniRecipeTag${i + `${startingNumber}`}`);
     displayTags(recipe, miniRecipeTag);
   })
 }
@@ -183,6 +184,7 @@ function displayTags(recipe, placement) {
 }
 
 function recipeDetails(recipe) {
+  recipePageImageContainer.id = `${recipe.id}`
   recipeDetailsName.innerText = `${recipe.name}`;
   recipeDetailsImage.src = `${recipe.image}`;
   displayTags(recipe, recipeDetailsTags);
@@ -211,9 +213,7 @@ function cookinQueueCards(recipe) {
   })
 }
 
-function cookinQueueDeets(recipe) {
-  cookinQueueCards(recipe);
-}
+
 
 
 
@@ -262,7 +262,7 @@ function searchBarSearch() {
   newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData,
     newRepository.filteredIngredientID, newRepository.filteredList, newRepository.recipeList);
   // console.log('SearchBarSearch:', newRepository.filteredList);
-  populateAll(newRepository.filteredList, searchResultGrid)
+  populateAll(newRepository.filteredList, searchResultGrid, 100)
   searchBar.value = '';
 }
 
@@ -273,7 +273,7 @@ function favoritesSearchBarSearch() {
   let searchBarInput = favoritesSearchBar.value;
   newUser.sortFavorites(searchBarInput, ingredientsData, recipeData,
     newUser.filteredIngredientID, newUser.filteredFavorites, newUser.favoriteRecipes);
-  populateAll(newUser.filteredFavorites, favoritesGrid)
+  populateAll(newUser.filteredFavorites, favoritesGrid, 200)
   favoritesSearchBar.value = '';
 }
 
@@ -301,7 +301,7 @@ function favoriteRecipeHandler(event) {
     event.target.src = 'assets/grey-heart.png';
     newUser.removeFavorite(clickedRecipe);
     resetInnerHTML(favoritesMealsGrid);
-    populateAll(newUser.favoriteRecipes, favoritesMealsGrid);
+    populateAll(newUser.favoriteRecipes, favoritesMealsGrid, 300);
   } else if (clickedRecipe.favorited) {
     event.target.src = 'assets/pink-heart.png';
     newUser.addFavorite(clickedRecipe);
@@ -311,15 +311,15 @@ function favoriteRecipeHandler(event) {
 function displayFavorites() {
   showHide(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
   resetInnerHTML(favoritesMealsGrid);
-  populateAll(newUser.favoriteRecipes, favoritesMealsGrid);
+  populateAll(newUser.favoriteRecipes, favoritesMealsGrid, 400);
 }
 
 function addToCookinQueue() {
-  showHide(cookinQueuePage, homePage, favoritesPage, searchResultsPage, userPantryPage, recipeDetailPage)
+  // showHide(cookinQueuePage, homePage, favoritesPage, searchResultsPage, userPantryPage, recipeDetailPage)
   newRepository.recipeList.forEach(recipe => {
     if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
       newUser.addToCookQueue(recipe);
-      cookinQueueDeets(recipe);
+      cookinQueueCards(recipe);
     }
   })
   console.log('Recipe has been added to your Cookin\' Queue!')
