@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-// const RecipeRepository = require("./recipeRepository");
-// const recipeData = require("../data/recipeData");
-const newUser = new User(usersData[getRandomIndex(usersData)]);
-=======
->>>>>>> origin
 const newRepository = new RecipeRepository(recipeData);
 const newUser = new User(usersData[getRandomIndex(usersData)])
 newRepository.addRecipesToRepository();
@@ -273,23 +267,21 @@ function searchBarSearch() {
 }
 
 function favoritesSearchBarSearch() {
-  showHide(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
-  populateAll(newRepository.recipeList, favoritesGrid);
+  showHide(searchResultsPage, homePage, favoritesPage, recipeDetailPage, userPantryPage, cookinQueuePage);
   resetInnerHTML(favoritesGrid);
   newUser.resetRecipes();
   let searchBarInput = favoritesSearchBar.value;
   newUser.sortFavorites(searchBarInput, ingredientsData, recipeData,
     newUser.filteredIngredientID, newUser.filteredFavorites, newUser.favoriteRecipes);
-  //, ingredientData, recipeData
   populateAll(newUser.filteredFavorites, favoritesGrid)
   favoritesSearchBar.value = '';
 }
 
-function addFavorites(recipe) {
-  resetInnerHTML(favoritesMealsGrid);
-  newUser.addFavorite(recipe);
-  populateAll(newUser.favoriteRecipes, favoritesMealsGrid);
-}
+// function addFavorites(recipe) {
+//   resetInnerHTML(favoritesMealsGrid);
+//   newUser.addFavorite(recipe);
+//   populateAll(newUser.favoriteRecipes, favoritesMealsGrid);
+// }
 
 
 function tagSearch(event) {
@@ -323,7 +315,7 @@ function displayFavorites() {
 }
 
 function addToCookinQueue() {
-  showHidePages(cookinQueuePage, homePage, favoritesPage, searchResultsPage, userPantryPage, recipeDetailPage)
+  showHide(cookinQueuePage, homePage, favoritesPage, searchResultsPage, userPantryPage, recipeDetailPage)
   newRepository.recipeList.forEach(recipe => {
     if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
       newUser.addToCookQueue(recipe);

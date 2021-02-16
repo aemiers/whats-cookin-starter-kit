@@ -34,12 +34,10 @@ class User {
   }
 
   removeFavorite(badRecipe) {
-    let i = 0;
-    this.favoriteRecipes.forEach(recipe => {
+    this.favoriteRecipes.forEach((recipe, i) => {
       if (recipe.id === badRecipe.id) {
         this.favoriteRecipes.splice(i, 1);
       }
-      i++
     })
     console.log('unliked', this.favoriteRecipes)
 

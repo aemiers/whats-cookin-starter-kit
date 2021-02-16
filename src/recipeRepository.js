@@ -24,19 +24,16 @@ class RecipeRepository {
     })
   }
 
-  resetFilteredList() {
-    this.filteredList = [];
-    // console.log('cleared');
-  }
-
   filterRecipesByTags(keywords, searchList, pushListR) {
     const searchWords = keywords.toLowerCase();
     const splitSearch = searchWords.split(' ');
     splitSearch.forEach(word => {
       const foundRecipe = searchList.filter(recipe => recipe.tags.includes(word) || recipe.tags.includes(keywords))
       foundRecipe.forEach(recipe => {
-        if (!this.filteredList.includes(recipe)) {
-          this.filteredList.push(recipe)
+        if (!pushListR.includes(recipe)) {
+          pushListR.push(recipe)
+          // console.log('Tag:', pushListR)
+          // console.log('Tag:', recipe)
         }
       })
     })
@@ -49,11 +46,11 @@ class RecipeRepository {
       ingredientData.map(ingredient => {
         if (ingredient.name.includes(searchWordsFormatted) || ingredient.name.includes(keywords)) {
           pushListI.push(ingredient.id)
-          // console.log('matchID:', pushListI)
+         // console.log('matchID:', pushListI)
         }
       })
     })
-    // console.log('matchID:', pushListI)
+   // console.log('matchID:', pushListI)
   }
 
   filterRecipesByIngredients(keywords, ingredientData, pushListI, recipeData, pushListR, searchList) {
@@ -107,7 +104,6 @@ class RecipeRepository {
   }
 
   searchRecipes(keywords, ingredientData, recipeData, pushListI, pushListR, searchList) {
-    this.resetFilteredList();
     this.filterRecipesByTags(keywords, searchList, pushListR);
     this.filterRecipesByIngredients(keywords, ingredientData, pushListI, recipeData, pushListR, searchList);
     this.filterRecipesByName(keywords, searchList, pushListR);
