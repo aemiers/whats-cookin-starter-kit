@@ -317,8 +317,12 @@ nav {
   justify-content: space-between;
 }
 
-.ingredient-row-left-side:not(:last-child) {
+.ingredient-row-left-side {
   border-bottom: 1px solid #d9d9d9;
+}
+
+.ingredient-total {
+  border-bottom: none;
 }
 
 .check-box {
@@ -481,5 +485,3 @@ nav {
 .hidden {
   display: none !important;
 }
-
-
