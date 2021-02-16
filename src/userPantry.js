@@ -10,10 +10,6 @@ class UserPantry {
     this.neededIngredients = [];
   }
 
-  populateNeededIngredients(recipe) {
-    this.neededIngredients = recipe.ingredients;
-  }
-
   populatePantryIngredientIDs() {
     this.pantryIngredientIDs = [];
     this.pantry.forEach(item => {
@@ -22,28 +18,32 @@ class UserPantry {
   }
 
   compareIngredients(recipe) {
-    // console.log(recipe.ingredients)
     recipe.ingredients.forEach(ingredient => {
       if (this.pantryIngredientIDs.indexOf(ingredient.id) === -1) {
         this.neededIngredients.push(ingredient);
-        // console.log(this.neededIngredients)
       } else {
         let index = this.pantryIngredientIDs.indexOf(ingredient.id);
-        // console.log('index', index);
-        // console.log('pantry amount', this.pantry[index].amount)
-        // console.log('ingredient quantity recipe', ingredient.quantity.amount)
         if (this.pantry[index].amount < ingredient.quantity.amount) {
           this.neededIngredients.push(ingredient);
         }
       }
     })
-    console.log(this.neededIngredients)
   }
 
-  cookRecipe() {
-    //for each ingredient
-    //find ingredient by id
-    //subtract amount used in recipe from user's pantry
+  cookRecipe(recipe) {
+    this.compareIngredients(recipe);
+    if (this.neededIngredients.length === 0) {
+      recipe.ingredients.forEach(ingredient => {
+        let index = this.pantryIngredientIDs.indexOf(ingredient.id);
+        console.log('index', index)
+        const ingredientQuantity = ingredient.quantity.amount;
+        console.log('ingredientQuantity', ingredientQuantity)
+        let pantryQuantity = this.pantry[index].amount;
+        console.log('pantryQuantity', pantryQuantity)
+        this.pantry[index].amount = pantryQuantity -= ingredientQuantity;
+      })
+    }
+    console.log(this.pantry)
     //if pantry ingredient amount <= 0, splice at that index 1 element
   }
 }

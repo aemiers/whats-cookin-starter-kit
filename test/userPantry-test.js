@@ -46,7 +46,7 @@ describe('UserPantry', function () {
     expect(userPantry.pantry.length).to.deep.equal(user2.pantry.length);
   })
 
-  it('should add ingredients to the needed ingredients array when the user does not have the ingredient or enought of the ingredient in their pantry', function () {
+  it('should put an ingredient in the neededIngredients array when the user does not have the ingredient or enough of the ingredient in their pantry', function () {
     userPantry.populatePantryIngredientIDs();
     userPantry.compareIngredients(recipe1);
     expect(userPantry.neededIngredients).to.deep.equal([
@@ -72,5 +72,18 @@ describe('UserPantry', function () {
       { id: 16124, quantity: { amount: 1, unit: 'tablespoon' } },
       { id: 1016168, quantity: { amount: 1, unit: 'tablespoon' } }
     ]);
+  })
+
+  it('should be able to remove ingredients from the pantry when a recipe is cooked', function () {
+    let stockedPantryUser = new User(fakeUserData[3]);
+    userPantry = new UserPantry(stockedPantryUser);
+    recipeRepository.addRecipesToRepository();
+    userPantry.populatePantryIngredientIDs();
+    userPantry.cookRecipe(recipe1);
+    expect(userPantry.neededIngredients).to.deep.equal([]);
+    expect(userPantry.pantry[36]).to.deep.equal({
+      "ingredient": 19334,
+      "amount": 1.5
+    })
   })
 });
