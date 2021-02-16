@@ -25,7 +25,7 @@ class UserPantry {
     // console.log(recipe.ingredients)
     recipe.ingredients.forEach(ingredient => {
       if (this.pantryIngredientIDs.indexOf(ingredient.id) === -1) {
-        this.neededIngredients.push(ingredient)
+        this.neededIngredients.push(ingredient);
         // console.log(this.neededIngredients)
       } else {
         let index = this.pantryIngredientIDs.indexOf(ingredient.id);
@@ -33,7 +33,7 @@ class UserPantry {
         // console.log('pantry amount', this.pantry[index].amount)
         // console.log('ingredient quantity recipe', ingredient.quantity.amount)
         if (this.pantry[index].amount < ingredient.quantity.amount) {
-          this.neededIngredients.push(ingredient)
+          this.neededIngredients.push(ingredient);
         }
       }
     })
