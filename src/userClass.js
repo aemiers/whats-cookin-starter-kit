@@ -28,20 +28,30 @@ class User {
   addFavorite(recipe) {
     const recipeExist = this.favoriteRecipes.some(filteredRecipe => filteredRecipe.id === recipe.id)
     if (!recipeExist) {
-    this.favoriteRecipes.unshift(recipe)
+      this.favoriteRecipes.unshift(recipe)
 
     }
   }
 
   removeFavorite(badRecipe) {
-    let i = 0;
-    this.favoriteRecipes.forEach(recipe => {
+    this.favoriteRecipes.forEach((recipe, i) => {
       if (recipe.id === badRecipe.id) {
         this.favoriteRecipes.splice(i, 1);
       }
-      i++
     })
+    console.log('unliked', this.favoriteRecipes)
+
   }
+
+  // findRecipeById(favoritedRecipeName, recipeData) {
+  //   console.log(favoritedRecipeName)
+  //   recipeData.map(recipe => {
+  //     if (recipe.name === favoritedRecipeName) {
+  //       this.favoriteRecipes.push(recipe)
+  //     }
+  //   })
+  //   console.log('favorite array', this.favoriteRecipes);
+  // }
 
   addToCookQueue(recipe) {
     this.recipesToCook.push(recipe)

@@ -8,6 +8,8 @@ class Recipe {
     this.instructions = recipeData.instructions;
     this.name = recipeData.name;
     this.tags = recipeData.tags;
+    this.favorited = false;
+    this.heartImage = 'assets/grey-heart.png';
   }
 
   findIngredientInfo(ingredientID) {
@@ -25,10 +27,9 @@ class Recipe {
   }
 
   listCookingInstructions() {
-   return this.instructions
+    return this.instructions
   }
 }
-
 
 if (typeof module !== 'undefined') {
   module.exports = Recipe;

@@ -12,17 +12,16 @@ class RecipeRepository {
     this.filteredIngredientID = [];
   }
 
+  resetFilteredList() {
+    this.filteredList = [];
+    this.filteredIngredientID = [];
+  }
 
   addRecipesToRepository() {
     this.rawData.forEach(recipe => {
       const newRecipe = new Recipe(recipe)
       this.recipeList.push(newRecipe)
     })
-  }
-
-  resetFilteredList() {
-    this.filteredList = [];
-    // console.log('cleared');
   }
 
   filterRecipesByTags(keywords, searchList, pushListR) {
@@ -47,11 +46,11 @@ class RecipeRepository {
       ingredientData.map(ingredient => {
         if (ingredient.name.includes(searchWordsFormatted) || ingredient.name.includes(keywords)) {
           pushListI.push(ingredient.id)
-          // console.log('matchID:', pushListI)
+         // console.log('matchID:', pushListI)
         }
       })
     })
-    // console.log('matchID:', pushListI)
+   // console.log('matchID:', pushListI)
   }
 
   filterRecipesByIngredients(keywords, ingredientData, pushListI, recipeData, pushListR, searchList) {
@@ -85,6 +84,23 @@ class RecipeRepository {
       })
     })
 
+  }
+
+  updateFavoriteOnRecipe(recipe) {
+    if (recipe.favorited === false) {
+      recipe.favorited = true;
+      recipe.heartImage = 'assets/pink-heart.png';
+    } else if (recipe.favorited) {
+      recipe.favorited = false;
+      recipe.heartImage = 'assets/grey-heart.png';
+    }
+    console.log(recipe.favorited)
+  }
+
+  findRecipeByRecipeID(recipeId) {
+    let foundClickedHeartRecipe = this.recipeList.find(foundClickedHeartRecipe =>
+      foundClickedHeartRecipe.id === recipeId);
+    return foundClickedHeartRecipe;
   }
 
   searchRecipes(keywords, ingredientData, recipeData, pushListI, pushListR, searchList) {

@@ -205,6 +205,7 @@ nav {
 
 .heart {
   cursor: pointer;
+  position: relative;
   max-width: 25px;
   transform: scale(1);
   transition: transform 300ms;
@@ -480,3 +481,5 @@ nav {
 .hidden {
   display: none !important;
 }
+
+
