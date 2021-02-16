@@ -57,11 +57,19 @@ function getRandomIndex(array) {
 function populateMain() {
   const randomRecipe1 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe2 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
+  recipeCheck(randomRecipe1, randomRecipe2);
   const randomRecipe3 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
+  recipeCheck(randomRecipe2, randomRecipe3);
   pushToTrendingDisplay(randomRecipe1, randomRecipe2, randomRecipe3);
   randomize(newRepository.recipeList);
   populateAll(newRepository.recipeList, browseMealsGrid);
   populateUserName();
+}
+
+function recipeCheck(recipe1, recipe2) {
+  if (recipe1.id === recipe2.id) {
+    recipe2 = newRepository.recipeLiest[getRandomIndex(newRepository.recipeList)]
+  }
 }
 
 function populateUserName() {
