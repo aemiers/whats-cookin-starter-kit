@@ -55,17 +55,21 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-function populateMain() {
+function pageLoad() {
   newRepository.addRecipesToRepository();
   currentPantry.populatePantryIngredientIDs();
+  populateMain();
+  populateUserName();
+  pantryLayout(currentPantry);
+}
+
+function populateMain() {
   const randomRecipe1 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe2 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe3 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   pushToTrendingDisplay(randomRecipe1, randomRecipe2, randomRecipe3);
   randomize(newRepository.recipeList);
   populateAll(newRepository.recipeList, browseMealsGrid);
-  populateUserName();
-  pantryLayout(currentPantry);
 }
 
 function populateUserName() {
@@ -296,8 +300,8 @@ function showHide(page1, page2, page3, page4, page5, page6) {
 
 function goHome() {
   showHide(homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage);
-  resetInnerHTML(browseMealsGrid);
-  populateMain();
+  // resetInnerHTML(browseMealsGrid);
+  // populateMain();
 }
 
 // function enlargeRecipe() {
@@ -393,7 +397,7 @@ function recipeCardFunctionalityHandler(event) {
   }
 }
 
-window.addEventListener('load', populateMain);
+window.addEventListener('load', pageLoad);
 headerLogo.addEventListener('click', goHome);
 homeButtonInHeader.addEventListener('click', goHome);
 favoriteButtonInHeader.addEventListener('click', displayFavorites);
