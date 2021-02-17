@@ -38,7 +38,7 @@ const breakfastTagIcon = document.querySelector('#breakfast');
 const lunchTagIcon = document.querySelector('#lunch');
 const dinnerTagIcon = document.querySelector('#dinner');
 const dessertTagIcon = document.querySelector('#dessert');
-const sidesTagIcon = document.querySelector('#sides');
+const sidesTagIcon = document.querySelector('#side');
 
 
 const recipeTarget = document.querySelector('#recipeTarget');
@@ -58,20 +58,12 @@ function getRandomIndex(array) {
 function populateMain() {
   const randomRecipe1 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe2 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
-  recipeCheck(randomRecipe1, randomRecipe2);
   const randomRecipe3 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
-  recipeCheck(randomRecipe2, randomRecipe3);
   pushToTrendingDisplay(randomRecipe1, randomRecipe2, randomRecipe3);
   randomize(newRepository.recipeList);
   populateAll(newRepository.recipeList, browseMealsGrid);
   populateUserName();
   pantryLayout(currentPantry);
-}
-
-function recipeCheck(recipe1, recipe2) {
-  if (recipe1.id === recipe2.id) {
-    recipe2 = newRepository.recipeLiest[getRandomIndex(newRepository.recipeList)]
-  }
 }
 
 function populateUserName() {
@@ -234,9 +226,7 @@ function pantryLayout(pantry) {
   let total = 0;
   pantry.pantry.forEach(ingredient => {
     const ingredientName = pantry.findIngredientName(ingredient.ingredient);
-    console.log('ingredientName:', ingredientName);
     const ingredientPrice = pantry.findIngredientCost(ingredient.ingredient);
-    console.log('ingredientPrice:', ingredientPrice)
     populatePantryMeasurements(ingredient, ingredientName, ingredientPrice);
     total += (pantry.pantry.amount * ingredientPrice) / 100
   })
@@ -316,20 +306,14 @@ function favoritesSearchBarSearch() {
   favoritesSearchBar.value = '';
 }
 
-// function addFavorites(recipe) {
-//   resetInnerHTML(favoritesMealsGrid);
-//   newUser.addFavorite(recipe);
-//   populateAll(newUser.favoriteRecipes, favoritesMealsGrid);
-// }
-
-
-function tagSearch(event) {
+function tagSearch(e) {
   showHide(searchResultsPage, homePage, recipeDetailPage, favoritesPage, userPantryPage, cookinQueuePage);
   resetInnerHTML(searchResultGrid);
-  let tagSearchInput = event;
+  newRepository.resetFilteredList();
+  let tagSearchInput = event.path[1].id;
   console.log('tagSearchInput', tagSearchInput)
-  newRepository.searchRecipes(event);
-  populateAll(newRepository.filteredList, searchResultGrid);
+  newRepository.filterRecipesByTags(tagSearchInput, newRepository.recipeList, newRepository.filteredList );
+  populateAll(newRepository.filteredList, searchResultGrid, 700);
 }
 
 function favoriteRecipeHandler(event) {
@@ -408,7 +392,9 @@ dinnerTagIcon.addEventListener('click', function (event) {
 dessertTagIcon.addEventListener('click', function (event) {
   tagSearch(event.target.id);
 });
-sidesTagIcon.addEventListener('click', tagSearch);
+sidesTagIcon.addEventListener('click', function (event) {
+  tagSearch(event.target.id);
+});
 
 searchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
