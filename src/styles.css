@@ -499,7 +499,7 @@ nav {
   top: 0;
   left: 0;
   margin-right: 30px;
-  width: 300px;
+  max-width: 330px;
 }
 
 .queue-words-container {
