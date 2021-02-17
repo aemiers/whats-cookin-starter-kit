@@ -301,6 +301,10 @@ nav {
   right: 300px;
 }
 
+.sad-heart {
+  left: 24px;
+}
+
 .ingredient-row {
   width: 100%;
   max-width: 600px;
@@ -488,6 +492,10 @@ nav {
   pointer-events: none;
 }
 
+.invisibility {
+  visibility: hidden;
+}
+
 .hidden {
-  display: none !important;
+  display: none;
 }

@@ -316,7 +316,7 @@ function tagSearch(e) {
 }
 
 function favoriteRecipeHandler(event) {
-  let clickedHeartRecipeID = parseInt(event.target.parentNode.parentNode.parentNode.id);
+  let clickedHeartRecipeID = parseInt(event.target.closest('.recipe-target').id);
   let clickedRecipe = newRepository.findRecipeByRecipeID(clickedHeartRecipeID);
   newRepository.updateFavoriteOnRecipe(clickedRecipe);
   if (clickedRecipe.favorited === false) {
