@@ -1,7 +1,7 @@
 // const Ingredient = require('./src/ingredient');
-const RecipeRepository = require('./recipeRepository');
-const fakeRecipeData = require('../data/fakeRecipeData');
-const fakeUserClass = require('../data/fakeUserData');
+// const RecipeRepository = require('./recipeRepository');
+// const fakeRecipeData = require('../data/fakeRecipeData');
+// const fakeUserClass = require('../data/fakeUserData');
 // import user class and then instantiate it.
 class UserPantry {
   constructor(usersData) {

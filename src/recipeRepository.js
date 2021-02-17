@@ -2,7 +2,7 @@
 // const UserPantry = require('../src/userPantry')
 // const ingredientsData = require('../data/fakeIngredientData');
 // const fakeRecipeData = require('../data/fakeRecipeData');
-const Recipe = require('./recipe');
+// const Recipe = require('./recipe');
 
 class RecipeRepository {
   constructor(recipes) {
