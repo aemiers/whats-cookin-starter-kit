@@ -224,6 +224,7 @@ function cookinQueueCards(recipe) {
     const cookinCheck = document.querySelector(`#cookinCheck${i + 1}`);
     displayTags(cookChoice, cookinQueueTags);
     cookPossible(cookChoice, cookinX, cookinCheck);
+
   })
 }
 
@@ -239,9 +240,9 @@ function addToCookinQueue() {
 
 function cookPossible(recipes, cookinX, cookinCheck) {
   newUser.recipesToCook.forEach(recipe => {
+    currentPantry.neededIngredients = [];
     currentPantry.compareIngredients(recipe);
   })
-  console.log(currentPantry.neededIngredients)
   if (currentPantry.neededIngredients.length > 0) {
     hide([cookinCheck]);
   } else {
