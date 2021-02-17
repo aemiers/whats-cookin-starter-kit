@@ -37,13 +37,15 @@ describe('UserPantry', function () {
   })
 
   it('should have items in the user pantry', function () {
-    expect(userPantry.pantry.length).to.deep.equal(user.pantry.length);
+    expect(userPantry.pantry.length).to.equal(user.pantry.length);
+    expect(userPantry.pantry).to.deep.equal(user.pantry);
   })
 
   it('should have different items in a different user pantry', function () {
     let user2 = new User(fakeUserData[1]);
     userPantry = new UserPantry(user2);
-    expect(userPantry.pantry.length).to.deep.equal(user2.pantry.length);
+    expect(userPantry.pantry.length).to.equal(user2.pantry.length);
+    expect(userPantry.pantry).to.deep.equal(user.pantry);
   })
 
   it('should put an ingredient in the neededIngredients array when the user does not have the ingredient or enough of the ingredient in their pantry', function () {
@@ -80,11 +82,11 @@ describe('UserPantry', function () {
     recipeRepository.addRecipesToRepository();
     userPantry.populatePantryIngredientIDs();
     userPantry.cookRecipe(recipe1);
-    expect(userPantry.neededIngredients).to.deep.equal([]);
+    expect(userPantry.neededIngredients).to.equal([]);
     expect(userPantry.pantry[35]).to.deep.equal({
       "ingredient": 19334,
       "amount": 1.5
     })
-    expect(userPantry.pantry.length).to.deep.equal(36);
+    expect(userPantry.pantry.length).to.equal(36);
   })
 });
