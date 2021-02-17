@@ -1,17 +1,57 @@
 // const Ingredient = require('./src/ingredient');
-
+const RecipeRepository = require('./recipeRepository');
+const fakeRecipeData = require('../data/fakeRecipeData');
+const fakeUserClass = require('../data/fakeUserData');
+// import user class and then instantiate it.
 class UserPantry {
   constructor(usersData) {
     this.pantry = usersData.pantry;
-
+    this.pantryIngredientIDs;
+    this.neededIngredients = [];
   }
 
-  compareIngredients() {
-
+  populatePantryIngredientIDs() {
+    this.pantryIngredientIDs = [];
+    this.pantry.forEach(item => {
+      this.pantryIngredientIDs.push(item.ingredient);
+    })
   }
 
-  cookRecipe() {
-    console.log('cook!');
+  compareIngredients(recipe) {
+    recipe.ingredients.forEach(ingredient => {
+      if (this.pantryIngredientIDs.indexOf(ingredient.id) === -1) {
+        this.neededIngredients.push(ingredient);
+      } else {
+        let index = this.pantryIngredientIDs.indexOf(ingredient.id);
+        if (this.pantry[index].amount < ingredient.quantity.amount) {
+          this.neededIngredients.push(ingredient);
+        }
+      }
+    })
+  }
+
+  cookRecipe(recipe) {
+    console.log(this.pantry)
+    this.compareIngredients(recipe);
+    this.subtractIngredients(recipe);
+    this.removeZeroIngredients()
+  }
+
+  subtractIngredients(recipe) {
+    if (this.neededIngredients.length === 0) {
+      recipe.ingredients.forEach((ingredient) => {
+        let index = this.pantryIngredientIDs.indexOf(ingredient.id);
+        let ingredientQuantity = ingredient.quantity.amount;
+        let pantryQuantity = this.pantry[index].amount;
+        this.pantry[index].amount = pantryQuantity - ingredientQuantity;
+      })
+    }
+    console.log(this.pantry.length)
+  }
+
+  removeZeroIngredients() {
+    this.pantry = this.pantry.filter(ingredient => ingredient.amount > 0);
+    console.log(this.pantry)
   }
 
 
