@@ -209,10 +209,10 @@ function cookinQueueCards(recipe) {
           <img class="queue-recipe-img" src="${cookChoice.image}" id="defaultId">
         </section>
         <div class="queue-words-container">
+          <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
           <ul id="cookinQueueTags${i + 1}" class="recipe-page-tags">
           </ul>
-          <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
-          <button class="az-button pantry-sort-button cook">Cook!</button>
+          <button class="az-button pantry-sort-button queue-button">Cook!</button>
         </div>
       </article>
     `
