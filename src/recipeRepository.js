@@ -27,7 +27,6 @@ class RecipeRepository {
   filterRecipesByTags(keywords, searchList, pushListR) {
     const searchWords = keywords.toLowerCase();
     const splitSearch = searchWords.split(' ');
-    console.log(splitSearch);
     splitSearch.forEach(word => {
       const foundRecipe = searchList.filter(recipe => recipe.tags.includes(word)
       || recipe.tags.includes(keywords) || recipe.tags.toString().includes(word))

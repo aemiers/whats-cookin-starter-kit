@@ -114,7 +114,8 @@ const recipeData = [
       "snack",
       "appetizer",
       "antipasto",
-      "hor d'oeuvre"
+      "hor d'oeuvre",
+      "dessert"
     ]
   },
   {
@@ -448,7 +449,9 @@ const recipeData = [
     ],
     "name": "Elvis Pancakes",
     "tags": [
-      "side dish"
+      "side dish",
+      "dessert",
+      "breakfast"
     ]
   },
   {
@@ -704,7 +707,8 @@ const recipeData = [
     ],
     "name": "Ambrosia Cupcakes",
     "tags": [
-      "side dish"
+      "side dish",
+      "dessert"
     ]
   },
   {
@@ -824,7 +828,9 @@ const recipeData = [
     ],
     "name": "Creamy Coconut Yogurt Bowl with Chocolate Granola (Video)",
     "tags": [
-      "side dish"
+      "side dish",
+      "dessert",
+      "breakfast"
     ]
   },
   {
@@ -914,7 +920,8 @@ const recipeData = [
       "snack",
       "appetizer",
       "antipasto",
-      "hor d'oeuvre"
+      "hor d'oeuvre",
+      "dessert"
     ]
   },
   {
@@ -1367,7 +1374,8 @@ const recipeData = [
     "tags": [
       "morning meal",
       "brunch",
-      "breakfast"
+      "breakfast",
+      "dessert"
     ]
   },
   {
@@ -1488,7 +1496,9 @@ const recipeData = [
     ],
     "name": "Cinnamon Raisin Overnight French Toast w/ Apple Filling",
     "tags": [
-      "side dish"
+      "side dish",
+      "dessert",
+      "breakfast"
     ]
   },
   {
@@ -1835,7 +1845,8 @@ const recipeData = [
     ],
     "name": "Puppy Chow Cookies",
     "tags": [
-      "side dish"
+      "side dish",
+      "dessert"
     ]
   },
   {
@@ -2279,7 +2290,8 @@ const recipeData = [
     ],
     "name": "The Ultimate Healthy Soft & Chewy Pumpkin Chocolate Chip Cookies",
     "tags": [
-      "side dish"
+      "side dish",
+      "dessert"
     ]
   },
   {
@@ -2352,7 +2364,8 @@ const recipeData = [
     ],
     "name": "Butterscotch Pudding",
     "tags": [
-      "side dish"
+      "side dish",
+      "dessert"
     ]
   },
   {
@@ -2522,7 +2535,8 @@ const recipeData = [
       "snack",
       "appetizer",
       "antipasto",
-      "hor d'oeuvre"
+      "hor d'oeuvre",
+      "dessert"
     ]
   },
   {
@@ -3008,7 +3022,8 @@ const recipeData = [
     ],
     "name": "Double Raspberry Souffl\u00e9s",
     "tags": [
-      "side dish"
+      "side dish",
+      "dessert"
     ]
   },
   {
@@ -3129,7 +3144,8 @@ const recipeData = [
       "snack",
       "appetizer",
       "antipasto",
-      "hor d'oeuvre"
+      "hor d'oeuvre",
+      "dessert"
     ]
   },
   {
@@ -3311,7 +3327,8 @@ const recipeData = [
     ],
     "name": "Slow Cooker Peach Cobbler",
     "tags": [
-      "side dish"
+      "side dish",
+      "dessert"
     ]
   },
   {
@@ -3549,7 +3566,8 @@ const recipeData = [
     ],
     "name": "Cereal Marshmallow Bars",
     "tags": [
-      "side dish"
+      "side dish",
+      "dessert"
     ]
   },
   {
@@ -3714,7 +3732,8 @@ const recipeData = [
     ],
     "name": "Creamsicle Pie",
     "tags": [
-      "side dish"
+      "side dish",
+      "dessert"
     ]
   },
   {
@@ -4888,7 +4907,8 @@ const recipeData = [
     ],
     "name": "Rolo Cookie Bars",
     "tags": [
-      "side dish"
+      "side dish",
+      "dessert"
     ]
   },
   {
@@ -5064,7 +5084,8 @@ const recipeData = [
       "snack",
       "appetizer",
       "antipasto",
-      "hor d'oeuvre"
+      "hor d'oeuvre",
+      "dessert"
     ]
   },
   {
@@ -5377,7 +5398,8 @@ const recipeData = [
     ],
     "name": "Pastry Cream",
     "tags": [
-      "side dish"
+      "side dish",
+      "dessert"
     ]
   }
 ];

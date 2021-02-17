@@ -311,7 +311,6 @@ function tagSearch(e) {
   resetInnerHTML(searchResultGrid);
   newRepository.resetFilteredList();
   let tagSearchInput = event.path[1].id;
-  console.log('tagSearchInput', tagSearchInput)
   newRepository.filterRecipesByTags(tagSearchInput, newRepository.recipeList, newRepository.filteredList );
   populateAll(newRepository.filteredList, searchResultGrid, 700);
 }
@@ -345,7 +344,6 @@ function addToCookinQueue() {
       cookinQueueCards(recipe);
     }
   })
-  console.log('Recipe has been added to your Cookin\' Queue!')
 }
 
 function recipeCardFunctionalityHandler(event) {
