@@ -1,6 +1,5 @@
 const newRepository = new RecipeRepository(recipeData);
 const newUser = new User(usersData[getRandomIndex(usersData)])
-newRepository.addRecipesToRepository();
 const currentPantry = new UserPantry(newUser);
 // PAGES
 const homePage = document.querySelector('#homePage');
@@ -56,6 +55,8 @@ function getRandomIndex(array) {
 }
 
 function populateMain() {
+  newRepository.addRecipesToRepository();
+  currentPantry.populatePantryIngredientIDs();
   const randomRecipe1 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe2 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe3 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
@@ -213,12 +214,39 @@ function cookinQueueCards(recipe) {
           </ul>
           <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
           <button class="az-button pantry-sort-button cook">Cook!</button>
+          <img class="check-x" id="cookinCheck${i + 1}" src="assets/check.png" alt="green check" >
+          <img class="check-x" id="cookinX${i + 1}" src="assets/x.png" alt="red x" >
         </div>
       </article>
     `
-    let cookinQueueTags = document.querySelector(`#cookinQueueTags${i + 1}`)
-    displayTags(cookChoice, cookinQueueTags)
+    const cookinQueueTags = document.querySelector(`#cookinQueueTags${i + 1}`)
+    const cookinX = document.querySelector(`#cookinX${i + 1}`);
+    const cookinCheck = document.querySelector(`#cookinCheck${i + 1}`);
+    displayTags(cookChoice, cookinQueueTags);
+    cookPossible(cookChoice, cookinX, cookinCheck);
   })
+}
+
+function addToCookinQueue() {
+  // showHide(cookinQueuePage, homePage, favoritesPage, searchResultsPage, userPantryPage, recipeDetailPage)
+  newRepository.recipeList.forEach(recipe => {
+    if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
+      newUser.addToCookQueue(recipe);
+      cookinQueueCards(recipe);
+    }
+  })
+}
+
+function cookPossible(recipes, cookinX, cookinCheck) {
+  newUser.recipesToCook.forEach(recipe => {
+    currentPantry.compareIngredients(recipe);
+  })
+  console.log(currentPantry.neededIngredients)
+  if (currentPantry.neededIngredients.length > 0) {
+    hide([cookinCheck]);
+  } else {
+    hide([cookinX]);
+  }
 }
 
 function pantryLayout(pantry) {
@@ -334,16 +362,6 @@ function displayFavorites() {
   showHide(favoritesPage, homePage, searchResultsPage, recipeDetailPage, userPantryPage, cookinQueuePage);
   resetInnerHTML(favoritesMealsGrid);
   populateAll(newUser.favoriteRecipes, favoritesMealsGrid, 400);
-}
-
-function addToCookinQueue() {
-  // showHide(cookinQueuePage, homePage, favoritesPage, searchResultsPage, userPantryPage, recipeDetailPage)
-  newRepository.recipeList.forEach(recipe => {
-    if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
-      newUser.addToCookQueue(recipe);
-      cookinQueueCards(recipe);
-    }
-  })
 }
 
 function recipeCardFunctionalityHandler(event) {
