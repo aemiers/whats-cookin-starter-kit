@@ -1,6 +1,6 @@
 const newRepository = new RecipeRepository(recipeData);
-// const newUser = new User(usersData[getRandomIndex(usersData)])
-const newUser = new User(fakeUserData[3])
+const newUser = new User(usersData[getRandomIndex(usersData)]);
+// const newUser = new User(fakeUserData[3])
 const currentPantry = new UserPantry(newUser);
 // PAGES
 const homePage = document.querySelector('#homePage');
@@ -150,52 +150,6 @@ function populateAll(recipes, location, startingNumber) {
   })
 }
 
-function displayIngredients(recipe) {
-  ingredientRow.innerHTML = '';
-  let total = 0;
-  recipe.ingredients.forEach(ingredient => {
-    const ingredientName = recipe.findIngredientName(ingredient.id);
-    const ingredientPrice = recipe.findIngredientCost(ingredient.id);
-    populateMeasurements(ingredient, ingredientName, ingredientPrice);
-    total += (ingredient.quantity.amount * ingredientPrice) / 100
-  })
-  ingredientTotal.innerText = `$${total.toFixed(2)}`;
-  displayInstructions(recipe)
-}
-
-function displayInstructions(recipe) {
-  recipeInstructions.innerHTML = ''
-  recipe.instructions.forEach(step => {
-    recipeInstructions.innerHTML += `
-      <section class="numbered-recipe-chunk">
-        <p class="recipe-number">${step.number}</p>
-        <p>${step.instruction}</p>
-      </section>
-    `
-  })
-}
-
-function populateMeasurements(ingredient, name, price) {
-  ingredientRow.innerHTML += `
-  <div class="ingredient-row-left-side">
-    <div class="check-box">
-      <img class="check-x" id="check" src="assets/check.png" alt="green check" >
-      <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
-    </div>
-    <p class="ingredient-row-text">${ingredient.quantity.amount} ${ingredient.quantity.unit} ${name}</p>
-    <p id="ingredientRowText"class="ingredient-row-price">$${((ingredient.quantity.amount * price) / 100).toFixed(2)}</p>
-  </div>
-  `
-}
-
-function displayTags(recipe, placement) {
-  recipe.tags.forEach(tag => {
-    placement.innerHTML += `
-      <li class="recipe-tag">${tag}</li>
-    `
-  })
-}
-
 function recipeDetails(recipe) {
   recipeDetailsTags.innerHTML = '';
   recipePageImageContainer.id = `${recipe.id}`
@@ -203,6 +157,59 @@ function recipeDetails(recipe) {
   recipeDetailsImage.src = `${recipe.image}`;
   displayTags(recipe, recipeDetailsTags);
   displayIngredients(recipe);
+}
+
+function displayTags(recipe, placement) {
+  recipe.tags.forEach(tag => {
+    placement.innerHTML += `
+    <li class="recipe-tag">${tag}</li>
+    `
+  })
+}
+
+function displayIngredients(recipe) {
+  ingredientRow.innerHTML = '';
+  let total = 0;
+  recipe.ingredients.forEach(ingredient => {
+    const ingredientName = recipe.findIngredientName(ingredient.id);
+    const ingredientPrice = recipe.findIngredientCost(ingredient.id);
+    populateMeasurements(ingredient, ingredientName, ingredientPrice, recipe);
+    total += (ingredient.quantity.amount * ingredientPrice) / 100
+  })
+  ingredientTotal.innerText = `$${total.toFixed(2)}`;
+  displayInstructions(recipe)
+}
+
+
+function populateMeasurements(ingredient, name, price, recipe) {
+  console.log('populateMeasurements:', recipe);
+  console.log('measurementIngredientsNeeded', currentPantry.neededIngredients);
+
+  ingredientRow.innerHTML += `
+  <div class="ingredient-row-left-side">
+    <div class="check-box">
+      <img class="check-x" id="measureCheck${ingredient.id}" src="assets/check.png" alt="green check" >
+      <img class="check-x " id="measureX${ingredient.id}" src="assets/x.png" alt="red x" >
+    </div>
+    <p class="ingredient-row-text">${ingredient.quantity.amount} ${ingredient.quantity.unit} ${name}</p>
+    <p id="ingredientRowText"class="ingredient-row-price">$${((ingredient.quantity.amount * price) / 100).toFixed(2)}</p>
+  </div>
+  `
+  const measureCheck = document.querySelector(`#measureCheck${ingredient.id}`);
+  const measureX = document.querySelector(`#measureX${ingredient.id}`);
+  ingredientCheckDisplay(recipe, measureX, measureCheck);
+}
+
+function displayInstructions(recipe) {
+  recipeInstructions.innerHTML = ''
+  recipe.instructions.forEach(step => {
+    recipeInstructions.innerHTML += `
+    <section class="numbered-recipe-chunk">
+    <p class="recipe-number">${step.number}</p>
+    <p>${step.instruction}</p>
+    </section>
+    `
+  })
 }
 
 function cookinQueueCards() {
@@ -229,6 +236,7 @@ function cookinQueueCards() {
     const cookinCheck = document.querySelector(`#cookinCheck${i + 1}${cookChoice.id}`);
     displayTags(cookChoice, cookinQueueTags);
     cookPossible(cookChoice, cookinX, cookinCheck);
+    console.log('cookChoice', cookChoice);
   })
 }
 
@@ -246,11 +254,9 @@ function addToCookinQueue() {
 }
 
 function cookPossible(recipe, cookinX, cookinCheck) {
-  // newUser.recipesToCook.forEach(recipe => {
     currentPantry.neededIngredients = [];
     currentPantry.compareIngredients(recipe);
     console.log('neededIngredients:', currentPantry.neededIngredients)
-  // })
   if (currentPantry.neededIngredients.length > 0) {
     console.log("B:", cookinX);
     hide([cookinCheck]);
@@ -258,6 +264,14 @@ function cookPossible(recipe, cookinX, cookinCheck) {
     console.log('A:', cookinCheck)
     hide([cookinX]);
   }
+}
+
+function ingredientCheckDisplay(recipe, cookinX, cookinCheck) {
+  currentPantry.neededIngredients = [];
+  currentPantry.compareIngredients(recipe);
+  currentPantry.neededIngredients.forEach(neededIngredient => {
+    const foundIngredient = ingredientsData.find(ingredient => ingredient.id === neededIngredient.id);
+  })
 }
 
 function pantryLayout(pantry) {
