@@ -51,6 +51,7 @@ nav {
   width: 100%;
   height: 5em;
   padding-bottom: 1%;
+  padding: 0 100px 1% 100px;
   box-shadow: 0 8px 6px -6px#c4c4c4;
 }
 
@@ -107,8 +108,9 @@ nav {
 .user-pantry,
 .cookin-queue-page,
 .favorites-page,
+.search-result-page,
 .recipe-detail-page {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -118,7 +120,6 @@ nav {
 .trending-recipes {
   display: flex;
   justify-content: center;
-  align-content: center;
 }
 
 .large-image-section {
@@ -143,8 +144,8 @@ nav {
 }
 
 .large-image-heart {
-  top: 40px;
-  right: 70px;
+  top: 20px;
+  right: 20px;
 }
 
 .side-images {
@@ -157,6 +158,11 @@ nav {
 
 .side-image {
   width: 100%;
+}
+
+.side-heart {
+  top: 7px;
+  right: 7px;
 }
 
 .top-side-image,
@@ -249,11 +255,6 @@ nav {
   flex-flow: column;
   margin: 0 auto;
   max-width: 550px;
-}
-
-.side-heart {
-  top: 20px;
-  right: 60px;
 }
 
 .sort-by-course-header {
@@ -438,6 +439,7 @@ nav {
 
 .az-button {
   background-color: #7dc3ad;
+  letter-spacing: 3px;
   outline: none;
 }
 
