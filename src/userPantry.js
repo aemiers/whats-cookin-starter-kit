@@ -31,25 +31,29 @@ class UserPantry {
   }
 
   cookRecipe(recipe) {
+    console.log(this.pantry)
     this.compareIngredients(recipe);
+    this.subtractIngredients(recipe);
+    this.removeZeroIngredients()
+  }
+
+  subtractIngredients(recipe) {
     if (this.neededIngredients.length === 0) {
-      recipe.ingredients.forEach(ingredient => {
+      recipe.ingredients.forEach((ingredient) => {
         let index = this.pantryIngredientIDs.indexOf(ingredient.id);
-        const ingredientQuantity = ingredient.quantity.amount;
+        let ingredientQuantity = ingredient.quantity.amount;
         let pantryQuantity = this.pantry[index].amount;
-        this.pantry[index].amount = pantryQuantity -= ingredientQuantity;
-        // if (this.pantry[index].amount === 0) {
-        //   console.log(this.pantry[index].amount)
-        //   // this.pantry.splice([index], 1)
-        // }
+        this.pantry[index].amount = pantryQuantity - ingredientQuantity;
       })
     }
+    console.log(this.pantry.length)
+  }
+
+  removeZeroIngredients() {
+    this.pantry = this.pantry.filter(ingredient => ingredient.amount > 0);
     console.log(this.pantry)
-    //if pantry ingredient amount <= 0, splice at that index 1 element
   }
 }
-
-
 
 if (typeof module !== 'undefined') {
   module.exports = UserPantry;

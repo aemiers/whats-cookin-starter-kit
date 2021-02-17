@@ -85,6 +85,6 @@ describe('UserPantry', function () {
       "ingredient": 19334,
       "amount": 1.5
     })
-    expect(userPantry.length).to.deep.equal(36);
+    expect(userPantry.pantry.length).to.deep.equal(36);
   })
 });
