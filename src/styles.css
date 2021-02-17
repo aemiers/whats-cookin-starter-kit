@@ -441,7 +441,6 @@ nav {
   outline: none;
 }
 
-
 .add-ingredient-button {
   height: 30px;
   width: 30px;
@@ -524,4 +523,39 @@ nav {
 
 .hidden {
   display: none;
+}
+
+/* tablet */
+@media screen and (max-width: 900px) {
+
+}
+
+/* mobile */
+@media screen and (max-width: 500px) {
+  .trending, 
+  .tag-search, 
+  .header-logo, 
+  .search-bar, 
+  .welcome-div {
+    display: none;
+  }
+
+  nav {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    height: 5em;
+    /* padding: 0 10px 1% 10px; */
+    box-shadow: 0 8px 6px -6px#c4c4c4;
+  }
+
+  h1 {
+    padding: 0px;
+  }
+
+  .meals-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+
 }
