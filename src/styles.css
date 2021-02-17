@@ -222,7 +222,6 @@ nav {
 }
 
 .queue-button {
-  display: flex;
   cursor: pointer;
   width: 100%;
   background-color: #7dc3ad;
