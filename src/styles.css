@@ -102,6 +102,15 @@ nav {
   width: 100%;
 }
 
+.welcome-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome {
+  color: #7dc3ad;
+}
+
 /* Main Containers */
 
 .home-page,
@@ -279,13 +288,14 @@ nav {
 .course-chooser-topic:hover {
   transition: all 0.2s ease-in-out;
   cursor: pointer;
-  transform: scale(1.5);
+  transform: scale(1.2);
 }
 
 .meals-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 35px;
+  grid-row-gap: 60px;
   padding: 20px;
 }
 
