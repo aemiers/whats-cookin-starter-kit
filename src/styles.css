@@ -301,6 +301,10 @@ nav {
   right: 300px;
 }
 
+.sad-heart {
+  left: 24px;
+}
+
 .ingredient-row {
   width: 100%;
   max-width: 600px;
@@ -317,8 +321,12 @@ nav {
   justify-content: space-between;
 }
 
-.ingredient-row-left-side:not(:last-child) {
+.ingredient-row-left-side {
   border-bottom: 1px solid #d9d9d9;
+}
+
+.ingredient-total {
+  border-bottom: none;
 }
 
 .check-box {
@@ -430,6 +438,12 @@ nav {
 
 .az-button {
   background-color: #7dc3ad;
+  outline: none;
+}
+
+.az-button:hover {
+  color: #7dc3ad;
+  background-color: white;
 }
 
 .ingredient-row-text-right {
@@ -478,8 +492,10 @@ nav {
   pointer-events: none;
 }
 
-.hidden {
-  display: none !important;
+.invisibility {
+  visibility: hidden;
 }
 
-
+.hidden {
+  display: none;
+}

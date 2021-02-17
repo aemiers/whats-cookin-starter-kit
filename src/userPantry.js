@@ -1,7 +1,7 @@
 // const Ingredient = require('./src/ingredient');
-const RecipeRepository = require('./recipeRepository');
-const fakeRecipeData = require('../data/fakeRecipeData');
-const fakeUserClass = require('../data/fakeUserData');
+// const RecipeRepository = require('./recipeRepository');
+// const fakeRecipeData = require('../data/fakeRecipeData');
+// const fakeUserClass = require('../data/fakeUserData');
 // import user class and then instantiate it.
 class UserPantry {
   constructor(usersData) {
@@ -53,7 +53,23 @@ class UserPantry {
     this.pantry = this.pantry.filter(ingredient => ingredient.amount > 0);
     console.log(this.pantry)
   }
+
+
+  findIngredientInfo(ingredientID) {
+    const ingredientInfo = ingredientsData.filter(ingredient => ingredient.id === ingredientID)
+    const newIngredient = new Ingredient(ingredientInfo[0]);
+    return newIngredient
+  }
+
+  findIngredientName(ingredientID) {
+    return this.findIngredientInfo(ingredientID).name
+  }
+
+  findIngredientCost(ingredientID) {
+    return this.findIngredientInfo(ingredientID).cost
+  }
 }
+
 
 if (typeof module !== 'undefined') {
   module.exports = UserPantry;

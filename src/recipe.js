@@ -13,7 +13,7 @@ class Recipe {
   }
 
   findIngredientInfo(ingredientID) {
-    const ingredientInfo = ingredientsData.filter(ingredient => ingredient.id === ingredientID)
+    const ingredientInfo = ingredientsData.filter(ingredient => ingredient.id === ingredientID);
     const newIngredient = new Ingredient(ingredientInfo[0]);
     return newIngredient
   }

@@ -53,7 +53,7 @@
           <img src="assets/cake.png" alt="Dessert icon">
           <h4 class="icon-text">Dessert</h4>
         </div>
-        <div id="sides" class="course-chooser-topic">
+        <div id="side" class="course-chooser-topic">
           <img src="assets/corn.png" alt="Sides icon">
           <h4 class="icon-text">Sides</h4>
         </div>
@@ -157,15 +157,15 @@
       </section>
     </section>
     <!-- RECIPE DETAIL PAGE -->
-    <section id="recipeDetailPage" class="recipe-detail-page hidden">
+    <section id="recipeDetailPage" class="recipe-detail-page .recipe-target hidden">
       <h1 id="recipeDetailsName">Name of Recipe Here</h1>
       <div class="recipe1-visual">
-        <div class="recipe-page-image-container">
+        <div id="recipePageImageContainer" class="recipe-target recipe-page-image-container">
           <img id="recipeDetailsImage" src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="Meal 1"
             class="recipe-page-image">
           <div class="heart-overlay">
-            <img src="assets/grey-heart.png" alt="grey heart" id="grey-heart" class="heart recipe-page-heart">
-            <img src="assets/pink-heart.png" alt="pink heart" id="pink-heart" class="heart recipe-page-heart hidden">
+            <img src="assets/grey-heart.png" alt="grey heart" id="grey-heart" class="heart sad-heart">
+            <img src="assets/pink-heart.png" alt="pink heart" id="pink-heart" class="heart hidden">
           </div>
           <button class="queue-button">Add to My Cookin' Queue</button>
         </div>
@@ -186,7 +186,12 @@
             <!-- </div> -->
             <!-- <p id="ingredientRowText"class="ingredient-row-text">$ per unit</p> -->
           </section>
-
+            <div class="ingredient-row">
+              <div class="ingredient-row-left-side ingredient-total">
+                <p class="ingredient-row-text">Total</p>
+                <p id="ingredientTotal" class="ingredient-row-price"></p>
+              </div>
+            </div>
           <!-- red x row, make sure it turns white -->
           <!-- <section class="ingredient-row">
             <div class="ingredient-row-left-side">
@@ -245,8 +250,8 @@
         <section class="ingredient-list">
           <!-- green checkmark row - delete below here when ready-->
 
-          <section class="ingredient-row">
-            <div class="ingredient-row-left-side">
+          <section id="pantryIngredients" class="ingredient-row">
+            <!-- <div class="ingredient-row-left-side">
               <div class="check-box">
                 <img class="check-x" id="check" src="assets/check.png" alt="green check">
               </div>
@@ -261,7 +266,7 @@
               <p class="ingredient-row-text">4 medium red onions</p>
               <p class="ingredient-row-text ingredient-row-text-right">$ per unit</p>
               <img class="check-x ingredient-row-price" id="x-pantry" src="assets/x.png" alt="red x">
-            </div>
+            </div> -->
           </section>
 
         </section>

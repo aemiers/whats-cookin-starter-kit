@@ -2,7 +2,7 @@
 // const UserPantry = require('../src/userPantry')
 // const ingredientsData = require('../data/fakeIngredientData');
 // const fakeRecipeData = require('../data/fakeRecipeData');
-const Recipe = require('./recipe');
+// const Recipe = require('./recipe');
 
 class RecipeRepository {
   constructor(recipes) {
@@ -28,7 +28,8 @@ class RecipeRepository {
     const searchWords = keywords.toLowerCase();
     const splitSearch = searchWords.split(' ');
     splitSearch.forEach(word => {
-      const foundRecipe = searchList.filter(recipe => recipe.tags.includes(word) || recipe.tags.includes(keywords))
+      const foundRecipe = searchList.filter(recipe => recipe.tags.includes(word)
+      || recipe.tags.includes(keywords) || recipe.tags.toString().includes(word))
       foundRecipe.forEach(recipe => {
         if (!pushListR.includes(recipe)) {
           pushListR.push(recipe)
