@@ -134,8 +134,8 @@ function populateAll(recipes, location, startingNumber) {
           </div>
         </div>
           <button class="queue-button">Add to My Cookin' Queue</button>
-          <ul id="miniRecipeTag${i + `${startingNumber}`}" class="mini-recipe-tag">
-          </ul>
+          <h4 id="miniRecipeTag${i + `${startingNumber}`}" class="mini-recipe-tag">
+          </h4>
           <h2 class="mini-recipe-title" id="recipeTarget">${recipe.name}</h2>
       </article>
     `
@@ -311,7 +311,7 @@ function tagSearch(e) {
   resetInnerHTML(searchResultGrid);
   newRepository.resetFilteredList();
   let tagSearchInput = event.path[1].id;
-  newRepository.filterRecipesByTags(tagSearchInput, newRepository.recipeList, newRepository.filteredList );
+  newRepository.filterRecipesByTags(tagSearchInput, newRepository.recipeList, newRepository.filteredList);
   populateAll(newRepository.filteredList, searchResultGrid, 700);
 }
 
@@ -355,7 +355,7 @@ function recipeCardFunctionalityHandler(event) {
     console.log('enlarge')
     enlargeRecipe();
   } else if (event.target.closest('.cook')) {
-      currentPantry.cookRecipe();
+    currentPantry.cookRecipe();
   } else if (event.target.closest('.queue-button')) {
     addToCookinQueue();
   }
