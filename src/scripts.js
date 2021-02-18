@@ -177,6 +177,22 @@ function displayIngredients(recipe) {
   ingredientCheckDisplay(recipe);
 }
 
+
+function cookThisRecipe() {
+  const targetId = parseInt(event.target.closest('.recipe-target').id);
+  const foundRecipe = newRepository.recipeList.find(recipe => targetId === recipe.id);
+  currentPantry.cookRecipe(foundRecipe)
+  newUser.recipesToCook.forEach((recipe, i) => {
+    if (recipe.id === foundRecipe.id) {
+      newUser.recipesToCook.splice(i, 1);
+    }
+  })
+  cookinQueueCards();
+  pantryIngredients.innerHTML = '';
+  pantryLayout(currentPantry)
+}
+
+
 function populateMeasurements(ingredient, name, price, recipe) {
   ingredientRow.innerHTML += `
   <div class="ingredient-row-left-side">
@@ -268,6 +284,7 @@ function addToCookinQueue() {
 }
 
 function cookPossible(recipe, cookinX, cookinCheck) {
+
   currentPantry.neededIngredients = [];
   currentPantry.compareIngredients(recipe);
   if (currentPantry.neededIngredients.length > 0) {
@@ -394,7 +411,7 @@ function recipeCardFunctionalityHandler(event) {
   } else if (event.target.closest('.queue-block') && !event.target.closest('.az-button')) {
     enlargeRecipe();
   } else if (event.target.closest('.cook')) {
-    currentPantry.cookRecipe();
+    cookThisRecipe();
   } else if (event.target.closest('.queue-button')) {
     addToCookinQueue();
   }

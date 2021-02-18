@@ -43,6 +43,7 @@ class UserPantry {
         let ingredientQuantity = ingredient.quantity.amount;
         let pantryQuantity = this.pantry[index].amount;
         this.pantry[index].amount = pantryQuantity - ingredientQuantity;
+        this.pantry[index].amount = pantryQuantity - ingredientQuantity;
       })
     }
   }
