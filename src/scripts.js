@@ -216,27 +216,16 @@ function ingredientCheckDisplay(recipe) {
   let total = 0;
 
   currentPantry.neededIngredients.forEach(neededIngredient => {
-    console.log(neededIngredient);
-    console.log(neededIngredient.id)
     let pantryComparison = currentPantry.pantry.find(totalHad => totalHad.ingredient === neededIngredient.id);
     let quantityNeeded = 0;
      if (!pantryComparison) {
        pantryComparison = 0;
-       quantityNeeded = parseInt(pantryComparison) - parseInt(neededIngredient.quantity.amount);
-       console.log('Aneeded', neededIngredient.quantity.amount)
-       console.log('G', quantityNeeded)
+       quantityNeeded = pantryComparison - neededIngredient.quantity.amount;
      } else {
-       console.log(neededIngredient.amount)
-       quantityNeeded = parseInt(pantryComparison.amount) - parseInt(neededIngredient.amount)
-       console.log('BNeeded', neededIngredient.quantity.amount);
-       // console.log('a', quantityNeeded)
+       quantityNeeded = pantryComparison.amount - neededIngredient.quantity.amount
      }
-     // console.log('b', quantityNeeded)
-    // console.log('pantryComparison', pantryComparison)
     const foundIngredient = ingredientsData.find(ingredient => ingredient.id === neededIngredient.id);
-    // console.log('foundIngredient', foundIngredient);
     const cost = foundIngredient.estimatedCostInCents
-    // console.log(cost);
     ingredientRow2.innerHTML += `
     <div class="ingredient-row-left-side">
       <div class="check-box">
