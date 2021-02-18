@@ -64,7 +64,6 @@ describe('User', function () {
   it('should be able to search favorites for recipes', function () {
     user.sortFavorites('POtato poRK Lunch dinner', superFakeIngredientData, fakeRecipeData,
       user.filteredIngredientID, user.filteredFavorites, user.favoriteRecipes)
-    console.log(user.filteredFavorites)
     expect(user.filteredFavorites.length).to.equal(1);
     expect(user.filteredFavorites).to.deep.equal([recipe1]);
   });

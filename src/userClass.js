@@ -1,7 +1,6 @@
 // const RecipeRepository = require('./recipeRepository');
 // const UserPantry = require('./userPantry');
 // const fakeRecipeData = require('../data/fakeRecipeData');
-
 class User {
   constructor(userData) {
     this.id = userData.id;
@@ -19,9 +18,6 @@ class User {
   }
 
   sortFavorites(keywords, ingredientData, recipeData, pushListI, pushListR, searchList) {
-    // const newRepository = new RecipeRepository(fakeRecipeData);
-    // newRepository.addRecipesToRepository();
-    // this.resetRecipes();
     newRepository.searchRecipes(keywords, ingredientData, recipeData, pushListI, pushListR, searchList)
   }
 
@@ -29,7 +25,6 @@ class User {
     const recipeExist = this.favoriteRecipes.some(filteredRecipe => filteredRecipe.id === recipe.id)
     if (!recipeExist) {
       this.favoriteRecipes.unshift(recipe)
-
     }
   }
 
@@ -42,16 +37,6 @@ class User {
     console.log('unliked', this.favoriteRecipes)
 
   }
-
-  // findRecipeById(favoritedRecipeName, recipeData) {
-  //   console.log(favoritedRecipeName)
-  //   recipeData.map(recipe => {
-  //     if (recipe.name === favoritedRecipeName) {
-  //       this.favoriteRecipes.push(recipe)
-  //     }
-  //   })
-  //   console.log('favorite array', this.favoriteRecipes);
-  // }
 
   addToCookQueue(recipe) {
     this.recipesToCook.push(recipe)

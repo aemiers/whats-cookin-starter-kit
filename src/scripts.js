@@ -2,14 +2,12 @@ const newRepository = new RecipeRepository(recipeData);
 // const newUser = new User(usersData[getRandomIndex(usersData)]);
 const newUser = new User(fakeUserData[3])
 const currentPantry = new UserPantry(newUser);
-// PAGES
 const homePage = document.querySelector('#homePage');
 const recipeDetailPage = document.querySelector('#recipeDetailPage');
 const favoritesPage = document.querySelector('#favoritesPage');
 const searchResultsPage = document.querySelector('#searchResultsPage');
 const userPantryPage = document.querySelector('#userPantryPage');
 const cookinQueuePage = document.querySelector('#cookinQueuePage');
-// HEADER
 const headerLogo = document.querySelector('#headerLogo');
 const searchBar = document.querySelector('#searchBar');
 const homeButtonInHeader = document.querySelector('#homeButton');
@@ -18,7 +16,6 @@ const queueButtonInHeader = document.querySelector('#queueButton');
 const pantryButtonInHeader = document.querySelector('#pantryButton');
 const welcomeUser = document.querySelector('#welcomeUser');
 const homeButton = document.querySelector('#homeButton');
-// BODY
 const trendingDisplay = document.querySelector('#trendingDisplay');
 const browseMealsGrid = document.querySelector('#allMeals');
 const searchResultGrid = document.querySelector('#searchResultMeals');
@@ -31,17 +28,13 @@ const userQueue = document.querySelector('#userQueue');
 const cookinQueueRecipe = document.querySelector('#cookinQueueRecipe');
 const cookinQueueBlock = document.querySelector('#cookinQueueBlock');
 const recipePageImageContainer = document.querySelector('#recipePageImageContainer');
-// SEARCH BY TAG ICONS
 const appetizerTagIcon = document.querySelector('#appetizer');
 const breakfastTagIcon = document.querySelector('#breakfast');
 const lunchTagIcon = document.querySelector('#lunch');
 const dinnerTagIcon = document.querySelector('#dinner');
 const dessertTagIcon = document.querySelector('#dessert');
 const sidesTagIcon = document.querySelector('#side');
-
-
 const recipeTarget = document.querySelector('#recipeTarget');
-
 const recipeDetailsName = document.querySelector('#recipeDetailsName');
 const recipeDetailsImage = document.querySelector('#recipeDetailsImage');
 const recipeDetailsTags = document.querySelector('#recipePageTags');
@@ -173,8 +166,6 @@ function displayTags(recipe, placement) {
 function displayIngredients(recipe) {
   ingredientRow.innerHTML = '';
   let total = 0;
-  // ingredientCheckDisplay(recipe);
-  // console.log(currentPantry.neededIngredients);
   recipe.ingredients.forEach(ingredient => {
     const ingredientName = recipe.findIngredientName(ingredient.id);
     const ingredientPrice = recipe.findIngredientCost(ingredient.id);
@@ -185,13 +176,8 @@ function displayIngredients(recipe) {
   displayInstructions(recipe)
   ingredientCheckDisplay(recipe);
 }
-// ingredient, name, price, recipe
-
 
 function populateMeasurements(ingredient, name, price, recipe) {
-  // console.log('populateMeasurements:', recipe);
-  // console.log('measurementIngredientsNeeded', currentPantry.neededIngredients);
-
   ingredientRow.innerHTML += `
   <div class="ingredient-row-left-side">
     <div class="check-box">
@@ -201,29 +187,22 @@ function populateMeasurements(ingredient, name, price, recipe) {
     <p id="ingredientRowText"class="ingredient-row-price">$${((ingredient.quantity.amount * price) / 100).toFixed(2)}</p>
   </div>
   `
-  // const measureCheck = document.querySelector(`#measureCheck${ingredient.id}`);
-  // const measureX = document.querySelector(`#measureX${ingredient.id}`);
-  // ingredientCheckDisplay(ingredient, name, price, recipe);
-  // measureX, measureCheck
 }
-
-// <img class="check-x " id="measureX${ingredient.id}" src="assets/x.png" alt="red x" >
 
 function ingredientCheckDisplay(recipe) {
   currentPantry.neededIngredients = [];
   ingredientRow2.innerHTML = ''
   currentPantry.compareIngredients(recipe)
   let total = 0;
-
   currentPantry.neededIngredients.forEach(neededIngredient => {
     let pantryComparison = currentPantry.pantry.find(totalHad => totalHad.ingredient === neededIngredient.id);
     let quantityNeeded = 0;
-     if (!pantryComparison) {
-       pantryComparison = 0;
-       quantityNeeded = pantryComparison - neededIngredient.quantity.amount;
-     } else {
-       quantityNeeded = pantryComparison.amount - neededIngredient.quantity.amount
-     }
+    if (!pantryComparison) {
+      pantryComparison = 0;
+      quantityNeeded = pantryComparison - neededIngredient.quantity.amount;
+    } else {
+      quantityNeeded = pantryComparison.amount - neededIngredient.quantity.amount
+    }
     const foundIngredient = ingredientsData.find(ingredient => ingredient.id === neededIngredient.id);
     const cost = foundIngredient.estimatedCostInCents
     ingredientRow2.innerHTML += `
@@ -273,14 +252,11 @@ function cookinQueueCards() {
     const cookinCheck = document.querySelector(`#cookinCheck${i + 1}${cookChoice.id}`);
     displayTags(cookChoice, cookinQueueTags);
     cookPossible(cookChoice, cookinX, cookinCheck);
-    console.log('cookChoice', cookChoice);
   })
 }
-{/* <div class="queue-ability-to-cook-notification"> */ }
 
 function addToCookinQueue() {
   let found;
-  // showHide(cookinQueuePage, homePage, favoritesPage, searchResultsPage, userPantryPage, recipeDetailPage)
   newRepository.recipeList.forEach(recipe => {
     if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
       found = recipe
@@ -292,14 +268,11 @@ function addToCookinQueue() {
 }
 
 function cookPossible(recipe, cookinX, cookinCheck) {
-    currentPantry.neededIngredients = [];
-    currentPantry.compareIngredients(recipe);
-    // console.log('neededIngredients:', currentPantry.neededIngredients)
+  currentPantry.neededIngredients = [];
+  currentPantry.compareIngredients(recipe);
   if (currentPantry.neededIngredients.length > 0) {
-    // console.log("B:", cookinX);
     hide([cookinCheck]);
   } else {
-    // console.log('A:', cookinCheck)
     hide([cookinX]);
   }
 }
@@ -328,7 +301,6 @@ function populatePantryMeasurements(ingredient, name, price) {
   `
 }
 
-
 function hide(elements) {
   elements.forEach(element => element.classList.add('hidden'));
 }
@@ -344,18 +316,7 @@ function showHide(page1, page2, page3, page4, page5, page6) {
 
 function goHome() {
   showHide(homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage);
-  // resetInnerHTML(browseMealsGrid);
-  // populateMain();
 }
-
-// function enlargeRecipe() {
-//   showHide(recipeDetailPage, homePage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
-//   newRepository.recipeList.forEach(recipe => {
-//     if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
-//       recipeDetails(recipe)
-//     }
-//   })
-// }
 
 function enlargeRecipe() {
   showHide(recipeDetailPage, homePage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
@@ -380,7 +341,6 @@ function searchBarSearch() {
   let searchBarInput = searchBar.value;
   newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData,
     newRepository.filteredIngredientID, newRepository.filteredList, newRepository.recipeList);
-  // console.log('SearchBarSearch:', newRepository.filteredList);
   populateAll(newRepository.filteredList, searchResultGrid, 100)
   searchBar.value = '';
 }
@@ -432,7 +392,6 @@ function recipeCardFunctionalityHandler(event) {
   } else if (event.target.closest('.recipe-target') && !event.target.closest('.queue-button') && !event.target.closest('.az-button')) {
     enlargeRecipe();
   } else if (event.target.closest('.queue-block') && !event.target.closest('.az-button')) {
-    console.log('enlarge')
     enlargeRecipe();
   } else if (event.target.closest('.cook')) {
     currentPantry.cookRecipe();
@@ -454,7 +413,6 @@ recipeDetailPage.addEventListener('click', recipeCardFunctionalityHandler);
 trendingDisplay.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
 cookinQueueBlock.addEventListener('click', recipeCardFunctionalityHandler);
-
 appetizerTagIcon.addEventListener('click', function (event) {
   tagSearch(event.target.id);
 })
@@ -473,13 +431,11 @@ dessertTagIcon.addEventListener('click', function (event) {
 sidesTagIcon.addEventListener('click', function (event) {
   tagSearch(event.target.id);
 });
-
 searchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
     searchBarSearch();
   }
 })
-
 favoritesSearchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
     favoritesSearchBarSearch();
