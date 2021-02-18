@@ -225,7 +225,6 @@ function cookinQueueCards() {
           <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
           <ul id="cookinQueueTags${i + 1}" class="recipe-page-tags">
           </ul>
-          <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
           <button class="az-button pantry-sort-button queue-button cook">Cook!</button>
           <img class="check-x" id="cookinCheck${i + 1}${cookChoice.id}" src="assets/check.png" alt="green check" >
           <img class="check-x" id="cookinX${i + 1}${cookChoice.id}" src="assets/x.png" alt="red x" >
@@ -240,6 +239,7 @@ function cookinQueueCards() {
     console.log('cookChoice', cookChoice);
   })
 }
+{/* <div class="queue-ability-to-cook-notification"> */ }
 
 function addToCookinQueue() {
   let found;

@@ -309,6 +309,8 @@ nav {
 
 .recipe-page-tags {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   margin: 0 auto;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -452,7 +454,6 @@ nav {
   color: white;
   background-color: #c4c4c4;
   border: none;
-  margin-bottom: 30px;
 }
 
 .pantry-sort-button:active {
@@ -498,6 +499,11 @@ nav {
 
 .queue-words-container {
   align-content: start;
+}
+
+.queue-ability-to-cook-notification {
+  padding-left: 40px;
+  margin-top: 5px;
 }
 
 /* Effects */
@@ -549,6 +555,11 @@ nav {
 
   .ingredient-page-container {
     margin-left: 0px;
+  }
+
+  .queue-button {
+    letter-spacing: 0;
+    margin-bottom: 10px
   }
 }
 
@@ -603,7 +614,7 @@ nav {
   .queue-words-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
   }
   
   .pantry-sort-button {
