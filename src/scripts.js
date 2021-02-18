@@ -2,14 +2,12 @@ const newRepository = new RecipeRepository(recipeData);
 // const newUser = new User(usersData[getRandomIndex(usersData)]);
 const newUser = new User(fakeUserData[3])
 const currentPantry = new UserPantry(newUser);
-// PAGES
 const homePage = document.querySelector('#homePage');
 const recipeDetailPage = document.querySelector('#recipeDetailPage');
 const favoritesPage = document.querySelector('#favoritesPage');
 const searchResultsPage = document.querySelector('#searchResultsPage');
 const userPantryPage = document.querySelector('#userPantryPage');
 const cookinQueuePage = document.querySelector('#cookinQueuePage');
-// HEADER
 const headerLogo = document.querySelector('#headerLogo');
 const searchBar = document.querySelector('#searchBar');
 const homeButtonInHeader = document.querySelector('#homeButton');
@@ -18,7 +16,6 @@ const queueButtonInHeader = document.querySelector('#queueButton');
 const pantryButtonInHeader = document.querySelector('#pantryButton');
 const welcomeUser = document.querySelector('#welcomeUser');
 const homeButton = document.querySelector('#homeButton');
-// BODY
 const trendingDisplay = document.querySelector('#trendingDisplay');
 const browseMealsGrid = document.querySelector('#allMeals');
 const searchResultGrid = document.querySelector('#searchResultMeals');
@@ -31,17 +28,13 @@ const userQueue = document.querySelector('#userQueue');
 const cookinQueueRecipe = document.querySelector('#cookinQueueRecipe');
 const cookinQueueBlock = document.querySelector('#cookinQueueBlock');
 const recipePageImageContainer = document.querySelector('#recipePageImageContainer');
-// SEARCH BY TAG ICONS
 const appetizerTagIcon = document.querySelector('#appetizer');
 const breakfastTagIcon = document.querySelector('#breakfast');
 const lunchTagIcon = document.querySelector('#lunch');
 const dinnerTagIcon = document.querySelector('#dinner');
 const dessertTagIcon = document.querySelector('#dessert');
 const sidesTagIcon = document.querySelector('#side');
-
-
 const recipeTarget = document.querySelector('#recipeTarget');
-
 const recipeDetailsName = document.querySelector('#recipeDetailsName');
 const recipeDetailsImage = document.querySelector('#recipeDetailsImage');
 const recipeDetailsTags = document.querySelector('#recipePageTags');
@@ -184,6 +177,7 @@ function displayIngredients(recipe) {
   ingredientCheckDisplay(recipe);
 }
 
+
 function cookThisRecipe() {
   const targetId = parseInt(event.target.closest('.recipe-target').id);
   const foundRecipe = newRepository.recipeList.find(recipe => targetId === recipe.id);
@@ -197,6 +191,7 @@ function cookThisRecipe() {
   pantryIngredients.innerHTML = '';
   pantryLayout(currentPantry)
 }
+
 
 function populateMeasurements(ingredient, name, price, recipe) {
   ingredientRow.innerHTML += `
@@ -215,16 +210,15 @@ function ingredientCheckDisplay(recipe) {
   ingredientRow2.innerHTML = ''
   currentPantry.compareIngredients(recipe)
   let total = 0;
-
   currentPantry.neededIngredients.forEach(neededIngredient => {
     let pantryComparison = currentPantry.pantry.find(totalHad => totalHad.ingredient === neededIngredient.id);
     let quantityNeeded = 0;
-     if (!pantryComparison) {
-       pantryComparison = 0;
-       quantityNeeded = pantryComparison - neededIngredient.quantity.amount;
-     } else {
-       quantityNeeded = pantryComparison.amount - neededIngredient.quantity.amount
-     }
+    if (!pantryComparison) {
+      pantryComparison = 0;
+      quantityNeeded = pantryComparison - neededIngredient.quantity.amount;
+    } else {
+      quantityNeeded = pantryComparison.amount - neededIngredient.quantity.amount
+    }
     const foundIngredient = ingredientsData.find(ingredient => ingredient.id === neededIngredient.id);
     const cost = foundIngredient.estimatedCostInCents
     ingredientRow2.innerHTML += `
@@ -290,8 +284,9 @@ function addToCookinQueue() {
 }
 
 function cookPossible(recipe, cookinX, cookinCheck) {
-    currentPantry.neededIngredients = [];
-    currentPantry.compareIngredients(recipe);
+
+  currentPantry.neededIngredients = [];
+  currentPantry.compareIngredients(recipe);
   if (currentPantry.neededIngredients.length > 0) {
     hide([cookinCheck]);
   } else {
@@ -322,7 +317,6 @@ function populatePantryMeasurements(ingredient, name, price) {
   </div>
   `
 }
-
 
 function hide(elements) {
   elements.forEach(element => element.classList.add('hidden'));
@@ -364,7 +358,6 @@ function searchBarSearch() {
   let searchBarInput = searchBar.value;
   newRepository.searchRecipes(searchBarInput, ingredientsData, recipeData,
     newRepository.filteredIngredientID, newRepository.filteredList, newRepository.recipeList);
-  // console.log('SearchBarSearch:', newRepository.filteredList);
   populateAll(newRepository.filteredList, searchResultGrid, 100)
   searchBar.value = '';
 }
@@ -416,7 +409,6 @@ function recipeCardFunctionalityHandler(event) {
   } else if (event.target.closest('.recipe-target') && !event.target.closest('.queue-button') && !event.target.closest('.az-button')) {
     enlargeRecipe();
   } else if (event.target.closest('.queue-block') && !event.target.closest('.az-button')) {
-    console.log('enlarge')
     enlargeRecipe();
   } else if (event.target.closest('.cook')) {
     cookThisRecipe();
@@ -438,7 +430,6 @@ recipeDetailPage.addEventListener('click', recipeCardFunctionalityHandler);
 trendingDisplay.addEventListener('click', recipeCardFunctionalityHandler);
 favoritesMealsGrid.addEventListener('click', recipeCardFunctionalityHandler);
 cookinQueueBlock.addEventListener('click', recipeCardFunctionalityHandler);
-
 appetizerTagIcon.addEventListener('click', function (event) {
   tagSearch(event.target.id);
 })
@@ -457,13 +448,11 @@ dessertTagIcon.addEventListener('click', function (event) {
 sidesTagIcon.addEventListener('click', function (event) {
   tagSearch(event.target.id);
 });
-
 searchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
     searchBarSearch();
   }
 })
-
 favoritesSearchBar.addEventListener('keydown', function (event) {
   if (event.keyCode === 13) {
     favoritesSearchBarSearch();

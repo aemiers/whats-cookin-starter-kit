@@ -31,7 +31,6 @@ class UserPantry {
   }
 
   cookRecipe(recipe) {
-    console.log(this.pantry)
     this.compareIngredients(recipe);
     this.subtractIngredients(recipe);
     this.removeZeroIngredients()
@@ -47,12 +46,10 @@ class UserPantry {
         this.pantry[index].amount = pantryQuantity - ingredientQuantity;
       })
     }
-    console.log(this.pantry.length)
   }
 
   removeZeroIngredients() {
     this.pantry = this.pantry.filter(ingredient => ingredient.amount > 0);
-    console.log(this.pantry)
   }
 
 
@@ -70,7 +67,6 @@ class UserPantry {
     return this.findIngredientInfo(ingredientID).cost
   }
 }
-
 
 if (typeof module !== 'undefined') {
   module.exports = UserPantry;
