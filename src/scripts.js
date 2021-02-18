@@ -1,6 +1,6 @@
 const newRepository = new RecipeRepository(recipeData);
-const newUser = new User(usersData[getRandomIndex(usersData)]);
-// const newUser = new User(fakeUserData[3])
+// const newUser = new User(usersData[getRandomIndex(usersData)]);
+const newUser = new User(fakeUserData[3])
 const currentPantry = new UserPantry(newUser);
 // PAGES
 const homePage = document.querySelector('#homePage');
@@ -31,7 +31,6 @@ const userQueue = document.querySelector('#userQueue');
 const cookinQueueRecipe = document.querySelector('#cookinQueueRecipe');
 const cookinQueueBlock = document.querySelector('#cookinQueueBlock');
 const recipePageImageContainer = document.querySelector('#recipePageImageContainer');
-const ingredientTotal = document.querySelector('#ingredientTotal');
 // SEARCH BY TAG ICONS
 const appetizerTagIcon = document.querySelector('#appetizer');
 const breakfastTagIcon = document.querySelector('#breakfast');
@@ -48,6 +47,10 @@ const recipeDetailsImage = document.querySelector('#recipeDetailsImage');
 const recipeDetailsTags = document.querySelector('#recipePageTags');
 const ingredientRow = document.querySelector('#ingredientRow');
 const ingredientRowText = document.querySelector('#ingredientRowText');
+const ingredientRow2 = document.querySelector('#ingredientRow2');
+const ingredientRowText2 = document.querySelector('#ingredientRowText2');
+const ingredientTotal = document.querySelector('#ingredientTotal');
+const ingredientTotal2 = document.querySelector('#ingredientTotal2');
 const recipeInstructions = document.querySelector('#recipeInstructions');
 const pantryIngredients = document.querySelector('#pantryIngredients');
 
@@ -170,6 +173,8 @@ function displayTags(recipe, placement) {
 function displayIngredients(recipe) {
   ingredientRow.innerHTML = '';
   let total = 0;
+  // ingredientCheckDisplay(recipe);
+  // console.log(currentPantry.neededIngredients);
   recipe.ingredients.forEach(ingredient => {
     const ingredientName = recipe.findIngredientName(ingredient.id);
     const ingredientPrice = recipe.findIngredientCost(ingredient.id);
@@ -178,26 +183,58 @@ function displayIngredients(recipe) {
   })
   ingredientTotal.innerText = `$${total.toFixed(2)}`;
   displayInstructions(recipe)
+  ingredientCheckDisplay(recipe);
 }
+// ingredient, name, price, recipe
 
 
 function populateMeasurements(ingredient, name, price, recipe) {
-  console.log('populateMeasurements:', recipe);
-  console.log('measurementIngredientsNeeded', currentPantry.neededIngredients);
+  // console.log('populateMeasurements:', recipe);
+  // console.log('measurementIngredientsNeeded', currentPantry.neededIngredients);
 
   ingredientRow.innerHTML += `
   <div class="ingredient-row-left-side">
     <div class="check-box">
-      <img class="check-x" id="measureCheck${ingredient.id}" src="assets/check.png" alt="green check" >
-      <img class="check-x " id="measureX${ingredient.id}" src="assets/x.png" alt="red x" >
+      <img class="check-x" id="measureCheck${ingredient.id}" src="assets/check.png" alt="green check">
     </div>
     <p class="ingredient-row-text">${ingredient.quantity.amount} ${ingredient.quantity.unit} ${name}</p>
     <p id="ingredientRowText"class="ingredient-row-price">$${((ingredient.quantity.amount * price) / 100).toFixed(2)}</p>
   </div>
   `
-  const measureCheck = document.querySelector(`#measureCheck${ingredient.id}`);
-  const measureX = document.querySelector(`#measureX${ingredient.id}`);
-  ingredientCheckDisplay(recipe, measureX, measureCheck);
+  // const measureCheck = document.querySelector(`#measureCheck${ingredient.id}`);
+  // const measureX = document.querySelector(`#measureX${ingredient.id}`);
+  // ingredientCheckDisplay(ingredient, name, price, recipe);
+  // measureX, measureCheck
+}
+
+// <img class="check-x " id="measureX${ingredient.id}" src="assets/x.png" alt="red x" >
+
+function ingredientCheckDisplay(recipe) {
+  currentPantry.neededIngredients = [];
+  ingredientRow2.innerHTML = ''
+  currentPantry.compareIngredients(recipe)
+  let total = 0;
+
+  currentPantry.neededIngredients.forEach(neededIngredient => {
+    let pantryComparison = currentPantry.pantry.find(totalHad => totalHad.ingredient === neededIngredient.id);
+    let quantityNeeded = 0;
+     if (!pantryComparison) {
+       pantryComparison = 0;
+       quantityNeeded = pantryComparison - neededIngredient.quantity.amount;
+     } else {
+       quantityNeeded = pantryComparison.amount - neededIngredient.quantity.amount
+     }
+    const foundIngredient = ingredientsData.find(ingredient => ingredient.id === neededIngredient.id);
+    const cost = foundIngredient.estimatedCostInCents
+    ingredientRow2.innerHTML += `
+    <div class="ingredient-row-left-side">
+      <div class="check-box">
+        <img class="check-x " id="measureX${foundIngredient.id}" src="assets/x.png" alt="red x">
+      </div>
+      <p class="ingredient-row-text">${Math.abs(quantityNeeded)} ${neededIngredient.quantity.unit} ${foundIngredient.name}</p>
+    </div>
+    `
+  });
 }
 
 function displayInstructions(recipe) {
@@ -255,24 +292,16 @@ function addToCookinQueue() {
 }
 
 function cookPossible(recipe, cookinX, cookinCheck) {
-  currentPantry.neededIngredients = [];
-  currentPantry.compareIngredients(recipe);
-  console.log('neededIngredients:', currentPantry.neededIngredients)
+    currentPantry.neededIngredients = [];
+    currentPantry.compareIngredients(recipe);
+    // console.log('neededIngredients:', currentPantry.neededIngredients)
   if (currentPantry.neededIngredients.length > 0) {
-    console.log("B:", cookinX);
+    // console.log("B:", cookinX);
     hide([cookinCheck]);
   } else {
-    console.log('A:', cookinCheck)
+    // console.log('A:', cookinCheck)
     hide([cookinX]);
   }
-}
-
-function ingredientCheckDisplay(recipe, cookinX, cookinCheck) {
-  currentPantry.neededIngredients = [];
-  currentPantry.compareIngredients(recipe);
-  currentPantry.neededIngredients.forEach(neededIngredient => {
-    const foundIngredient = ingredientsData.find(ingredient => ingredient.id === neededIngredient.id);
-  })
 }
 
 function pantryLayout(pantry) {
