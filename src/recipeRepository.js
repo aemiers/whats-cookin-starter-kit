@@ -28,10 +28,10 @@ class RecipeRepository {
     const searchWords = keywords.toLowerCase();
     const splitSearch = searchWords.split(' ');
     splitSearch.forEach(word => {
-      const foundRecipe = searchList.filter(recipe => recipe.tags.includes(word)
-      || recipe.tags.includes(keywords) || recipe.tags.toString().includes(word))
+      const foundRecipe = searchList.filter(recipe => recipe.tags.toString().includes(word))
       foundRecipe.forEach(recipe => {
-        if (!pushListR.includes(recipe)) {
+        const recipeExist = pushListR.some(filteredRecipe => filteredRecipe.id === recipe.id)
+        if (!recipeExist) {
           pushListR.push(recipe)
           // console.log('Tag:', pushListR)
           // console.log('Tag:', recipe)
