@@ -1,6 +1,6 @@
 const newRepository = new RecipeRepository(recipeData);
-// const newUser = new User(usersData[getRandomIndex(usersData)]);
-const newUser = new User(fakeUserData[3])
+const newUser = new User(usersData[getRandomIndex(usersData)]);
+// const newUser = new User(fakeUserData[3])
 const currentPantry = new UserPantry(newUser);
 const homePage = document.querySelector('#homePage');
 const recipeDetailPage = document.querySelector('#recipeDetailPage');
