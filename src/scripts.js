@@ -173,8 +173,6 @@ function displayTags(recipe, placement) {
 function displayIngredients(recipe) {
   ingredientRow.innerHTML = '';
   let total = 0;
-  // ingredientCheckDisplay(recipe);
-  // console.log(currentPantry.neededIngredients);
   recipe.ingredients.forEach(ingredient => {
     const ingredientName = recipe.findIngredientName(ingredient.id);
     const ingredientPrice = recipe.findIngredientCost(ingredient.id);
@@ -185,13 +183,22 @@ function displayIngredients(recipe) {
   displayInstructions(recipe)
   ingredientCheckDisplay(recipe);
 }
-// ingredient, name, price, recipe
 
+function cookThisRecipe() {
+  const targetId = parseInt(event.target.closest('.recipe-target').id);
+  const foundRecipe = newRepository.recipeList.find(recipe => targetId === recipe.id);
+  currentPantry.cookRecipe(foundRecipe)
+  newUser.recipesToCook.forEach((recipe, i) => {
+    if (recipe.id === foundRecipe.id) {
+      newUser.recipesToCook.splice(i, 1);
+    }
+  })
+  cookinQueueCards();
+  pantryIngredients.innerHTML = '';
+  pantryLayout(currentPantry)
+}
 
 function populateMeasurements(ingredient, name, price, recipe) {
-  // console.log('populateMeasurements:', recipe);
-  // console.log('measurementIngredientsNeeded', currentPantry.neededIngredients);
-
   ingredientRow.innerHTML += `
   <div class="ingredient-row-left-side">
     <div class="check-box">
@@ -201,13 +208,7 @@ function populateMeasurements(ingredient, name, price, recipe) {
     <p id="ingredientRowText"class="ingredient-row-price">$${((ingredient.quantity.amount * price) / 100).toFixed(2)}</p>
   </div>
   `
-  // const measureCheck = document.querySelector(`#measureCheck${ingredient.id}`);
-  // const measureX = document.querySelector(`#measureX${ingredient.id}`);
-  // ingredientCheckDisplay(ingredient, name, price, recipe);
-  // measureX, measureCheck
 }
-
-// <img class="check-x " id="measureX${ingredient.id}" src="assets/x.png" alt="red x" >
 
 function ingredientCheckDisplay(recipe) {
   currentPantry.neededIngredients = [];
@@ -273,14 +274,11 @@ function cookinQueueCards() {
     const cookinCheck = document.querySelector(`#cookinCheck${i + 1}${cookChoice.id}`);
     displayTags(cookChoice, cookinQueueTags);
     cookPossible(cookChoice, cookinX, cookinCheck);
-    console.log('cookChoice', cookChoice);
   })
 }
-{/* <div class="queue-ability-to-cook-notification"> */ }
 
 function addToCookinQueue() {
   let found;
-  // showHide(cookinQueuePage, homePage, favoritesPage, searchResultsPage, userPantryPage, recipeDetailPage)
   newRepository.recipeList.forEach(recipe => {
     if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
       found = recipe
@@ -294,12 +292,9 @@ function addToCookinQueue() {
 function cookPossible(recipe, cookinX, cookinCheck) {
     currentPantry.neededIngredients = [];
     currentPantry.compareIngredients(recipe);
-    // console.log('neededIngredients:', currentPantry.neededIngredients)
   if (currentPantry.neededIngredients.length > 0) {
-    // console.log("B:", cookinX);
     hide([cookinCheck]);
   } else {
-    // console.log('A:', cookinCheck)
     hide([cookinX]);
   }
 }
@@ -344,18 +339,7 @@ function showHide(page1, page2, page3, page4, page5, page6) {
 
 function goHome() {
   showHide(homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage);
-  // resetInnerHTML(browseMealsGrid);
-  // populateMain();
 }
-
-// function enlargeRecipe() {
-//   showHide(recipeDetailPage, homePage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
-//   newRepository.recipeList.forEach(recipe => {
-//     if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
-//       recipeDetails(recipe)
-//     }
-//   })
-// }
 
 function enlargeRecipe() {
   showHide(recipeDetailPage, homePage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
@@ -435,7 +419,7 @@ function recipeCardFunctionalityHandler(event) {
     console.log('enlarge')
     enlargeRecipe();
   } else if (event.target.closest('.cook')) {
-    currentPantry.cookRecipe();
+    cookThisRecipe();
   } else if (event.target.closest('.queue-button')) {
     addToCookinQueue();
   }
