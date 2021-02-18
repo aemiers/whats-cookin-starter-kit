@@ -370,7 +370,7 @@ nav {
 .ingredient-row-text {
   margin: 0;
   line-height: 1;
-  width: 100%;
+  width: 90%;
 }
 
 .ingredient-row-price {
@@ -557,7 +557,6 @@ nav {
   .trending, 
   .tag-search, 
   .header-logo, 
-  .search-bar, 
   .welcome-div {
     display: none;
   }
@@ -567,6 +566,14 @@ nav {
     justify-content: center;
     width: 100%;
     box-shadow: 0 8px 6px -6px#c4c4c4;
+  }
+
+  .header-menu {
+    display: table-cell;
+  }
+
+  .search-bar {
+    margin-bottom: 5px;
   }
 
   h1 {
@@ -585,7 +592,7 @@ nav {
   .queue-block {
     display: flex;
     flex-direction: column;
-    margin: 0;
+    margin: 0 0 15px 0;
   }
 
   .queue-recipe-img {
@@ -600,7 +607,7 @@ nav {
   }
   
   .pantry-sort-button {
-    margin-bottom: 0;
+    margin-bottom: 10px;
     align-self: center;
   }
 }
