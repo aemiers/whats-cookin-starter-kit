@@ -2447,7 +2447,7 @@ const recipeData = [
         "number": 4
       }
     ],
-    "name": "quinoa tabbouleh",
+    "name": "Quinoa Tabbouleh",
     "tags": [
       "side dish"
     ]

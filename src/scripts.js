@@ -140,8 +140,8 @@ function populateAll(recipes, location, startingNumber) {
           </div>
         </div>
           <button class="queue-button">Add to My Cookin' Queue</button>
-          <ul id="miniRecipeTag${i + `${startingNumber}`}" class="mini-recipe-tag">
-          </ul>
+          <h4 id="miniRecipeTag${i + `${startingNumber}`}" class="mini-recipe-tag">
+          </h4>
           <h2 class="mini-recipe-title" id="recipeTarget">${recipe.name}</h2>
       </article>
     `
@@ -222,10 +222,10 @@ function cookinQueueCards() {
           <img class="queue-recipe-img" src="${cookChoice.image}" id="defaultId">
         </section>
         <div class="queue-words-container">
+          <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
           <ul id="cookinQueueTags${i + 1}" class="recipe-page-tags">
           </ul>
-          <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
-          <button class="az-button pantry-sort-button cook">Cook!</button>
+          <button class="az-button pantry-sort-button queue-button cook">Cook!</button>
           <img class="check-x" id="cookinCheck${i + 1}${cookChoice.id}" src="assets/check.png" alt="green check" >
           <img class="check-x" id="cookinX${i + 1}${cookChoice.id}" src="assets/x.png" alt="red x" >
         </div>
@@ -239,6 +239,7 @@ function cookinQueueCards() {
     console.log('cookChoice', cookChoice);
   })
 }
+{/* <div class="queue-ability-to-cook-notification"> */ }
 
 function addToCookinQueue() {
   let found;
@@ -254,9 +255,9 @@ function addToCookinQueue() {
 }
 
 function cookPossible(recipe, cookinX, cookinCheck) {
-    currentPantry.neededIngredients = [];
-    currentPantry.compareIngredients(recipe);
-    console.log('neededIngredients:', currentPantry.neededIngredients)
+  currentPantry.neededIngredients = [];
+  currentPantry.compareIngredients(recipe);
+  console.log('neededIngredients:', currentPantry.neededIngredients)
   if (currentPantry.neededIngredients.length > 0) {
     console.log("B:", cookinX);
     hide([cookinCheck]);
@@ -371,7 +372,7 @@ function tagSearch(e) {
   resetInnerHTML(searchResultGrid);
   newRepository.resetFilteredList();
   let tagSearchInput = event.path[1].id;
-  newRepository.filterRecipesByTags(tagSearchInput, newRepository.recipeList, newRepository.filteredList );
+  newRepository.filterRecipesByTags(tagSearchInput, newRepository.recipeList, newRepository.filteredList);
   populateAll(newRepository.filteredList, searchResultGrid, 700);
 }
 
@@ -405,7 +406,7 @@ function recipeCardFunctionalityHandler(event) {
     console.log('enlarge')
     enlargeRecipe();
   } else if (event.target.closest('.cook')) {
-      currentPantry.cookRecipe();
+    currentPantry.cookRecipe();
   } else if (event.target.closest('.queue-button')) {
     addToCookinQueue();
   }
