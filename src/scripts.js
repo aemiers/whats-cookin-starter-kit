@@ -225,14 +225,10 @@ function cookinQueueCards() {
           <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
           <ul id="cookinQueueTags${i + 1}" class="recipe-page-tags">
           </ul>
-<<<<<<< HEAD
-          <button class="az-button pantry-sort-button queue-button">Cook!</button>
-=======
           <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
-          <button class="az-button pantry-sort-button cook">Cook!</button>
+          <button class="az-button pantry-sort-button queue-button cook">Cook!</button>
           <img class="check-x" id="cookinCheck${i + 1}${cookChoice.id}" src="assets/check.png" alt="green check" >
           <img class="check-x" id="cookinX${i + 1}${cookChoice.id}" src="assets/x.png" alt="red x" >
->>>>>>> main
         </div>
       </article>
     `
@@ -259,9 +255,9 @@ function addToCookinQueue() {
 }
 
 function cookPossible(recipe, cookinX, cookinCheck) {
-    currentPantry.neededIngredients = [];
-    currentPantry.compareIngredients(recipe);
-    console.log('neededIngredients:', currentPantry.neededIngredients)
+  currentPantry.neededIngredients = [];
+  currentPantry.compareIngredients(recipe);
+  console.log('neededIngredients:', currentPantry.neededIngredients)
   if (currentPantry.neededIngredients.length > 0) {
     console.log("B:", cookinX);
     hide([cookinCheck]);
