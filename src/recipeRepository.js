@@ -33,8 +33,6 @@ class RecipeRepository {
         const recipeExist = pushListR.some(filteredRecipe => filteredRecipe.id === recipe.id)
         if (!recipeExist) {
           pushListR.push(recipe)
-          // console.log('Tag:', pushListR)
-          // console.log('Tag:', recipe)
         }
       })
     })
@@ -47,11 +45,9 @@ class RecipeRepository {
       ingredientData.map(ingredient => {
         if (ingredient.name.includes(searchWordsFormatted) || ingredient.name.includes(keywords)) {
           pushListI.push(ingredient.id)
-          // console.log('matchID:', pushListI)
         }
       })
     })
-    // console.log('matchID:', pushListI)
   }
 
   filterRecipesByIngredients(keywords, ingredientData, pushListI, recipeData, pushListR, searchList) {
@@ -62,12 +58,10 @@ class RecipeRepository {
           const recipeExist = pushListR.some(filteredRecipe => filteredRecipe.id === recipe.id)
           if (ingredient.id === ingredientId && !recipeExist) {
             pushListR.push(recipe)
-            // console.log('Ingredient:', recipe)
           }
         })
       })
     })
-    // console.log('Ingredient:', pushListR)
   }
 
   filterRecipesByName(keywords, searchList, pushListR) {
@@ -79,8 +73,6 @@ class RecipeRepository {
         const recipeExist = pushListR.some(filteredRecipe => filteredRecipe.id === recipe.id)
         if (!recipeExist) {
           pushListR.push(recipe)
-          // console.log('Name:', pushListR)
-          // console.log('Name:', recipe)
         }
       })
     })
@@ -95,7 +87,6 @@ class RecipeRepository {
       recipe.favorited = false;
       recipe.heartImage = 'assets/grey-heart.png';
     }
-    console.log(recipe.favorited)
   }
 
   findRecipeByRecipeID(recipeId) {
@@ -108,8 +99,6 @@ class RecipeRepository {
     this.filterRecipesByTags(keywords, searchList, pushListR);
     this.filterRecipesByIngredients(keywords, ingredientData, pushListI, recipeData, pushListR, searchList);
     this.filterRecipesByName(keywords, searchList, pushListR);
-    // this.resetFilteredList();
-    // console.log(this.filteredList)
   }
 }
 
