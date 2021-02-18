@@ -1,6 +1,6 @@
 const newRepository = new RecipeRepository(recipeData);
-const newUser = new User(usersData[getRandomIndex(usersData)])
-newRepository.addRecipesToRepository();
+const newUser = new User(usersData[getRandomIndex(usersData)]);
+// const newUser = new User(fakeUserData[3])
 const currentPantry = new UserPantry(newUser);
 // PAGES
 const homePage = document.querySelector('#homePage');
@@ -55,6 +55,14 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
+function pageLoad() {
+  newRepository.addRecipesToRepository();
+  currentPantry.populatePantryIngredientIDs();
+  populateMain();
+  populateUserName();
+  pantryLayout(currentPantry);
+}
+
 function populateMain() {
   const randomRecipe1 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
   const randomRecipe2 = newRepository.recipeList[getRandomIndex(newRepository.recipeList)];
@@ -62,8 +70,6 @@ function populateMain() {
   pushToTrendingDisplay(randomRecipe1, randomRecipe2, randomRecipe3);
   randomize(newRepository.recipeList);
   populateAll(newRepository.recipeList, browseMealsGrid);
-  populateUserName();
-  pantryLayout(currentPantry);
 }
 
 function populateUserName() {
@@ -144,52 +150,6 @@ function populateAll(recipes, location, startingNumber) {
   })
 }
 
-function displayIngredients(recipe) {
-  ingredientRow.innerHTML = '';
-  let total = 0;
-  recipe.ingredients.forEach(ingredient => {
-    const ingredientName = recipe.findIngredientName(ingredient.id);
-    const ingredientPrice = recipe.findIngredientCost(ingredient.id);
-    populateMeasurements(ingredient, ingredientName, ingredientPrice);
-    total += (ingredient.quantity.amount * ingredientPrice) / 100
-  })
-  ingredientTotal.innerText = `$${total.toFixed(2)}`;
-  displayInstructions(recipe)
-}
-
-function displayInstructions(recipe) {
-  recipeInstructions.innerHTML = ''
-  recipe.instructions.forEach(step => {
-    recipeInstructions.innerHTML += `
-      <section class="numbered-recipe-chunk">
-        <p class="recipe-number">${step.number}</p>
-        <p>${step.instruction}</p>
-      </section>
-    `
-  })
-}
-
-function populateMeasurements(ingredient, name, price) {
-  ingredientRow.innerHTML += `
-  <div class="ingredient-row-left-side">
-    <div class="check-box">
-      <img class="check-x" id="check" src="assets/check.png" alt="green check" >
-      <img class="check-x hidden" id="x" src="assets/x.png" alt="red x" >
-    </div>
-    <p class="ingredient-row-text">${ingredient.quantity.amount} ${ingredient.quantity.unit} ${name}</p>
-    <p id="ingredientRowText"class="ingredient-row-price">$${((ingredient.quantity.amount * price) / 100).toFixed(2)}</p>
-  </div>
-  `
-}
-
-function displayTags(recipe, placement) {
-  recipe.tags.forEach(tag => {
-    placement.innerHTML += `
-      <li class="recipe-tag">${tag}</li>
-    `
-  })
-}
-
 function recipeDetails(recipe) {
   recipeDetailsTags.innerHTML = '';
   recipePageImageContainer.id = `${recipe.id}`
@@ -199,7 +159,60 @@ function recipeDetails(recipe) {
   displayIngredients(recipe);
 }
 
-function cookinQueueCards(recipe) {
+function displayTags(recipe, placement) {
+  recipe.tags.forEach(tag => {
+    placement.innerHTML += `
+    <li class="recipe-tag">${tag}</li>
+    `
+  })
+}
+
+function displayIngredients(recipe) {
+  ingredientRow.innerHTML = '';
+  let total = 0;
+  recipe.ingredients.forEach(ingredient => {
+    const ingredientName = recipe.findIngredientName(ingredient.id);
+    const ingredientPrice = recipe.findIngredientCost(ingredient.id);
+    populateMeasurements(ingredient, ingredientName, ingredientPrice, recipe);
+    total += (ingredient.quantity.amount * ingredientPrice) / 100
+  })
+  ingredientTotal.innerText = `$${total.toFixed(2)}`;
+  displayInstructions(recipe)
+}
+
+
+function populateMeasurements(ingredient, name, price, recipe) {
+  console.log('populateMeasurements:', recipe);
+  console.log('measurementIngredientsNeeded', currentPantry.neededIngredients);
+
+  ingredientRow.innerHTML += `
+  <div class="ingredient-row-left-side">
+    <div class="check-box">
+      <img class="check-x" id="measureCheck${ingredient.id}" src="assets/check.png" alt="green check" >
+      <img class="check-x " id="measureX${ingredient.id}" src="assets/x.png" alt="red x" >
+    </div>
+    <p class="ingredient-row-text">${ingredient.quantity.amount} ${ingredient.quantity.unit} ${name}</p>
+    <p id="ingredientRowText"class="ingredient-row-price">$${((ingredient.quantity.amount * price) / 100).toFixed(2)}</p>
+  </div>
+  `
+  const measureCheck = document.querySelector(`#measureCheck${ingredient.id}`);
+  const measureX = document.querySelector(`#measureX${ingredient.id}`);
+  ingredientCheckDisplay(recipe, measureX, measureCheck);
+}
+
+function displayInstructions(recipe) {
+  recipeInstructions.innerHTML = ''
+  recipe.instructions.forEach(step => {
+    recipeInstructions.innerHTML += `
+    <section class="numbered-recipe-chunk">
+    <p class="recipe-number">${step.number}</p>
+    <p>${step.instruction}</p>
+    </section>
+    `
+  })
+}
+
+function cookinQueueCards() {
   cookinQueueBlock.innerHTML = '';
   newUser.recipesToCook.forEach((cookChoice, i) => {
     cookinQueueBlock.innerHTML += `
@@ -213,11 +226,51 @@ function cookinQueueCards(recipe) {
           </ul>
           <h2 id="cookinQueueRecipe">${cookChoice.name}</h2>
           <button class="az-button pantry-sort-button cook">Cook!</button>
+          <img class="check-x" id="cookinCheck${i + 1}${cookChoice.id}" src="assets/check.png" alt="green check" >
+          <img class="check-x" id="cookinX${i + 1}${cookChoice.id}" src="assets/x.png" alt="red x" >
         </div>
       </article>
     `
-    let cookinQueueTags = document.querySelector(`#cookinQueueTags${i + 1}`)
-    displayTags(cookChoice, cookinQueueTags)
+    const cookinQueueTags = document.querySelector(`#cookinQueueTags${i + 1}`)
+    const cookinX = document.querySelector(`#cookinX${i + 1}${cookChoice.id}`);
+    const cookinCheck = document.querySelector(`#cookinCheck${i + 1}${cookChoice.id}`);
+    displayTags(cookChoice, cookinQueueTags);
+    cookPossible(cookChoice, cookinX, cookinCheck);
+    console.log('cookChoice', cookChoice);
+  })
+}
+
+function addToCookinQueue() {
+  let found;
+  // showHide(cookinQueuePage, homePage, favoritesPage, searchResultsPage, userPantryPage, recipeDetailPage)
+  newRepository.recipeList.forEach(recipe => {
+    if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
+      found = recipe
+      return found;
+    }
+  })
+  newUser.addToCookQueue(found);
+  cookinQueueCards();
+}
+
+function cookPossible(recipe, cookinX, cookinCheck) {
+    currentPantry.neededIngredients = [];
+    currentPantry.compareIngredients(recipe);
+    console.log('neededIngredients:', currentPantry.neededIngredients)
+  if (currentPantry.neededIngredients.length > 0) {
+    console.log("B:", cookinX);
+    hide([cookinCheck]);
+  } else {
+    console.log('A:', cookinCheck)
+    hide([cookinX]);
+  }
+}
+
+function ingredientCheckDisplay(recipe, cookinX, cookinCheck) {
+  currentPantry.neededIngredients = [];
+  currentPantry.compareIngredients(recipe);
+  currentPantry.neededIngredients.forEach(neededIngredient => {
+    const foundIngredient = ingredientsData.find(ingredient => ingredient.id === neededIngredient.id);
   })
 }
 
@@ -261,17 +314,24 @@ function showHide(page1, page2, page3, page4, page5, page6) {
 
 function goHome() {
   showHide(homePage, recipeDetailPage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage);
-  resetInnerHTML(browseMealsGrid);
-  populateMain();
+  // resetInnerHTML(browseMealsGrid);
+  // populateMain();
 }
+
+// function enlargeRecipe() {
+//   showHide(recipeDetailPage, homePage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
+//   newRepository.recipeList.forEach(recipe => {
+//     if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
+//       recipeDetails(recipe)
+//     }
+//   })
+// }
 
 function enlargeRecipe() {
   showHide(recipeDetailPage, homePage, favoritesPage, searchResultsPage, userPantryPage, cookinQueuePage)
-  newRepository.recipeList.forEach(recipe => {
-    if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
-      recipeDetails(recipe)
-    }
-  })
+  const targetId = parseInt(event.target.closest('.recipe-target').id);
+  const foundRecipe = newRepository.recipeList.find(recipe => targetId === recipe.id);
+  recipeDetails(foundRecipe);
 }
 
 function displayPantry() {
@@ -336,16 +396,6 @@ function displayFavorites() {
   populateAll(newUser.favoriteRecipes, favoritesMealsGrid, 400);
 }
 
-function addToCookinQueue() {
-  // showHide(cookinQueuePage, homePage, favoritesPage, searchResultsPage, userPantryPage, recipeDetailPage)
-  newRepository.recipeList.forEach(recipe => {
-    if (parseInt(event.target.closest('.recipe-target').id) === recipe.id) {
-      newUser.addToCookQueue(recipe);
-      cookinQueueCards(recipe);
-    }
-  })
-}
-
 function recipeCardFunctionalityHandler(event) {
   if (event.target.closest('.heart')) {
     favoriteRecipeHandler(event);
@@ -361,7 +411,7 @@ function recipeCardFunctionalityHandler(event) {
   }
 }
 
-window.addEventListener('load', populateMain);
+window.addEventListener('load', pageLoad);
 headerLogo.addEventListener('click', goHome);
 homeButtonInHeader.addEventListener('click', goHome);
 favoriteButtonInHeader.addEventListener('click', displayFavorites);
